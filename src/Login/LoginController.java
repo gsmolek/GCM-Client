@@ -24,6 +24,10 @@ public class LoginController {
 		sql = null;
 		sendSQL = new ArrayList<Object>();
 	}
+	
+	//may we need to change login ---> public int login(String userName,String password) 	??? 
+	//return 0 - if correct , 1 - if user exist but password wrong and 2 - if user does't exist
+	
 	public boolean login() {
 		
 		//need to check if the user name or the password is empty//
