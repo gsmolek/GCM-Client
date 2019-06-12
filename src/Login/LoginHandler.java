@@ -1,7 +1,11 @@
 package Login;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ListView;
@@ -12,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
-public class LoginHandler {
+public class LoginHandler  implements Initializable {
 
 	LoginController _logInController;
 	
@@ -58,12 +62,17 @@ public class LoginHandler {
     @FXML
     private ImageView _xIcon;
     
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
+	}
     
     @FXML
     void logInClick(ActionEvent event) 
     {
     	_logInController=new LoginController();
-    	int logInReturn = _logInController.login(_userNameFiled.getText(),_passwordFiled.getText()))
+    	int logInReturn=0;// = _logInController.login(_userNameFiled.getText(),_passwordFiled.getText()))
     	switch (logInReturn)
     	{
 		case 0:
@@ -100,6 +109,8 @@ public class LoginHandler {
     	_radioPlaceOfInterestName.setSelected(false);
     	//()event.getSource()
     }
+
+	
 
 }
 
