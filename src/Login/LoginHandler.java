@@ -93,6 +93,14 @@ public class LoginHandler {
     	//open the registrationWindow 
     }
 
+    @FXML
+    void radioCitySelect(ActionEvent event) {
+    	_radioCityName.setSelected(true);
+    	_radioDescription.setSelected(false);
+    	_radioPlaceOfInterestName.setSelected(false);
+    	//()event.getSource()
+    }
+
 }
 
 

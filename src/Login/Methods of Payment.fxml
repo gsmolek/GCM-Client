@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane onMouseEntered="#initializationMethodsOfPayment" prefHeight="344.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.RegistrationHandler">
+   <children>
+      <Label layoutX="51.0" layoutY="14.0" prefHeight="108.0" prefWidth="325.0" text="Methods of Payment">
+         <font>
+            <Font name="Lucida Sans Demibold" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="122.0" prefHeight="22.0" prefWidth="139.0" text="Card number">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </Label>
+      <TextField layoutX="201.0" layoutY="121.0" prefHeight="25.0" prefWidth="184.0" promptText="Card number" />
+      <Label layoutX="36.0" layoutY="170.0" prefHeight="22.0" prefWidth="139.0" text="Expiration date">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="220.0" prefHeight="22.0" prefWidth="93.0" text="CVV/CVD">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="118.0" text="*" textFill="RED">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="165.0" text="*" textFill="RED">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="216.0" text="*" textFill="RED">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <TextField layoutX="201.0" layoutY="219.0" prefHeight="25.0" prefWidth="184.0" promptText="CVV/CVD" />
+      <ComboBox fx:id="_monthComboBox" layoutX="200.0" layoutY="169.0" prefHeight="25.0" prefWidth="84.0" promptText="month" />
+      <ComboBox fx:id="_yearComboBox" layoutX="316.0" layoutY="169.0" prefHeight="25.0" prefWidth="67.0" promptText="year" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="385.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@banking_cards-512.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="_markQustionImage" fitHeight="77.0" fitWidth="22.0" layoutX="129.0" layoutY="220.0" onMouseEntered="#cvvShow" onMouseExited="#cvvUnshow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@questiom-mark.png" />
+         </image>
+      </ImageView>
+      <Button defaultButton="true" layoutX="77.0" layoutY="286.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="105.0" text="Save" />
+      <Button cancelButton="true" layoutX="336.0" layoutY="286.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="115.0" text="Back" />
+      <ImageView fx:id="_cvvImage" fitHeight="331.0" fitWidth="318.0" layoutX="197.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@CVV.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

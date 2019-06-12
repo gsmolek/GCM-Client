@@ -21,7 +21,7 @@
                <font>
                   <Font name="Century" size="25.0" />
                </font></Label>
-            <RadioButton fx:id="_radioCityName" layoutX="33.0" layoutY="73.0" mnemonicParsing="false" text="Search By City Name">
+            <RadioButton fx:id="_radioCityName" layoutX="33.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#radioCitySelect" selected="true" text="Search By City Name">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font></RadioButton>
