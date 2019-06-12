@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<fx:root prefHeight="655.0" prefWidth="828.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginHandler">
+<AnchorPane prefHeight="655.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.LoginHandler">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="828.0">
          <children>
@@ -103,4 +103,4 @@
          </children>
       </Pane>
    </children>
-</fx:root>
+</AnchorPane>
