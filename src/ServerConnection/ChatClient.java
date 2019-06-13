@@ -5,18 +5,28 @@ package ServerConnection;
 import ocsf.client.*;
 
 import java.io.*;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 
 public class ChatClient extends AbstractClient
 {
 	
-  private ArrayList<String> str=new ArrayList<String>();
+  private ArrayList<Object> str=new ArrayList<Object>();
+  private ResultSet rs;
 
-  public ChatClient(String host, int port) 
+  public ResultSet getRs() {
+	return rs;
+}
+
+public void setRs(ResultSet rs) {
+	this.rs = rs;
+}
+
+public ChatClient() 
     throws IOException 
   {
-    super(host, port); //Call the superclass constructor
+    super("localhost", 5555); //Call the superclass constructor
     openConnection();
   }
 
@@ -27,16 +37,24 @@ public class ChatClient extends AbstractClient
 	  switch(command)
 	  {
 	  case "1":
-	  {}
+	  {
+		  String sql=(String)dataFromServer.get(dataFromServer.size());
+		  System.out.println("1");
+	  }
 	  case "2":
-	  {}
+	  {
+		  ResultSet rsFromServer=(ResultSet)dataFromServer.get(1);
+		  this.rs=rsFromServer;
+	  }
 	  case "3":
-	  {}
+	  {
+		  
+	  }
 	  default:
 	  {}
 	  }
   }
-public ArrayList<String> getStr()
+public ArrayList<Object> getStr()
 {
 	return str;
 }
