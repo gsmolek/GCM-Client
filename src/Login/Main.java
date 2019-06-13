@@ -20,8 +20,6 @@ public class Main extends Application {
 			Scene scene = new Scene( root );
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
-			LoginController controller=loader.getController();
-			
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			

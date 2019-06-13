@@ -1,6 +1,13 @@
 package Login;
 
+import ServerConnection.*;
+
+import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -18,6 +25,7 @@ import javafx.scene.image.ImageView;
 
 public class LoginHandler  implements Initializable {
 
+	
 	LoginController _logInController;
 	
     @FXML
@@ -68,33 +76,63 @@ public class LoginHandler  implements Initializable {
 		
 	}
     
-    @FXML
-    void logInClick(ActionEvent event) 
+    
+    
+    
+    
+    private ArrayList<Object> sendSQL = new ArrayList<Object>();
+    ResultSet rs;
+    
+   @FXML
+   public void logInClick(ActionEvent event) 
     {
-    	_logInController=new LoginController();
-    	int logInReturn=0;// = _logInController.login(_userNameFiled.getText(),_passwordFiled.getText()))
-    	switch (logInReturn)
-    	{
-		case 0:
-			//check which kind of user it is (Client/employee/manager) and open the right window
-			break;
-		case 1: 
-			_xIcon.setVisible(true);
-			_errorMessageLabel.setVisible(true);
-			_errorMessageLabel.setText("Wrong password try again !");
-			
-			break;
-		case 2:
-			_xIcon.setVisible(true);
-			_errorMessageLabel.setVisible(true);
-			_errorMessageLabel.setText("invalid userName try again !");
-			
-			break;
-		default:
-			break;
+    	System.out.println("sdd");
+    	String sql;
+    	String table = "users";
+		String username = _userNameFiled.getText();
+		String password = _passwordFiled.getText();
+		sql = "SELECT user_name, password FROM " + table + " WHERE user_name = '" + username
+				+ "' AND password = '" + password + "';";
+		sendSQL.add("2");
+		sendSQL.add(sql);
+		
+		ChatClient chat =null;
+		try {
+			chat = new ChatClient();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			//return false;
 		}
+		chat.handleMessageFromClient(sendSQL);
+			rs = chat.getRs();
+			
+			
+			// send SQL string to the server
+			// get ResltSet back from the server
+			/*Statement stmt;
+			stmt = dbConnector.con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);*/
+			
+			
+		
+			
+			//if resultSet is empty the user doesn't exist & return false
+			
+
+			if (rs==null) {
+				System.out.println("userName or password is incorect");
+				//return false;
+			}
+    } 
+		
+
+    
+    	
+    	
+    	
     		
-    }
+    
     	
     @FXML
     void signUpClick(ActionEvent event) 

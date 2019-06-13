@@ -26,7 +26,7 @@ public void setRs(ResultSet rs) {
 public ChatClient() 
     throws IOException 
   {
-    super("localhost", 5555); //Call the superclass constructor
+    super("localhost", 5550); //Call the superclass constructor
     openConnection();
   }
 
@@ -72,6 +72,7 @@ public void clearStr()
   {
     try
     {
+    	System.out.println("entered from client");
     	sendToServer(message);
     }
     catch(IOException e)
