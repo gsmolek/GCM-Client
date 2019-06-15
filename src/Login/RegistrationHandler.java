@@ -1,21 +1,23 @@
 package Login;
 
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-public class RegistrationHandler {
+public class RegistrationHandler implements Initializable{
 
-	private ObservableList<String> listMounth =FXCollections.observableArrayList(
-			"01","02","03","04","05","06","07","08","09","10","11","12"); 
-	private ObservableList<String> listYear =FXCollections.observableArrayList(
-			"2019","2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030");
+	private ObservableList<String> listMounth; 
+	private ObservableList<String> listYear;
    @FXML
     private ComboBox<String> _yearComboBox;
     
@@ -79,5 +81,15 @@ public class RegistrationHandler {
     	_yearComboBox.setItems(listYear);
     	_yearComboBox.setItems(listMounth);
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) 
+	{
+		listMounth =FXCollections.observableArrayList(
+				"01","02","03","04","05","06","07","08","09","10","11","12"); 
+		listYear =FXCollections.observableArrayList(
+				"2019","2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030");
+		
+	}
 
 }

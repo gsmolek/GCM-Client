@@ -6,7 +6,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.SQLException;
 
-
  * fistName - varchar
  * lastName - varchar
  * user name - varchar

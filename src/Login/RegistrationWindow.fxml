@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane prefHeight="655.0" prefWidth="497.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="RegistrationHandler">
+<Pane prefHeight="655.0" prefWidth="497.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.RegistrationHandler">
    <children>
       <Label layoutX="24.0" layoutY="98.0" prefHeight="128.0" prefWidth="532.0" text="Welcom to GCM registration">
          <font>
@@ -131,3 +131,4 @@
       </ImageView>
    </children>
 </Pane>
+
