@@ -1,4 +1,4 @@
-package Login;
+/*package Login;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.SQLException;
 
-/*
+
  * fistName - varchar
  * lastName - varchar
  * user name - varchar
@@ -15,7 +15,7 @@ import java.sql.SQLException;
  * permission - int
  * phone - int
  * creditCard - int
- */
+ 
 
 public class LoginController {
 	private String sql;
@@ -50,11 +50,11 @@ public class LoginController {
 				return false;
 			}
 
-			/*
+			
 			 * 1 - company manager 
 			 * 2 - content manager 
 			 * 3 - client
-			 */
+			 
 			switch (rs.getInt(3)) {
 			case 1:
 				System.out.println("company manager");
@@ -182,3 +182,4 @@ public class LoginController {
 	
 	
 }
+*/

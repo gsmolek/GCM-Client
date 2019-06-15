@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +27,7 @@ import javafx.scene.image.ImageView;
 public class LoginHandler  implements Initializable {
 
 	
-	LoginController _logInController;
+	//LoginController _logInController;
 	
     @FXML
     private Button _searchButton;
@@ -81,12 +82,11 @@ public class LoginHandler  implements Initializable {
     
     
     private ArrayList<Object> sendSQL = new ArrayList<Object>();
-    ResultSet rs;
+    private ResultSet rs;
     
    @FXML
    public void logInClick(ActionEvent event) 
     {
-    	System.out.println("sdd");
     	String sql;
     	String table = "users";
 		String username = _userNameFiled.getText();
@@ -95,7 +95,6 @@ public class LoginHandler  implements Initializable {
 				+ "' AND password = '" + password + "';";
 		sendSQL.add("2");
 		sendSQL.add(sql);
-		
 		ChatClient chat =null;
 		try {
 			chat = new ChatClient();
@@ -105,7 +104,20 @@ public class LoginHandler  implements Initializable {
 			//return false;
 		}
 		chat.handleMessageFromClient(sendSQL);
-			rs = chat.getRs();
+		try {
+			TimeUnit.SECONDS.sleep(2);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		byte[][] result = chat.returnByteArray();	
+		String s = new String(result[0]);
+		System.out.println("main: "+s);
+		s = new String(result[1]);
+		System.out.println("main: "+s);
+		
+			
 			
 			
 			// send SQL string to the server

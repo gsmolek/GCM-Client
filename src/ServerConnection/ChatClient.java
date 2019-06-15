@@ -6,6 +6,7 @@ import ocsf.client.*;
 
 import java.io.*;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -14,7 +15,11 @@ public class ChatClient extends AbstractClient
 	
   private ArrayList<Object> str=new ArrayList<Object>();
   private ResultSet rs;
+  private byte[][] result;
 
+  public byte[][] returnByteArray() {
+	  return result;
+  }
   public ResultSet getRs() {
 	return rs;
 }
@@ -32,19 +37,21 @@ public ChatClient()
 
   public void handleMessageFromServer(Object msg) 
   {
+	  
 	  ArrayList<Object> dataFromServer = (ArrayList<Object>)msg;
 	  String command= (String)dataFromServer.get(0);
 	  switch(command)
 	  {
 	  case "1":
 	  {
-		  String sql=(String)dataFromServer.get(dataFromServer.size());
+		  String sql=(String)dataFromServer.get(dataFromServer.size()-1);
 		  System.out.println("1");
 	  }
 	  case "2":
 	  {
-		  ResultSet rsFromServer=(ResultSet)dataFromServer.get(1);
-		  this.rs=rsFromServer;
+		  result = (byte[][]) dataFromServer.get(1);
+		  //ResultSet rsFromServer=(ResultSet)dataFromServer.get(1);
+		  //this.rs=rsFromServer;
 	  }
 	  case "3":
 	  {
@@ -72,7 +79,6 @@ public void clearStr()
   {
     try
     {
-    	System.out.println("entered from client");
     	sendToServer(message);
     }
     catch(IOException e)
