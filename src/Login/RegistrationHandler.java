@@ -1,6 +1,7 @@
 package Login;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,11 +9,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class RegistrationHandler implements Initializable{
 
@@ -49,20 +55,38 @@ public class RegistrationHandler implements Initializable{
     private PasswordField _rePasswordField;
     
     @FXML
-    void seePassword(ActionEvent event)
+    void seePassword()
     {
+    	
     	_passwordFieldShow.setText(_passwordField.getText());
     	_passwordFieldShow.setVisible(true);
     	_passwordField.setVisible(false);
     }
 
     @FXML
-    void unSeePassword(ActionEvent event) 
+    void unSeePassword() 
     {
     	_passwordFieldShow.setVisible(false);
     	_passwordField.setVisible(true);
     }
+    @FXML
+    void seeRePassword()
+    {
+    	
+    	_rePasswordFieldShow.setText(_rePasswordField.getText());
+    	_rePasswordFieldShow.setVisible(true);
+    	_rePasswordField.setVisible(false);
+    }
 
+    @FXML
+    void unSeeRePassword() 
+    {
+    	_rePasswordFieldShow.setVisible(false);
+    	_rePasswordField.setVisible(true);
+    }
+
+    
+    
     @FXML
     void cvvShow(ActionEvent event) 
     {
@@ -75,6 +99,26 @@ public class RegistrationHandler implements Initializable{
     	_cvvImage.setVisible(false);
     }
  
+    @FXML
+    void clickEnterPayment(ActionEvent event)
+    {
+    	  try {
+          	FXMLLoader loader = new FXMLLoader();
+  			Pane root = (Pane) loader.load(getClass().getResource("/Login/Methods of Payment.fxml"));
+  			Scene scene = new Scene( root );
+  			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+  			 Stage stage =new Stage();
+  			 stage.setScene(scene);
+  			 stage.show();
+  			
+  			
+          }
+          catch (IOException e) {
+              e.printStackTrace();
+          }
+
+    }
+    
     @FXML
     void initializationMethodsOfPayment(ActionEvent event) 
     {

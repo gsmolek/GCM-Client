@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.sun.media.jfxmediaimpl.platform.Platform;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -97,8 +99,8 @@ public class LoginHandler implements Initializable{
     @FXML
     void logInClick(ActionEvent event) 
     {
-    	LoginController loginController = new LoginController();
-    	loginController.login(_userNameFiled.getText(), _passwordFiled.getText());
+    	//LoginController loginController = new LoginController();
+    	//loginController.login(_userNameFiled.getText(), _passwordFiled.getText());
     	
     }
 
@@ -118,6 +120,8 @@ public class LoginHandler implements Initializable{
 			
             // Hide this current window (if this is what you want)
             ((Node)(event.getSource())).getScene().getWindow().hide();
+            
+            stage.setOnCloseRequest(e -> new Main().start(new Stage()));;
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -130,3 +134,4 @@ public class LoginHandler implements Initializable{
 		// TODO Auto-generated method stub
 		
 	}
+}

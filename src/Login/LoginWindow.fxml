@@ -86,6 +86,11 @@
                         <Image url="@Letter-X-icon.png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="91.0" fitWidth="140.0" layoutX="301.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@logoSecond.gif" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
             <Separator layoutX="391.0" layoutY="70.0" orientation="VERTICAL" prefHeight="411.0" prefWidth="22.0" />
@@ -103,4 +108,3 @@
       </Pane>
    </children>
 </AnchorPane>
-
