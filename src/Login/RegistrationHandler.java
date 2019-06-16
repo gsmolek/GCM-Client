@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -53,6 +54,20 @@ public class RegistrationHandler implements Initializable{
 
     @FXML
     private PasswordField _rePasswordField;
+   
+    @FXML
+    private Button _enterPaymentButton;
+    
+    @FXML
+    void clickToLoginButton(ActionEvent event)
+    {
+    	Stage stage =new Stage();
+    	stage.setScene(((Node)(event.getSource())).getScene());
+    	
+    	stage.close();
+    	
+    	
+    }
     
     @FXML
     void seePassword()
@@ -86,7 +101,7 @@ public class RegistrationHandler implements Initializable{
     }
 
     @FXML
-    void clickRegister(ActionEvent event)
+    void clickRegister()
     {
     	//check for fields && payment
     	
@@ -105,9 +120,7 @@ public class RegistrationHandler implements Initializable{
   			 stage.setScene(scene);
   			 stage.show();
   			 
-  		     // Hide this current window (if this is what you want)
-             ((Node)(event.getSource())).getScene().getWindow().hide();
-
+  		
           }
           catch (IOException e) {
               e.printStackTrace();
@@ -164,4 +177,5 @@ public class RegistrationHandler implements Initializable{
 		
 	}
 
+	
 }
