@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane onMouseEntered="#initializationMethodsOfPayment" prefHeight="344.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.RegistrationHandler">
+<Pane fx:id="_methodOfPayment" onMouseEntered="#initializationMethodsOfPayment" prefHeight="344.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.RegistrationHandler">
    <children>
       <Label layoutX="51.0" layoutY="14.0" prefHeight="108.0" prefWidth="325.0" text="Methods of Payment">
          <font>
@@ -45,8 +45,8 @@
          </font>
       </Label>
       <TextField layoutX="201.0" layoutY="219.0" prefHeight="25.0" prefWidth="184.0" promptText="CVV/CVD" />
-      <ComboBox fx:id="_monthComboBox" layoutX="200.0" layoutY="169.0" prefHeight="25.0" prefWidth="84.0" promptText="month" />
-      <ComboBox fx:id="_yearComboBox" layoutX="316.0" layoutY="169.0" prefHeight="25.0" prefWidth="67.0" promptText="year" />
+      <ComboBox fx:id="_monthComboBox" layoutX="200.0" layoutY="169.0" prefHeight="31.0" prefWidth="81.0" promptText="mm" />
+      <ComboBox fx:id="_yearComboBox" layoutX="290.0" layoutY="169.0" prefHeight="31.0" prefWidth="93.0" promptText="yyyy" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="385.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@banking_cards-512.png" />

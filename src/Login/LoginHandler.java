@@ -1,53 +1,65 @@
 package Login;
 
-import ServerConnection.*;
-
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
+import com.sun.media.jfxmediaimpl.platform.Platform;
+
+import ServerConnection.ChatClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
-public class LoginHandler  implements Initializable {
+public class LoginHandler implements Initializable{
 
-	
-	LoginController _logInController;
-	
     @FXML
     private Button _searchButton;
-
-    @FXML
-    private Button _forQuestionButton;
 
     @FXML
     private RadioButton _radioCityName;
 
     @FXML
-    private Hyperlink _hyperSignUp;
-
-    @FXML
     private RadioButton _radioDescription;
 
     @FXML
-    private TextField _userNameFiled;
+    private ImageView _xIcon;
 
     @FXML
     private ListView<?> _listViewResult;
+
+    @FXML
+    private Hyperlink _hyperForgot;
+
+    @FXML
+    private Button _forQuestionButton;
+
+    @FXML
+    private Label _errorMessageLabel;
+
+    @FXML
+    private Hyperlink _hyperSignUp;
+
+    @FXML
+    private TextField _userNameFiled;
 
     @FXML
     private TextArea _searchTextFiled;
@@ -56,36 +68,44 @@ public class LoginHandler  implements Initializable {
     private PasswordField _passwordFiled;
 
     @FXML
-    private Hyperlink _hyperForgot;
-
-    @FXML
     private RadioButton _radioPlaceOfInterestName;
-
-    @FXML
-    private Button _logInButton;
-
-    @FXML
-    private Label _errorMessageLabel;
-    
-    @FXML
-    private ImageView _xIcon;
-    
-    @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-    
-    
-    
-    
     
     private ArrayList<Object> sendSQL = new ArrayList<Object>();
-    ResultSet rs;
-    
-   @FXML
-   public void logInClick(ActionEvent event) 
+
+    @FXML
+    void radioCitySelect(ActionEvent event)
     {
+    	if(_radioCityName.isSelected())
+    	{
+    		_radioPlaceOfInterestName.setSelected(false);
+    		_radioDescription.setSelected(false);
+    	}
+    }
+    @FXML
+    void radioPlaceOfInterestName(ActionEvent event)
+    {
+    	if(_radioPlaceOfInterestName.isSelected())
+    	{
+    		_radioCityName.setSelected(false);
+    		_radioDescription.setSelected(false);
+    	}
+    }
+    @FXML
+    void radioDescription(ActionEvent event)
+    {
+    	if(_radioDescription.isSelected())
+    	{
+    		_radioPlaceOfInterestName.setSelected(false);
+    		_radioCityName.setSelected(false);
+    	}
+    }
+
+
+    @FXML
+    void logInClick(ActionEvent event) 
+    {
+    	//LoginController loginController = new LoginController();
+    	//loginController.login(_userNameFiled.getText(), _passwordFiled.getText());
     	System.out.println("sdd");
     	String sql;
     	String table = "users";
@@ -95,7 +115,7 @@ public class LoginHandler  implements Initializable {
 				+ "' AND password = '" + password + "';";
 		sendSQL.add("2");
 		sendSQL.add(sql);
-		
+
 		ChatClient chat =null;
 		try {
 			chat = new ChatClient();
@@ -105,51 +125,54 @@ public class LoginHandler  implements Initializable {
 			//return false;
 		}
 		chat.handleMessageFromClient(sendSQL);
-			rs = chat.getRs();
-			
-			
-			// send SQL string to the server
-			// get ResltSet back from the server
-			/*Statement stmt;
-			stmt = dbConnector.con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);*/
-			
-			
-		
-			
-			//if resultSet is empty the user doesn't exist & return false
-			
-
-			if (rs==null) {
-				System.out.println("userName or password is incorect");
-				//return false;
+		try {
+			TimeUnit.MILLISECONDS.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<ArrayList<String>> m = chat.getArray();
+		for(int i = 0;i<m.size();i++) {
+			for(int j = 0 ; j<m.get(i).size();j++) {
+				System.out.println(m.get(i).get(j));
 			}
-    } 
-		
+		}
+		/*byte[][] result = chat.returnByteArray();	
+		String s = new String(result[0]);
+		System.out.println("main: "+s);
+		s = new String(result[1]);
+		System.out.println("main: "+s); */
+    }
 
-    
-    	
-    	
-    	
-    		
-    
-    	
     @FXML
-    void signUpClick(ActionEvent event) 
+    void signUpClick(ActionEvent event)
     {
-    	//open the registrationWindow 
+    	 
+        try {
+        	FXMLLoader loader = new FXMLLoader();
+			Pane root = (Pane) loader.load(getClass().getResource("/Login/RegistrationWindow.fxml"));
+			Scene scene = new Scene( root );
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			 Stage stage =new Stage();
+			 stage.setScene(scene);
+			 stage.show();
+			
+			
+            // Hide this current window (if this is what you want)
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+            
+            stage.setOnCloseRequest(e -> new Main().start(new Stage()));
+           
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    @FXML
-    void radioCitySelect(ActionEvent event) {
-    	_radioCityName.setSelected(true);
-    	_radioDescription.setSelected(false);
-    	_radioPlaceOfInterestName.setSelected(false);
-    	//()event.getSource()
-    }
-
-	
-
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
+	}
 }
-
-
