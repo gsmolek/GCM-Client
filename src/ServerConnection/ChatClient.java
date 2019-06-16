@@ -15,13 +15,14 @@ public class ChatClient extends AbstractClient
 	
   private ArrayList<Object> str=new ArrayList<Object>();
   private ResultSet rs;
+  private ArrayList<ArrayList<String>> array;
   private byte[][] result;
 
   public byte[][] returnByteArray() {
 	  return result;
   }
-  public ResultSet getRs() {
-	return rs;
+  public ArrayList<ArrayList<String>> getArray() {
+	return array;
 }
 
 public void setRs(ResultSet rs) {
@@ -49,7 +50,8 @@ public ChatClient()
 	  }
 	  case "2":
 	  {
-		  result = (byte[][]) dataFromServer.get(1);
+		  array = (ArrayList<ArrayList<String>>) dataFromServer.get(1);
+		  
 		  //ResultSet rsFromServer=(ResultSet)dataFromServer.get(1);
 		  //this.rs=rsFromServer;
 	  }

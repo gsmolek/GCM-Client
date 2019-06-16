@@ -2,10 +2,13 @@ package Login;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 import com.sun.media.jfxmediaimpl.platform.Platform;
 
+import ServerConnection.ChatClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,6 +69,8 @@ public class LoginHandler implements Initializable{
 
     @FXML
     private RadioButton _radioPlaceOfInterestName;
+    
+    private ArrayList<Object> sendSQL = new ArrayList<Object>();
 
     @FXML
     void radioCitySelect(ActionEvent event)
@@ -101,7 +106,42 @@ public class LoginHandler implements Initializable{
     {
     	//LoginController loginController = new LoginController();
     	//loginController.login(_userNameFiled.getText(), _passwordFiled.getText());
-    	
+    	System.out.println("sdd");
+    	String sql;
+    	String table = "users";
+		String username = _userNameFiled.getText();
+		String password = _passwordFiled.getText();
+		sql = "SELECT user_name, password FROM " + table + " WHERE user_name = '" + username
+				+ "' AND password = '" + password + "';";
+		sendSQL.add("2");
+		sendSQL.add(sql);
+
+		ChatClient chat =null;
+		try {
+			chat = new ChatClient();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			//return false;
+		}
+		chat.handleMessageFromClient(sendSQL);
+		try {
+			TimeUnit.MILLISECONDS.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<ArrayList<String>> m = chat.getArray();
+		for(int i = 0;i<m.size();i++) {
+			for(int j = 0 ; j<m.get(i).size();j++) {
+				System.out.println(m.get(i).get(j));
+			}
+		}
+		/*byte[][] result = chat.returnByteArray();	
+		String s = new String(result[0]);
+		System.out.println("main: "+s);
+		s = new String(result[1]);
+		System.out.println("main: "+s); */
     }
 
     @FXML
