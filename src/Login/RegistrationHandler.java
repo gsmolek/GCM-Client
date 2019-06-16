@@ -85,6 +85,35 @@ public class RegistrationHandler implements Initializable{
     	_rePasswordField.setVisible(true);
     }
 
+    @FXML
+    void clickRegister(ActionEvent event)
+    {
+    	//check for fields && payment
+    	
+    	if(_passwordField.getText().equals(_rePasswordField.getText()))
+    	{
+    		
+    	}
+    	
+    	//if every thing is good 
+    	try {
+          	FXMLLoader loader = new FXMLLoader();
+  			Pane root = (Pane) loader.load(getClass().getResource("/Login/ConfirmRegistration.fxml"));
+  			Scene scene = new Scene( root );
+  			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+  			 Stage stage =new Stage();
+  			 stage.setScene(scene);
+  			 stage.show();
+  			 
+  		     // Hide this current window (if this is what you want)
+             ((Node)(event.getSource())).getScene().getWindow().hide();
+
+          }
+          catch (IOException e) {
+              e.printStackTrace();
+          }
+    	
+    }
     
     @FXML
     void cvvShow() 

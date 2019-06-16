@@ -121,7 +121,8 @@ public class LoginHandler implements Initializable{
             // Hide this current window (if this is what you want)
             ((Node)(event.getSource())).getScene().getWindow().hide();
             
-            stage.setOnCloseRequest(e -> new Main().start(new Stage()));;
+            stage.setOnCloseRequest(e -> new Main().start(new Stage()));
+           
         }
         catch (IOException e) {
             e.printStackTrace();
