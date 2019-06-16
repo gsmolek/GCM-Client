@@ -10,9 +10,9 @@
 
 <AnchorPane prefHeight="655.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientWindow.ClientWindowHandler">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="828.0">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="861.0">
          <children>
-            <Pane layoutX="426.0" layoutY="59.0" prefHeight="499.0" prefWidth="412.0">
+            <Pane layoutX="449.0" layoutY="85.0" prefHeight="499.0" prefWidth="412.0">
                <children>
                   <ImageView fitHeight="81.0" fitWidth="246.0" layoutX="121.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -50,7 +50,7 @@
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="_searchButton1" layoutX="38.0" layoutY="485.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Buy Map Collection" textFill="WHITE">
+                  <Button fx:id="_buyMapButton" layoutX="38.0" layoutY="485.0" mnemonicParsing="false" onAction="#clickBuyMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Buy Map Collection" textFill="WHITE">
                      <font>
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
@@ -84,7 +84,7 @@
                </font>
             </Label>
             <ListView disable="true" layoutX="29.0" layoutY="139.0" prefHeight="267.0" prefWidth="344.0" />
-            <Button fx:id="_searchButton2" layoutX="29.0" layoutY="425.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map Collection" textFill="WHITE">
+            <Button fx:id="_downloadMapButton" layoutX="29.0" layoutY="425.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map Collection" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>

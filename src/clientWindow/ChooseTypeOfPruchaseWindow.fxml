@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="393.0" prefWidth="525.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane onMouseEntered="#initializationPeriod" prefHeight="393.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientWindow.ClientWindowHandler">
    <children>
       <RadioButton fx:id="_radioOneTimeP" layoutX="61.0" layoutY="61.0" mnemonicParsing="false" text="One Time Purchase" />
       <RadioButton fx:id="_radioSubP" layoutX="299.0" layoutY="61.0" mnemonicParsing="false" selected="true" text="Purchase Subscription" />
@@ -23,7 +22,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox layoutX="207.0" layoutY="226.0" prefHeight="31.0" prefWidth="257.0" />
+      <ComboBox fx:id="_comboBoxPeriod" layoutX="207.0" layoutY="226.0" prefHeight="31.0" prefWidth="257.0" promptText="Choose Period" />
       <Label layoutX="61.0" layoutY="231.0" text="Subscription period" />
    </children>
 </AnchorPane>

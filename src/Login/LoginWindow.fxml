@@ -64,12 +64,12 @@
                         <Font size="18.0" />
                      </font>
                   </PasswordField>
-                  <Hyperlink fx:id="_hyperForgot" layoutX="29.0" layoutY="344.0" text="Forgot your password?" wrapText="true">
+                  <Hyperlink fx:id="_hyperForgot" layoutX="31.0" layoutY="378.0" text="Forgot your password?" wrapText="true">
                      <font>
                         <Font name="System Italic" size="12.0" />
                      </font>
                   </Hyperlink>
-                  <Button id="_logInButton" layoutX="29.0" layoutY="286.0" mnemonicParsing="false" onAction="#logInClick" prefHeight="46.0" prefWidth="294.0" style="-fx-background-color: DarkKhaki;" text="Log In " textFill="WHITE">
+                  <Button id="_logInButton" layoutX="31.0" layoutY="320.0" mnemonicParsing="false" onAction="#logInClick" prefHeight="46.0" prefWidth="294.0" style="-fx-background-color: DarkKhaki;" text="Log In " textFill="WHITE">
                      <font>
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
@@ -79,9 +79,19 @@
                         <Image url="@administrator-male.png" />
                      </image>
                   </ImageView>
-                  <Hyperlink fx:id="_hyperSignUp" layoutX="264.0" layoutY="344.0" onAction="#signUpClick" text="Sign Up" />
+                  <Hyperlink fx:id="_hyperSignUp" layoutX="264.0" layoutY="380.0" onAction="#signUpClick" text="Sign Up" />
                   <Label fx:id="_errorMessageLabel" layoutX="69.0" layoutY="387.0" prefHeight="32.0" prefWidth="254.0" text="Error Message" textFill="RED" visible="false" />
                   <ImageView fx:id="_xIcon" fitHeight="32.0" fitWidth="30.0" layoutX="28.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@Letter-X-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="_incorrectInputLabel" layoutX="32.0" layoutY="261.0" prefHeight="59.0" prefWidth="294.0" text="The user name or password you entered is incorrect." textFill="RED" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="_incorrectIcon" fitHeight="23.0" fitWidth="30.0" layoutX="122.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Letter-X-icon.png" />
                      </image>
