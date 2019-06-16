@@ -6,6 +6,7 @@ import ocsf.client.*;
 
 import java.io.*;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -14,9 +15,14 @@ public class ChatClient extends AbstractClient
 	
   private ArrayList<Object> str=new ArrayList<Object>();
   private ResultSet rs;
+  private ArrayList<ArrayList<String>> array;
+  private byte[][] result;
 
-  public ResultSet getRs() {
-	return rs;
+  public byte[][] returnByteArray() {
+	  return result;
+  }
+  public ArrayList<ArrayList<String>> getArray() {
+	return array;
 }
 
 public void setRs(ResultSet rs) {
@@ -26,25 +32,28 @@ public void setRs(ResultSet rs) {
 public ChatClient() 
     throws IOException 
   {
-    super("localhost", 5555); //Call the superclass constructor
+    super("localhost", 5550); //Call the superclass constructor
     openConnection();
   }
 
   public void handleMessageFromServer(Object msg) 
   {
+	  
 	  ArrayList<Object> dataFromServer = (ArrayList<Object>)msg;
 	  String command= (String)dataFromServer.get(0);
 	  switch(command)
 	  {
 	  case "1":
 	  {
-		  String sql=(String)dataFromServer.get(dataFromServer.size());
+		  String sql=(String)dataFromServer.get(dataFromServer.size()-1);
 		  System.out.println("1");
 	  }
 	  case "2":
 	  {
-		  ResultSet rsFromServer=(ResultSet)dataFromServer.get(1);
-		  this.rs=rsFromServer;
+		  array = (ArrayList<ArrayList<String>>) dataFromServer.get(1);
+		  
+		  //ResultSet rsFromServer=(ResultSet)dataFromServer.get(1);
+		  //this.rs=rsFromServer;
 	  }
 	  case "3":
 	  {
