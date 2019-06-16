@@ -86,15 +86,14 @@ public class RegistrationHandler implements Initializable{
     }
 
     
-    
     @FXML
-    void cvvShow(ActionEvent event) 
+    void cvvShow() 
     {
     	_cvvImage.setVisible(true);
     }
 
     @FXML
-    void cvvUnshow(ActionEvent event)
+    void cvvUnshow()
     {
     	_cvvImage.setVisible(false);
     }
@@ -110,8 +109,7 @@ public class RegistrationHandler implements Initializable{
   			 Stage stage =new Stage();
   			 stage.setScene(scene);
   			 stage.show();
-  			
-  			
+
           }
           catch (IOException e) {
               e.printStackTrace();
@@ -120,19 +118,20 @@ public class RegistrationHandler implements Initializable{
     }
     
     @FXML
-    void initializationMethodsOfPayment(ActionEvent event) 
+    void initializationMethodsOfPayment() 
     {
     	_yearComboBox.setItems(listYear);
-    	_yearComboBox.setItems(listMounth);
+	    	_monthComboBox.setItems(listMounth);
+	    	
     }
-
+  
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) 
 	{
 		listMounth =FXCollections.observableArrayList(
 				"01","02","03","04","05","06","07","08","09","10","11","12"); 
 		listYear =FXCollections.observableArrayList(
-				"2019","2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030");
+				"2019","2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030");	
 		
 	}
 

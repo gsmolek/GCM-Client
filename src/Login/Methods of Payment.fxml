@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane onMouseEntered="#initializationMethodsOfPayment" prefHeight="344.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.RegistrationHandler">
+<Pane fx:id="_methodOfPayment" onMouseEntered="#initializationMethodsOfPayment" prefHeight="344.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.RegistrationHandler">
    <children>
       <Label layoutX="51.0" layoutY="14.0" prefHeight="108.0" prefWidth="325.0" text="Methods of Payment">
          <font>
