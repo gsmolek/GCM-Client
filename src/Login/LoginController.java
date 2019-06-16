@@ -1,4 +1,4 @@
-package Login;
+/*package Login;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.SQLException;
 
-/*
  * fistName - varchar
  * lastName - varchar
  * user name - varchar
@@ -15,7 +14,7 @@ import java.sql.SQLException;
  * permission - int
  * phone - int
  * creditCard - int
- */
+ 
 
 public class LoginController {
 	private String sql;
@@ -24,6 +23,10 @@ public class LoginController {
 		sql = null;
 		sendSQL = new ArrayList<Object>();
 	}
+	
+	//may we need to change login ---> public int login(String userName,String password) 	??? 
+	//return 0 - if correct , 1 - if user exist but password wrong and 2 - if user does't exist
+	
 	public boolean login() {
 		
 		//need to check if the user name or the password is empty//
@@ -46,11 +49,11 @@ public class LoginController {
 				return false;
 			}
 
-			/*
+			
 			 * 1 - company manager 
 			 * 2 - content manager 
 			 * 3 - client
-			 */
+			 
 			switch (rs.getInt(3)) {
 			case 1:
 				System.out.println("company manager");
@@ -178,3 +181,4 @@ public class LoginController {
 	
 	
 }
+*/
