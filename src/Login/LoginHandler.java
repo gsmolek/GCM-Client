@@ -104,8 +104,7 @@ public class LoginHandler implements Initializable{
     @FXML
     void logInClick(ActionEvent event) 
     {
-    	//LoginController loginController = new LoginController();
-    	//loginController.login(_userNameFiled.getText(), _passwordFiled.getText());
+    	
     	System.out.println("sdd");
     	String sql;
     	String table = "users";
@@ -117,6 +116,7 @@ public class LoginHandler implements Initializable{
 		sendSQL.add(sql);
 
 		ChatClient chat =null;
+		
 		try {
 			chat = new ChatClient();
 		} catch (IOException e1) {
@@ -131,6 +131,7 @@ public class LoginHandler implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		ArrayList<ArrayList<String>> m = chat.getArray();
 		for(int i = 0;i<m.size();i++) {
 			for(int j = 0 ; j<m.get(i).size();j++) {
@@ -142,6 +143,11 @@ public class LoginHandler implements Initializable{
 		System.out.println("main: "+s);
 		s = new String(result[1]);
 		System.out.println("main: "+s); */
+		
+		//if not good user or password 
+		//_invalidUserName
+		
+		
     }
 
     @FXML
@@ -161,8 +167,6 @@ public class LoginHandler implements Initializable{
             // Hide this current window (if this is what you want)
             ((Node)(event.getSource())).getScene().getWindow().hide();
             
-            stage.setOnCloseRequest(e -> new Main().start(new Stage()));
-           
         }
         catch (IOException e) {
             e.printStackTrace();

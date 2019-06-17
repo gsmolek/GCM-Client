@@ -34,6 +34,9 @@ public class RegistrationHandler implements Initializable{
 	@FXML
 	private ImageView _markQustionImage;
 	
+	@FXML
+	private ImageView _cancelIcon;
+	
      @FXML
      private ImageView _cvvImage;
 	
@@ -170,12 +173,20 @@ public class RegistrationHandler implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) 
 	{
-		listMounth =FXCollections.observableArrayList(
+		listMounth = FXCollections.observableArrayList(
 				"01","02","03","04","05","06","07","08","09","10","11","12"); 
-		listYear =FXCollections.observableArrayList(
+		listYear = FXCollections.observableArrayList(
 				"2019","2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030");	
 		
 	}
 
+	@FXML
+	void clickCancelIcon()
+	{
+		Stage stage = (Stage) _cancelIcon.getScene().getWindow();
+	    // do what you have to do
+		new Main().start(new Stage());
+		stage.close();
+	}
 	
 }
