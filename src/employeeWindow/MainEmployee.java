@@ -16,14 +16,15 @@ public class MainEmployee extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			AnchorPane root = (AnchorPane) loader.load(getClass().getResource("/clientWindow/clientWindow.fxml"));
+			AnchorPane root = (AnchorPane) loader.load(getClass().getResource("/employeeWindow/EmployeeWindow.fxml"));
 			Scene scene = new Scene( root );
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
-		} catch(Exception e) {
+		}
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

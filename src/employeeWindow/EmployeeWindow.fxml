@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.EmployeeHandler">
    <children>
       <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="861.0">
          <children>
@@ -92,32 +92,32 @@
                </columnResizePolicy>
             </TableView>
             <TextField editable="false" layoutX="27.0" layoutY="136.0" prefHeight="59.0" prefWidth="331.0" promptText="Map Description" />
-            <Button fx:id="_searchButton1" layoutX="27.0" layoutY="349.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="Download Map" textFill="WHITE">
+            <Button fx:id="_downloadMapButton" layoutX="27.0" layoutY="349.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="Download Map" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="_searchButton11" layoutX="28.0" layoutY="408.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: LightSkyBlue;" text="Edit Place" textFill="WHITE">
+            <Button fx:id="_editPlaceButton" layoutX="28.0" layoutY="408.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: LightSkyBlue;" text="Edit Place" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="_searchButton111" layoutX="28.0" layoutY="533.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="Edit Tour In City" textFill="WHITE">
+            <Button fx:id="_editTourButton" layoutX="28.0" layoutY="533.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="Edit Tour In City" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="_searchButton112" layoutX="218.0" layoutY="408.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: LightSkyBlue;" text="Add Place" textFill="WHITE">
+            <Button fx:id="_addPlaceButton" layoutX="218.0" layoutY="408.0" mnemonicParsing="false" onAction="#clickAddPlace" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: LightSkyBlue;" text="Add Place" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="_searchButton1111" layoutX="26.0" layoutY="591.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="Add Tour To City" textFill="WHITE">
+            <Button fx:id="_addTourButton" layoutX="26.0" layoutY="591.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="Add Tour To City" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="_searchButton12" layoutX="26.0" layoutY="471.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: Gold;" text="Add A New Map" textFill="WHITE">
+            <Button fx:id="_addNewMapButton" layoutX="26.0" layoutY="471.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: Gold;" text="Add A New Map" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>

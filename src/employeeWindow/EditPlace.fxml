@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="763.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.EmployeeHandler">
    <children>
-      <Label layoutX="78.0" layoutY="14.0" text="Add Place Of Interest" textFill="#000000fc">
+      <Label layoutX="78.0" layoutY="14.0" text="Edit Place Of Interest" textFill="#000000fc">
          <font>
             <Font name="Ebrima" size="28.0" />
          </font>
@@ -35,12 +35,12 @@
       </Button>
       <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="341.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@add-1-icon.png" />
+            <Image url="@../git/GCM-Client/src/employeeWindow/add-1-icon.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="342.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@add-1-icon.png" />
+            <Image url="@../git/GCM-Client/src/employeeWindow/add-1-icon.png" />
          </image>
       </ImageView>
       <TextArea layoutX="60.0" layoutY="546.0" prefHeight="129.0" prefWidth="296.0" promptText="short explanation" />
@@ -50,7 +50,7 @@
       <Button cancelButton="true" layoutX="269.0" layoutY="698.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Cancel" />
       <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="81.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@20171012153839-special-assistance-500x500.png" />
+            <Image url="@../git/GCM-Client/src/employeeWindow/20171012153839-special-assistance-500x500.png" />
          </image>
       </ImageView>
       <CheckBox layoutX="137.0" layoutY="504.0" mnemonicParsing="false" text="Accessible special needs" />
