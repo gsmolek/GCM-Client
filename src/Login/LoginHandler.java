@@ -1,7 +1,9 @@
 package Login;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
@@ -71,7 +73,7 @@ public class LoginHandler implements Initializable{
     private RadioButton _radioPlaceOfInterestName;
     
     private ArrayList<Object> sendSQL = new ArrayList<Object>();
-
+    ChatClient chat= new ChatClient();
     @FXML
     void radioCitySelect(ActionEvent event)
     {
@@ -107,24 +109,18 @@ public class LoginHandler implements Initializable{
     	
     	System.out.println("sdd");
     	String sql;
+    	String sql2;
     	String table = "users";
 		String username = _userNameFiled.getText();
 		String password = _passwordFiled.getText();
 		sql = "SELECT user_name, password FROM " + table + " WHERE user_name = '" + username
 				+ "' AND password = '" + password + "';";
+		sql2 = "SELECT General_description FROM tours;";
 		sendSQL.add("2");
 		sendSQL.add(sql);
-
-		ChatClient chat =null;
-		
-		try {
-			chat = new ChatClient();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			//return false;
-		}
 		chat.handleMessageFromClient(sendSQL);
+		
+		
 		try {
 			TimeUnit.MILLISECONDS.sleep(100);
 		} catch (InterruptedException e) {
@@ -138,16 +134,7 @@ public class LoginHandler implements Initializable{
 				System.out.println(m.get(i).get(j));
 			}
 		}
-		/*byte[][] result = chat.returnByteArray();	
-		String s = new String(result[0]);
-		System.out.println("main: "+s);
-		s = new String(result[1]);
-		System.out.println("main: "+s); */
-		
-		//if not good user or password 
-		//_invalidUserName
-		
-		
+
     }
 
     @FXML

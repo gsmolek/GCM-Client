@@ -5,6 +5,8 @@ package ServerConnection;
 import ocsf.client.*;
 
 import java.io.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,16 +26,23 @@ public class ChatClient extends AbstractClient
   public ArrayList<ArrayList<String>> getArray() {
 	return array;
 }
+  public void clearArray() {
+	this.array.clear();
+}
 
 public void setRs(ResultSet rs) {
 	this.rs = rs;
 }
 
 public ChatClient() 
-    throws IOException 
   {
     super("localhost", 5550); //Call the superclass constructor
-    openConnection();
+    try {
+		openConnection();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void handleMessageFromServer(Object msg) 
@@ -81,6 +90,15 @@ public void clearStr()
   {
     try
     {
+    	ArrayList<Object> sendSQL=(ArrayList<Object>)message;
+		InetAddress inetAddress=null;
+		try {
+			inetAddress = InetAddress.getLocalHost();
+		} catch (UnknownHostException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		sendSQL.add(inetAddress);
     	sendToServer(message);
     }
     catch(IOException e)
