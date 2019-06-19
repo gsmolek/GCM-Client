@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.embed.swing.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<Pane prefHeight="655.0" prefWidth="497.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.RegistrationHandler">
+<Pane prefHeight="655.0" prefWidth="497.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.RegistrationHandler">
    <children>
       <Label layoutX="24.0" layoutY="98.0" prefHeight="128.0" prefWidth="532.0" text="Welcom to GCM registration">
          <font>
@@ -20,9 +21,12 @@
       </Label>
       <GridPane layoutX="92.0" layoutY="191.0" prefHeight="285.0" prefWidth="326.0">
          <children>
-            <TextField promptText="User Name" GridPane.columnIndex="1" />
-            <TextField promptText="exm@yhaoo.com" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField prefHeight="22.0" prefWidth="156.0" promptText="052-1234567" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="_username" onKeyTyped="#usernameChanged" promptText="User Name" GridPane.columnIndex="1" />
+            <PasswordField fx:id="_passwordField" onKeyTyped="#passwordChanged" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="_rePasswordField" onKeyTyped="#repasswrodChange" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="_email" onKeyTyped="#emailChanged" promptText="exm@yhaoo.com" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="_reEmail" onKeyTyped="#reemailChanged" promptText="exm@yhaoo.com" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="_phone" onKeyTyped="#phoneChanged" prefHeight="22.0" prefWidth="156.0" promptText="052-1234567" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label prefHeight="17.0" prefWidth="105.0" text="User name">
                <font>
                   <Font name="Arial" size="19.0" />
@@ -48,14 +52,11 @@
                   <Font name="Arial" size="19.0" />
                </font>
             </Label>
-            <PasswordField fx:id="_passwordField" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <PasswordField fx:id="_rePasswordField" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Confirm email" GridPane.rowIndex="4">
                <font>
                   <Font name="Arial" size="19.0" />
                </font>
             </Label>
-            <TextField promptText="exm@yhaoo.com" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="_passwordFieldShow" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="_rePasswordFieldShow" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
@@ -72,7 +73,7 @@
             <RowConstraints maxHeight="42.0" minHeight="0.0" prefHeight="33.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <ImageView fitHeight="150.0" fitWidth="169.0" layoutX="346.0" layoutY="491.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#clickRegister">
+      <ImageView fitHeight="150.0" fitWidth="169.0" layoutX="346.0" layoutY="491.0" onMouseClicked="#clickRegister" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@registration-icon-blue.png" />
          </image>
