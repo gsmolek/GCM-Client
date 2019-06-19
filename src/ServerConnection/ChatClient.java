@@ -5,6 +5,7 @@ package ServerConnection;
 import ocsf.client.*;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,7 +15,12 @@ public class ChatClient extends AbstractClient
 {
 	
   private ArrayList<Object> str=new ArrayList<Object>();
-  private ResultSet rs;
+  private String ipAddressString;
+  public String getIpAddressString() {
+	return ipAddressString;
+}
+
+private ResultSet rs;
   private ArrayList<ArrayList<String>> array;
   private byte[][] result;
 
@@ -29,10 +35,11 @@ public void setRs(ResultSet rs) {
 	this.rs = rs;
 }
 
-public ChatClient() 
-    throws IOException 
+public ChatClient() throws IOException 
   {
     super("localhost", 5550); //Call the superclass constructor
+    InetAddress ipAddress =this.getInetAddress();
+    this.ipAddressString = ipAddress.getHostAddress();
     openConnection();
   }
 
