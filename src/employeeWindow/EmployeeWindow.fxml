@@ -69,6 +69,7 @@
             </ImageView>
             <MenuButton layoutX="59.0" layoutY="34.0" minWidth="0.0" mnemonicParsing="false" prefHeight="3.0" prefWidth="0.0">
                <items>
+                  <MenuItem mnemonicParsing="false" text="Save Version" />
                   <MenuItem mnemonicParsing="false" text="Log Out" />
                </items>
             </MenuButton>
