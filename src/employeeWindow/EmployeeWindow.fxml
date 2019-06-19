@@ -105,7 +105,7 @@
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="_addTourButton" layoutX="192.0" layoutY="496.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: LightSkyBlue;" text="Add Tour" textFill="WHITE">
+                  <Button fx:id="_addTourButton" layoutX="192.0" layoutY="496.0" mnemonicParsing="false" onAction="#clickAddTour" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: LightSkyBlue;" text="Add Tour" textFill="WHITE">
                      <font>
                         <Font name="FrankRuehl" size="24.0" />
                      </font>

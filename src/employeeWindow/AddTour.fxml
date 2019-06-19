@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="763.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.AddEditPlaceHandler">
+<AnchorPane prefHeight="763.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.EmployeeHandler">
    <children>
       <Label fx:id="_labelAddOrEdit" layoutX="96.0" layoutY="21.0" text="Add Tour To City" textFill="#000000fc">
          <font>

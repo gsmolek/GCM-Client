@@ -93,6 +93,24 @@ public class EmployeeHandler {
     }
 
     @FXML
+    void clickAddTour(ActionEvent event)
+    {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			AnchorPane root = (AnchorPane) loader.load(getClass().getResource("/employeeWindow/AddTour.fxml"));
+			Scene scene = new Scene( root);
+			
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
     void clickBuyMapButton(ActionEvent event) {
 
     }
