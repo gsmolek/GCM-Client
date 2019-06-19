@@ -408,7 +408,12 @@ public class RegistrationHandler implements Initializable {
 	void clickEnterPayment(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			Pane root = (Pane) loader.load(getClass().getResource("/Login/Methods of Payment.fxml"));
+			Pane root =  FXMLLoader.load(getClass().getResource("/Login/Methods of Payment.fxml"));
+			visa s = loader.getController();
+			
+			int i =1;
+			s.getting(i);
+			
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			Stage stage = new Stage();
