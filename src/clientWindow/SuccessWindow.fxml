@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="268.0" prefWidth="393.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <Button defaultButton="true" layoutX="152.0" layoutY="187.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="89.0" text="OK" />
+      <Label layoutX="62.0" layoutY="37.0" prefHeight="47.0" prefWidth="270.0" text="Congratulation" textAlignment="CENTER" textFill="#34fc2a">
+         <font>
+            <Font name="Arial Black" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="101.0" prefHeight="33.0" prefWidth="102.0" text="temp text" wrapText="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="763.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.EmployeeHandler">
+   <children>
+      <Label fx:id="_labelAddOrEdit" layoutX="96.0" layoutY="21.0" text="Add Tour To City" textFill="#000000fc">
+         <font>
+            <Font name="Ebrima" size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="83.0" text="List of places" />
+      <TableView layoutX="42.0" layoutY="104.0" prefHeight="267.0" prefWidth="330.0">
+         <columns>
+            <TableColumn prefWidth="35.0" text="No" />
+            <TableColumn prefWidth="96.0" text="Place Name " />
+            <TableColumn prefWidth="198.0" text="Recommended visit time" />
+         </columns>
+      </TableView>
+      <Button defaultButton="true" layoutX="43.0" layoutY="393.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="330.0" text="Add Place To Tour" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="353.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@add-1-icon.png" />
+         </image>
+      </ImageView>
+      <TextArea layoutX="56.0" layoutY="507.0" prefHeight="148.0" prefWidth="303.0" promptText="general description" />
+      <Separator layoutX="39.0" layoutY="485.0" prefHeight="3.0" prefWidth="339.0" />
+      <Button defaultButton="true" layoutX="54.0" layoutY="685.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Save" />
+      <Button cancelButton="true" layoutX="269.0" layoutY="685.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Cancel" />
+   </children>
+</AnchorPane>
