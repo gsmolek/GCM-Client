@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.EmployeeHandler">
+<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerWindow.ManagerHandler">
    <children>
       <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="831.0" prefWidth="1001.0">
          <children>
@@ -88,7 +88,7 @@
                   <Font name="Constantia Italic" size="15.0" />
                </font>
             </Label>
-            <Pane layoutX="59.0" layoutY="135.0" visible="false">
+            <Pane fx:id="_paneArchive" layoutX="59.0" layoutY="135.0" visible="false">
                <children>
                   <Button fx:id="_editPlaceButton" layoutX="2.0" layoutY="286.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: LightSkyBlue;" text="Edit Place" textFill="WHITE">
                      <font>
@@ -171,7 +171,7 @@
                   </TableView>
                </children>
             </Pane>
-            <RadioButton layoutX="64.0" layoutY="65.0" mnemonicParsing="false" text="Manage the information archive" />
+            <RadioButton fx:id="_radioArchiveView" layoutX="64.0" layoutY="65.0" mnemonicParsing="false" onAction="#selectArchiveView" text="Manage the information archive" />
             <RadioButton layoutX="64.0" layoutY="103.0" mnemonicParsing="false" text="Manage customer information" />
          </children>
       </Pane>
