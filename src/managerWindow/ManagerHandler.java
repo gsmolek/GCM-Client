@@ -12,6 +12,9 @@ import javafx.scene.layout.Pane;
 public class ManagerHandler {
 
     @FXML
+    private RadioButton _radioManageClient;
+	
+    @FXML
     private Pane _paneArchive;
 	
     @FXML
@@ -92,12 +95,31 @@ public class ManagerHandler {
 
     }
 
+    
 
     @FXML
     void selectArchiveView(ActionEvent event) {
     	if(_radioArchiveView.isSelected())
-    	_paneArchive.setVisible(true);
+    	{
+    		_paneArchive.setVisible(true);
+    		_radioManageClient.setSelected(false);
+    		
+    	}
     	else
     		_paneArchive.setVisible(false);
     }
+
+    @FXML
+    void selectManageClientView(ActionEvent event) 
+    {
+    	if(_radioManageClient.isSelected())
+    	{
+    		_paneArchive.setVisible(true);
+    		_radioArchiveView.setSelected(false);
+    		
+    	}
+    	else
+    		_paneArchive.setVisible(false);
+    }
+
 }

@@ -172,7 +172,28 @@
                </children>
             </Pane>
             <RadioButton fx:id="_radioArchiveView" layoutX="64.0" layoutY="65.0" mnemonicParsing="false" onAction="#selectArchiveView" text="Manage the information archive" />
-            <RadioButton layoutX="64.0" layoutY="103.0" mnemonicParsing="false" text="Manage customer information" />
+            <RadioButton fx:id="_radioManageClient" layoutX="64.0" layoutY="103.0" mnemonicParsing="false" onAction="#selectManageClientView" text="Manage client information" />
+            <Pane fx:id="_paneManageClient" layoutX="59.0" layoutY="204.0" prefHeight="496.0" prefWidth="331.0">
+               <children>
+                  <Label layoutX="3.0" layoutY="8.0" prefHeight="32.0" prefWidth="324.0" text="Serch User By name" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Sitka Text" size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="_addNewMapButton1" layoutY="414.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="User Pruchase Date" textFill="WHITE">
+                     <font>
+                        <Font name="FrankRuehl" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="_addNewMapButton11" layoutY="353.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: Gold;" text="User Information Date" textFill="WHITE">
+                     <font>
+                        <Font name="FrankRuehl" size="24.0" />
+                     </font>
+                  </Button>
+                  <TextField layoutX="3.0" layoutY="40.0" prefHeight="46.0" prefWidth="324.0" />
+                  <ListView layoutX="3.0" layoutY="113.0" prefHeight="200.0" prefWidth="324.0" />
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>
