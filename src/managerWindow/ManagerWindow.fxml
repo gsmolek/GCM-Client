@@ -88,7 +88,7 @@
                   <Font name="Constantia Italic" size="15.0" />
                </font>
             </Label>
-            <Pane fx:id="_paneArchive" layoutX="59.0" layoutY="135.0" visible="false">
+            <Pane fx:id="_paneArchive" layoutX="59.0" layoutY="135.0">
                <children>
                   <Button fx:id="_editPlaceButton" layoutX="2.0" layoutY="286.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: LightSkyBlue;" text="Edit Place" textFill="WHITE">
                      <font>
@@ -173,7 +173,7 @@
             </Pane>
             <RadioButton fx:id="_radioArchiveView" layoutX="64.0" layoutY="65.0" mnemonicParsing="false" onAction="#selectArchiveView" text="Manage the information archive" />
             <RadioButton fx:id="_radioManageClient" layoutX="64.0" layoutY="103.0" mnemonicParsing="false" onAction="#selectManageClientView" text="Manage client information" />
-            <Pane fx:id="_paneManageClient" layoutX="59.0" layoutY="204.0" prefHeight="496.0" prefWidth="331.0">
+            <Pane fx:id="_paneManageClient" layoutX="59.0" layoutY="204.0" prefHeight="496.0" prefWidth="331.0" visible="false">
                <children>
                   <Label layoutX="3.0" layoutY="8.0" prefHeight="32.0" prefWidth="324.0" text="Serch User By name" textAlignment="CENTER" wrapText="true">
                      <font>
