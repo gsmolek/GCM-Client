@@ -10,9 +10,9 @@
 
 <AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerWindow.ManagerHandler">
    <children>
-      <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="965.0">
+      <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="831.0" prefWidth="943.0">
          <children>
-            <Pane layoutX="545.0" layoutY="49.0" prefHeight="594.0" prefWidth="430.0">
+            <Pane layoutX="494.0" layoutY="74.0" prefHeight="594.0" prefWidth="430.0">
                <children>
                   <ImageView fitHeight="81.0" fitWidth="246.0" layoutX="121.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -62,13 +62,13 @@
                   </Button>
                </children>
             </Pane>
-            <Separator layoutX="459.0" layoutY="55.0" orientation="VERTICAL" prefHeight="583.0" prefWidth="22.0" />
-            <ImageView fitHeight="109.0" fitWidth="122.0" layoutX="418.0" layoutY="653.0" pickOnBounds="true" preserveRatio="true">
+            <Separator layoutX="456.0" layoutY="67.0" orientation="VERTICAL" prefHeight="583.0" prefWidth="22.0" />
+            <ImageView fitHeight="109.0" fitWidth="122.0" layoutX="415.0" layoutY="643.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../clientWindow/anyQustion.png" />
                </image>
             </ImageView>
-            <Button fx:id="_forQuestionButton" layoutX="414.0" layoutY="763.0" mnemonicParsing="false" style="-fx-background-color: MediumAquamarine;" text="For Any Question">
+            <Button fx:id="_forQuestionButton" layoutX="411.0" layoutY="753.0" mnemonicParsing="false" style="-fx-background-color: MediumAquamarine;" text="For Any Question">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
@@ -89,46 +89,46 @@
                   <Font name="Constantia Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="421.0" layoutY="474.0" prefHeight="17.0" prefWidth="30.0" text="0" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <tooltip>
-                  <Tooltip text="Numbers of versions to accept" />
-               </tooltip>
-            </Label>
-            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="887.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="869.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Go-back.png" />
                </image>
             </ImageView>
-            <Label layoutX="45.0" layoutY="110.0" prefHeight="17.0" prefWidth="188.0" text="List of version map to approve :" />
-            <TableView layoutX="45.0" layoutY="140.0" prefHeight="200.0" prefWidth="293.0">
-              <columns>
-                <TableColumn prefWidth="124.0" text="Version Number" />
-                <TableColumn prefWidth="168.0" text="Map Name" />
-              </columns>
-            </TableView>
-            <Button fx:id="_downloadMapButton1" layoutX="45.0" layoutY="357.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="293.0" style="-fx-background-color: LightSkyBlue;" text="Show Change List " textFill="WHITE">
+            <Label layoutX="68.0" layoutY="139.0" text="&lt;City Name&gt;" />
+            <Label layoutX="69.0" layoutY="178.0" text="Map Collection : " />
+            <ListView layoutX="69.0" layoutY="207.0" prefHeight="200.0" prefWidth="300.0" />
+            <ImageView fitHeight="21.0" fitWidth="22.0" layoutX="333.0" layoutY="442.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@512shhjWrQL.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="69.0" layoutY="430.0" prefHeight="32.0" prefWidth="148.0" text="One Time Purchase Rate :" />
+            <TextField editable="false" layoutX="230.0" layoutY="436.0" prefHeight="32.0" prefWidth="100.0" />
+            <Label layoutX="69.0" layoutY="487.0" prefHeight="32.0" prefWidth="148.0" text="Purchase Subscription :" />
+            <Label layoutX="69.0" layoutY="526.0" prefHeight="32.0" prefWidth="148.0" text="Period : " />
+            <ComboBox layoutX="69.0" layoutY="558.0" prefHeight="32.0" prefWidth="140.0" />
+            <ImageView fitHeight="21.0" fitWidth="22.0" layoutX="333.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@512shhjWrQL.png" />
+               </image>
+            </ImageView>
+            <TextField editable="false" layoutX="230.0" layoutY="560.0" prefHeight="32.0" prefWidth="100.0" />
+            <Label layoutX="230.0" layoutY="524.0" prefHeight="32.0" prefWidth="148.0" text="Rate:" />
+            <Button fx:id="_searchButton1" layoutX="70.0" layoutY="644.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="300.0" style="-fx-background-color: LightSkyBlue;" text="Approval Rate" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
             </Button>
-            <TextArea editable="false" layoutX="45.0" layoutY="426.0" prefHeight="160.0" prefWidth="293.0" promptText="Change list" />
-            <Button fx:id="_downloadMapButton11" layoutX="45.0" layoutY="635.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="293.0" style="-fx-background-color: Gold;" text="Approval Version" textFill="WHITE">
+            <Button fx:id="_searchButton11" layoutX="68.0" layoutY="705.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="300.0" style="-fx-background-color: Gold;" text=" Rejection Rate" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
             </Button>
-            <Label layoutX="136.0" layoutY="607.0" text="&lt;User Name&gt;" />
-            <Label layoutX="48.0" layoutY="607.0" text="Version Editor : " />
-            <Button fx:id="_downloadMapButton111" layoutX="45.0" layoutY="692.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="293.0" style="-fx-background-color: LightSkyBlue;" text=" Rejection Version" textFill="WHITE">
-               <font>
-                  <Font name="FrankRuehl" size="24.0" />
-               </font>
-            </Button>
+            <Label layoutX="70.0" layoutY="611.0" text="Rate Editor : " />
+            <Label layoutX="158.0" layoutY="611.0" text="&lt;User Name&gt;" />
+            <Label layoutX="64.0" layoutY="114.0" text="City Name :" />
          </children>
       </Pane>
-      <Label layoutX="50.0" layoutY="72.0" text="GCM -&gt; Approve Version" textAlignment="CENTER" textFill="RED" wrapText="true" />
+      <Label layoutX="50.0" layoutY="72.0" text="GCM -&gt; Approve Rate " textAlignment="CENTER" textFill="RED" wrapText="true" />
    </children>
 </AnchorPane>

@@ -97,25 +97,12 @@
                   <Tooltip text="You need to choose map from catalog" />
                </tooltip>
             </Button>
-            <Button fx:id="_downloadMapButton11" layoutX="59.0" layoutY="358.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: Gold;" text="Manage client information" textFill="WHITE">
-               <font>
-                  <Font name="FrankRuehl" size="24.0" />
-               </font>
-               <tooltip>
-                  <Tooltip text="You need to choose map from catalog" />
-               </tooltip>
-            </Button>
-            <ImageView fitHeight="43.0" fitWidth="30.0" layoutX="382.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Clients-icon.png" />
-               </image>
-            </ImageView>
             <ImageView fitHeight="32.0" fitWidth="30.0" layoutX="382.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Files-icon.png" />
                </image>
             </ImageView>
-            <Button fx:id="_downloadMapButton12" layoutX="59.0" layoutY="437.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Approve Version" textFill="WHITE">
+            <Button fx:id="_downloadMapButton12" layoutX="59.0" layoutY="359.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: Gold;" text="Approve Version" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
@@ -123,8 +110,8 @@
                   <Tooltip text="You need to choose map from catalog" />
                </tooltip>
             </Button>
-            <Circle fill="#31a821" layoutX="400.0" layoutY="483.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label layoutX="397.0" layoutY="474.0" prefHeight="17.0" prefWidth="30.0" text="0" textFill="WHITE">
+            <Circle fill="#31a821" layoutX="400.0" layoutY="405.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label layoutX="397.0" layoutY="396.0" prefHeight="17.0" prefWidth="30.0" text="0" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -137,7 +124,7 @@
                   <Image url="@../Go-back.png" />
                </image>
             </ImageView>
-            <Button fx:id="_downloadMapButton111" layoutX="59.0" layoutY="509.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: Gold;" text="Set A Map Collection rate" textFill="WHITE">
+            <Button fx:id="_downloadMapButton111" layoutX="59.0" layoutY="438.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Set A Map Collection rate" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
@@ -145,7 +132,7 @@
                   <Tooltip text="You need to choose map from catalog" />
                </tooltip>
             </Button>
-            <ImageView fitHeight="43.0" fitWidth="30.0" layoutX="385.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="43.0" fitWidth="30.0" layoutX="385.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Cash-icon.png" />
                </image>

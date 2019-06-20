@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerWindow.ManagerHandler">
+<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.EmployeeHandler">
    <children>
-      <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="965.0">
+      <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="942.0">
          <children>
-            <Pane layoutX="545.0" layoutY="49.0" prefHeight="594.0" prefWidth="430.0">
+            <Pane layoutX="489.0" layoutY="92.0" prefHeight="594.0" prefWidth="430.0">
                <children>
                   <ImageView fitHeight="81.0" fitWidth="246.0" layoutX="121.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -62,13 +62,13 @@
                   </Button>
                </children>
             </Pane>
-            <Separator layoutX="459.0" layoutY="55.0" orientation="VERTICAL" prefHeight="583.0" prefWidth="22.0" />
-            <ImageView fitHeight="109.0" fitWidth="122.0" layoutX="418.0" layoutY="653.0" pickOnBounds="true" preserveRatio="true">
+            <Separator layoutX="442.0" layoutY="108.0" orientation="VERTICAL" prefHeight="503.0" prefWidth="22.0" />
+            <ImageView fitHeight="104.0" fitWidth="94.0" layoutX="395.0" layoutY="614.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../clientWindow/anyQustion.png" />
                </image>
             </ImageView>
-            <Button fx:id="_forQuestionButton" layoutX="414.0" layoutY="763.0" mnemonicParsing="false" style="-fx-background-color: MediumAquamarine;" text="For Any Question">
+            <Button fx:id="_forQuestionButton" layoutX="386.0" layoutY="708.0" mnemonicParsing="false" style="-fx-background-color: MediumAquamarine;" text="For Any Question">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
@@ -89,46 +89,76 @@
                   <Font name="Constantia Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="421.0" layoutY="474.0" prefHeight="17.0" prefWidth="30.0" text="0" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <tooltip>
-                  <Tooltip text="Numbers of versions to accept" />
-               </tooltip>
-            </Label>
-            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="887.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="869.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Go-back.png" />
                </image>
             </ImageView>
-            <Label layoutX="45.0" layoutY="110.0" prefHeight="17.0" prefWidth="188.0" text="List of version map to approve :" />
-            <TableView layoutX="45.0" layoutY="140.0" prefHeight="200.0" prefWidth="293.0">
-              <columns>
-                <TableColumn prefWidth="124.0" text="Version Number" />
-                <TableColumn prefWidth="168.0" text="Map Name" />
-              </columns>
-            </TableView>
-            <Button fx:id="_downloadMapButton1" layoutX="45.0" layoutY="357.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="293.0" style="-fx-background-color: LightSkyBlue;" text="Show Change List " textFill="WHITE">
+            <Label layoutX="40.0" layoutY="62.0" text="GCM -&gt; Manage client information -&gt; User Information Data" textAlignment="CENTER" textFill="RED" wrapText="true" />
+            <GridPane layoutX="69.0" layoutY="135.0" prefHeight="159.0" prefWidth="351.0">
+               <children>
+                  <TextField prefHeight="25.0" prefWidth="167.0" promptText="User Name" GridPane.columnIndex="1" />
+                  <TextField promptText="exm@yhaoo.com" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField prefHeight="25.0" prefWidth="195.0" promptText="052-1234567" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label prefHeight="17.0" prefWidth="105.0" text="User name :">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label text="Password :" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label text="Email :" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label text="Phon number :" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="_passwordField" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="_passwordFieldShow" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="165.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="179.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="51.0" minHeight="0.0" prefHeight="11.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="42.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <ComboBox fx:id="_yearComboBox" layoutX="323.0" layoutY="376.0" prefHeight="31.0" prefWidth="93.0" promptText="yyyy" />
+            <ComboBox fx:id="_monthComboBox" layoutX="233.0" layoutY="376.0" prefHeight="31.0" prefWidth="81.0" promptText="mm" />
+            <TextField layoutX="234.0" layoutY="426.0" prefHeight="25.0" prefWidth="184.0" promptText="CVV/CVD" />
+            <Label layoutX="69.0" layoutY="427.0" prefHeight="22.0" prefWidth="113.0" text="CVV/CVD :">
                <font>
-                  <Font name="FrankRuehl" size="24.0" />
+                  <Font name="Arial" size="19.0" />
                </font>
-            </Button>
-            <TextArea editable="false" layoutX="45.0" layoutY="426.0" prefHeight="160.0" prefWidth="293.0" promptText="Change list" />
-            <Button fx:id="_downloadMapButton11" layoutX="45.0" layoutY="635.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="293.0" style="-fx-background-color: Gold;" text="Approval Version" textFill="WHITE">
+            </Label>
+            <Label layoutX="69.0" layoutY="377.0" prefHeight="22.0" prefWidth="139.0" text="Expiration date :">
                <font>
-                  <Font name="FrankRuehl" size="24.0" />
+                  <Font name="Arial" size="19.0" />
                </font>
-            </Button>
-            <Label layoutX="136.0" layoutY="607.0" text="&lt;User Name&gt;" />
-            <Label layoutX="48.0" layoutY="607.0" text="Version Editor : " />
-            <Button fx:id="_downloadMapButton111" layoutX="45.0" layoutY="692.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="293.0" style="-fx-background-color: LightSkyBlue;" text=" Rejection Version" textFill="WHITE">
+            </Label>
+            <TextField layoutX="234.0" layoutY="328.0" prefHeight="25.0" prefWidth="184.0" promptText="Card number" />
+            <Label layoutX="69.0" layoutY="329.0" prefHeight="22.0" prefWidth="139.0" text="Card number :">
+               <font>
+                  <Font name="Arial" size="19.0" />
+               </font>
+            </Label>
+            <Button fx:id="_searchButton1" layoutX="73.0" layoutY="491.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Update User Information" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
             </Button>
          </children>
       </Pane>
-      <Label layoutX="50.0" layoutY="72.0" text="GCM -&gt; Approve Version" textAlignment="CENTER" textFill="RED" wrapText="true" />
    </children>
 </AnchorPane>
