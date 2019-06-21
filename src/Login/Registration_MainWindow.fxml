@@ -134,9 +134,9 @@
             <Image url="@registrationIcon.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="_cancelIcon" fitHeight="77.0" fitWidth="84.0" layoutX="400.0" layoutY="21.0" onMouseClicked="#clickCancelIcon" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="_cancelIcon" fitHeight="60.0" fitWidth="67.0" layoutX="410.0" layoutY="21.0" onMouseClicked="#clickCancelIcon" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@cancel_icon.png" />
+            <Image url="@../Go-back.png" />
          </image>
       </ImageView>
    </children>

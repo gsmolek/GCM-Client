@@ -12,12 +12,12 @@ import javafx.scene.layout.AnchorPane;
 
 
 
-public class Main extends Application {
+public class LoginMain extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			AnchorPane root = (AnchorPane) loader.load(getClass().getResource("/Login/LoginWindow.fxml"));
+			AnchorPane root = (AnchorPane) loader.load(getClass().getResource("/Login/Login_MainWindow.fxml"));
 			Scene scene = new Scene( root );
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			

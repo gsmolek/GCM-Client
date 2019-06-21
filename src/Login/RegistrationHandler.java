@@ -3,7 +3,10 @@ package Login;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import com.sun.corba.se.spi.activation._InitialNameServiceImplBase;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class RegistrationHandler implements Initializable{
 
@@ -62,13 +66,20 @@ public class RegistrationHandler implements Initializable{
     private Button _enterPaymentButton;
     
     @FXML
+    private Button _toLoginButton;
+    
+    @FXML
     void clickToLoginButton(ActionEvent event)
     {
-    	Stage stage =new Stage();
-    	stage.setScene(((Node)(event.getSource())).getScene());
+    	Stage stage = (Stage)_toLoginButton.getScene().getWindow();
+    	// do what you have to do
+       	stage.close();
     	
-    	stage.close();
+    	List<Window> open = Stage.getWindows().filtered(window -> window.isShowing());
+    	Stage s=(Stage)open.get(0);
+    	s.close();
     	
+    	new LoginMain().start(new Stage());
     	
     }
     
@@ -115,13 +126,14 @@ public class RegistrationHandler implements Initializable{
     	
     	//if every thing is good 
     	try {
-          	FXMLLoader loader = new FXMLLoader();
-  			Pane root = (Pane) loader.load(getClass().getResource("/Login/ConfirmRegistration.fxml"));
+          	
+  			Pane root = (Pane) FXMLLoader.load(getClass().getResource("/Login/Registration_ConfirmRegistration.fxml"));
+  			
   			Scene scene = new Scene( root );
   			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
   			 Stage stage =new Stage();
   			 stage.setScene(scene);
-  			 stage.show();
+  			 stage.showAndWait();
   			 
   		
           }
@@ -148,7 +160,7 @@ public class RegistrationHandler implements Initializable{
     {
     	  try {
           	FXMLLoader loader = new FXMLLoader();
-  			Pane root = (Pane) loader.load(getClass().getResource("/Login/Methods of Payment.fxml"));
+  			Pane root = (Pane) loader.load(getClass().getResource("/Login/Registration_MethodsOfPayment.fxml"));
   			Scene scene = new Scene( root );
   			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
   			 Stage stage =new Stage();
@@ -185,7 +197,7 @@ public class RegistrationHandler implements Initializable{
 	{
 		Stage stage = (Stage) _cancelIcon.getScene().getWindow();
 	    // do what you have to do
-		new Main().start(new Stage());
+		new LoginMain().start(new Stage());
 		stage.close();
 	}
 	

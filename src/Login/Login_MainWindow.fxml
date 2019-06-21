@@ -64,7 +64,7 @@
                         <Font size="18.0" />
                      </font>
                   </PasswordField>
-                  <Hyperlink fx:id="_hyperForgot" layoutX="31.0" layoutY="378.0" text="Forgot your password?" wrapText="true">
+                  <Hyperlink fx:id="_hyperForgot" layoutX="31.0" layoutY="378.0" onAction="#clickHyperForgot" text="Forgot your password?" wrapText="true">
                      <font>
                         <Font name="System Italic" size="12.0" />
                      </font>
@@ -86,12 +86,12 @@
                         <Image url="@Letter-X-icon.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="_incorrectInputLabel" layoutX="32.0" layoutY="261.0" prefHeight="59.0" prefWidth="294.0" text="The user name or password you entered is incorrect." textFill="RED" wrapText="true">
+                  <Label fx:id="_incorrectInputLabel" layoutX="32.0" layoutY="261.0" prefHeight="59.0" prefWidth="294.0" text="The user name or password you entered is incorrect." textFill="RED" visible="false" wrapText="true">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="_incorrectIcon" fitHeight="23.0" fitWidth="30.0" layoutX="122.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="_incorrectIcon" fitHeight="23.0" fitWidth="30.0" layoutX="122.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@Letter-X-icon.png" />
                      </image>
@@ -109,7 +109,7 @@
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="_searchButton1" layoutX="460.0" layoutY="551.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Buy Map Collection" textFill="WHITE">
+            <Button fx:id="_buyMapCollection" layoutX="460.0" layoutY="551.0" mnemonicParsing="false" onAction="#clickBuyMapCollectionBeforeRegistration" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Buy Map Collection" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>

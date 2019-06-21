@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -31,6 +32,12 @@ import javafx.stage.Stage;
 
 public class LoginHandler implements Initializable{
 
+	@FXML
+	private Label _incorrectInputLabel;
+	
+	@FXML
+	private Button _buyMapCollection;
+	
     @FXML
     private Button _searchButton;
 
@@ -41,7 +48,7 @@ public class LoginHandler implements Initializable{
     private RadioButton _radioDescription;
 
     @FXML
-    private ImageView _xIcon;
+    private ImageView _incorrectIcon;
 
     @FXML
     private ListView<?> _listViewResult;
@@ -144,9 +151,14 @@ public class LoginHandler implements Initializable{
 		s = new String(result[1]);
 		System.out.println("main: "+s); */
 		
-		//if not good user or password 
-		//_invalidUserName
 		
+		//if not good user or password 
+		//{
+		//	_userNameFiled.setText("");
+		//	_passwordFiled.setText("");
+		//	_incorrectInputLabel.setVisible(true);
+		//  _incorrectIcon.setVisible(true);
+		//}
 		
     }
 
@@ -155,8 +167,8 @@ public class LoginHandler implements Initializable{
     {
     	 
         try {
-        	FXMLLoader loader = new FXMLLoader();
-			Pane root = (Pane) loader.load(getClass().getResource("/Login/RegistrationWindow.fxml"));
+       
+			Pane root = (Pane) FXMLLoader.load(getClass().getResource("/Login/Registration_MainWindow.fxml"));
 			Scene scene = new Scene( root );
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			 Stage stage =new Stage();
@@ -174,6 +186,33 @@ public class LoginHandler implements Initializable{
 
     }
 
+    @FXML
+    void clickBuyMapCollectionBeforeRegistration()
+    {
+    	Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setTitle("Not A Client ! ");
+		alert.setContentText("To purchase a map you need to register as a customer of the company.");
+		alert.showAndWait();
+    }
+    
+    @FXML
+    void clickHyperForgot(ActionEvent event)
+    {
+    	 try {
+ 			Pane root = (Pane) FXMLLoader.load(getClass().getResource("/Login/Login_ForgotPassword.fxml"));
+ 			Scene scene = new Scene( root );
+ 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+ 			 Stage stage =new Stage();
+ 			 stage.setScene(scene);
+ 			 stage.showAndWait();
+             
+         }
+         catch (IOException e) {
+             e.printStackTrace();
+         }
+    }
+    
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
