@@ -2,11 +2,7 @@ package Login;
 
 import java.io.IOException;
 import java.net.URL;
-<<<<<<< HEAD
-import java.util.List;
-=======
 import java.util.ArrayList;
->>>>>>> refs/remotes/origin/Doron
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -26,7 +23,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class RegistrationHandler implements Initializable {
 
@@ -40,21 +36,6 @@ public class RegistrationHandler implements Initializable {
 
 	@FXML
 	private ImageView _markQustionImage;
-<<<<<<< HEAD
-	
-	@FXML
-	private ImageView _cancelIcon;
-	
-     @FXML
-     private ImageView _cvvImage;
-	
-     @FXML
-	 private TextField _rePasswordFieldShow;
-	 
-    @FXML
-    private TextField _passwordFieldShow;
-=======
->>>>>>> refs/remotes/origin/Doron
 
 	@FXML
 	private ImageView _cvvImage;
@@ -65,45 +46,8 @@ public class RegistrationHandler implements Initializable {
 	@FXML
 	private TextField _passwordFieldShow;
 
-<<<<<<< HEAD
-    @FXML
-    private PasswordField _rePasswordField;
-   
-    @FXML
-    private Button _enterPaymentButton;
-    
-    @FXML
-    private Button _toLoginButton;
-    
-    @FXML
-    void clickToLoginButton(ActionEvent event)
-    {
-    	List<Window> open = Stage.getWindows().filtered(window -> window.isShowing());
-    	
-    	Stage s;
-    	int lengh = open.size();
-    	
-    	for (int i = 0; i < lengh ; i++)
-    	{
-    		s = (Stage)open.get(0);
-    		s.close();
-		}
-    	
-    	new LoginMain().start(new Stage());
-    }
-    
-    @FXML
-    void seePassword()
-    {
-    	
-    	_passwordFieldShow.setText(_passwordField.getText());
-    	_passwordFieldShow.setVisible(true);
-    	_passwordField.setVisible(false);
-    }
-=======
 	@FXML
 	private ImageView _passwordEye;
->>>>>>> refs/remotes/origin/Doron
 
 	@FXML
 	private ImageView _rePasswordEye;
@@ -111,92 +55,15 @@ public class RegistrationHandler implements Initializable {
 	@FXML
 	private PasswordField _passwordField;
 
-<<<<<<< HEAD
-    @FXML
-    void clickRegister()
-    {
-    	//check for fields && payment
-    	
-    	if(_passwordField.getText().equals(_rePasswordField.getText()))
-    	{
-    		
-    	}
-    	
-    	//if every thing is good 
-    	try {
-          	
-  			Pane root = (Pane) FXMLLoader.load(getClass().getResource("/Login/Registration_ConfirmRegistration.fxml"));
-  			
-  			Scene scene = new Scene( root );
-  			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-  			 Stage stage =new Stage();
-  			 stage.setScene(scene);
-  			 stage.showAndWait();
-  			 
-  		
-          }
-          catch (IOException e) {
-              e.printStackTrace();
-          }
-    	
-    }
-    
-    @FXML
-    void cvvShow() 
-    {
-    	_cvvImage.setVisible(true);
-    }
-=======
 	@FXML
 	private PasswordField _rePasswordField;
->>>>>>> refs/remotes/origin/Doron
 
-<<<<<<< HEAD
-    @FXML
-    void cvvUnshow()
-    {
-    	_cvvImage.setVisible(false);
-    }
- 
-    @FXML
-    void clickEnterPayment(ActionEvent event)
-    {
-    	  try {
-         
-  			Pane root = (Pane) FXMLLoader.load(getClass().getResource("/Login/Registration_MethodsOfPayment.fxml"));
-  			Scene scene = new Scene( root );
-  			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-  			 Stage stage =new Stage();
-  			 stage.setScene(scene);
-  			 stage.show();
-=======
 	@FXML
 	private Button _enterPaymentButton;
->>>>>>> refs/remotes/origin/Doron
 
 	@FXML
 	private TextField _username;
 
-<<<<<<< HEAD
-    }
-    
-    @FXML
-    void initializationMethodsOfPayment() 
-    {
-    	_yearComboBox.setItems(listYear);
-	    	_monthComboBox.setItems(listMounth);
-	    	
-    }
-  
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) 
-	{
-		listMounth = FXCollections.observableArrayList(
-				"01","02","03","04","05","06","07","08","09","10","11","12"); 
-		listYear = FXCollections.observableArrayList(
-				"2019","2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030");	
-		
-=======
 	@FXML
 	private TextField _email;
 
@@ -205,12 +72,20 @@ public class RegistrationHandler implements Initializable {
 
 	@FXML
 	private TextField _phone;
+	
+    @FXML
+    private TextField cvvfieldNewfield;
+    
+    @FXML
+    private ImageView paymentImg;
 
 	private ChatClient chat;
 	private String sql;
 	private ArrayList<Object> sendSQL = new ArrayList<Object>();
 	private ArrayList<ArrayList<String>> m;
 	private String table;
+	private visa s;
+	private Stage paymentWindow;
 
 	@FXML
 	void clickToLoginButton(ActionEvent event) {
@@ -219,20 +94,9 @@ public class RegistrationHandler implements Initializable {
 
 		stage.close();
 
->>>>>>> refs/remotes/origin/Doron
 	}
 
 	@FXML
-<<<<<<< HEAD
-	void clickCancelIcon()
-	{
-		Stage stage = (Stage) _cancelIcon.getScene().getWindow();
-	    // do what you have to do
-		new LoginMain().start(new Stage());
-		stage.close();
-	}
-	
-=======
 	void usernameChanged(KeyEvent event) {
 		if (!_username.getText().isEmpty()) {
 			_username.getStyleClass().clear();
@@ -332,10 +196,12 @@ public class RegistrationHandler implements Initializable {
 		_rePasswordFieldShow.setVisible(false);
 		_rePasswordField.setVisible(true);
 	}
+	
+	
 
 	@FXML
 	void clickRegister() {
-		boolean filedsEmpty = true, userFree = false, emailFree = false, canRegister=true;
+		boolean filedsEmpty = true, userFree = false, emailFree = false, canRegister = false;
 		// check for fields && payment
 		String userName = _username.getText();
 		String fName = "av";
@@ -343,9 +209,12 @@ public class RegistrationHandler implements Initializable {
 		String password = _passwordField.getText();
 		String rePassword = _rePasswordField.getText();
 		String email = _email.getText();
-		String creditCard = "123";
+		String creditCard = Integer.toString(s.getCard());
 		String reEmail = _reEmail.getText();
 		String phone = _phone.getText();
+		int expirationM = s.getExM();
+		int expirationY = s.getExY();
+		String cvv= Integer.toString(s.getCvv());
 
 		sendSQL.clear();
 		// userName
@@ -407,7 +276,36 @@ public class RegistrationHandler implements Initializable {
 			_phone.getStyleClass().clear();
 			_phone.getStyleClass().addAll("text-field", "text-input");
 		}
-
+		
+		// cardNumber
+		if(creditCard.equals("0")) {
+			filedsEmpty = true;
+		}
+		else {
+			filedsEmpty = false;
+		}
+		
+		//Expiration month
+		if(expirationM == 0)
+			filedsEmpty = true;
+		else
+			filedsEmpty = false;
+		
+		//Expiration year
+		if(expirationY == 0)
+			filedsEmpty = true;
+		else
+			filedsEmpty = false;
+		
+		//cvv
+		if(cvv.equals("0")) {
+			filedsEmpty = true;
+			paymentImg.getStyleClass().add("image-view-wrapper");
+		}
+		else {
+			filedsEmpty = false;
+		}
+		
 		if (!filedsEmpty)
 			if ((password.equals(rePassword)) && email.equals(reEmail)) {
 
@@ -471,11 +369,11 @@ public class RegistrationHandler implements Initializable {
 				TimeUnit.MILLISECONDS.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				canRegister=false;
+				canRegister = false;
 				e.printStackTrace();
 			}
-			
-			//get the id of the new user
+			canRegister = true;
+			// get the id of the new user
 			String user_id = "";
 			sendSQL.clear();
 			sendSQL.add("2");
@@ -487,28 +385,27 @@ public class RegistrationHandler implements Initializable {
 				TimeUnit.MILLISECONDS.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				canRegister=false;
+				canRegister = false;
 				e.printStackTrace();
 			}
 
 			m = chat.getArray();
 			if (m == null || m.isEmpty())
-				canRegister=false;
+				canRegister = false;
 			else
-			for (int i = 0; i < m.size(); i++) {
-				for (int j = 0; j < m.get(i).size(); j++) {
-					user_id = m.get(i).get(j);
+				for (int i = 0; i < m.size(); i++) {
+					for (int j = 0; j < m.get(i).size(); j++) {
+						user_id = m.get(i).get(j);
+					}
 				}
-			}
 
-			
-			//insert the email into the table 'user_card'
-			
+			// insert the email into the table 'user_card'
+
 			sendSQL.clear();
 			sendSQL.add("3");
 			table = "user_card";
-			sql = "insert into " + table + " (user_id, email,  phone, creditcard ) " + "values ('" + user_id
-					+ "','" + email + "','" + phone + "','" + creditCard + "');";
+			sql = "insert into " + table + " (user_id, email,  phone, creditcard ) " + "values ('" + user_id + "','"
+					+ email + "','" + phone + "','" + creditCard + "');";
 
 			sendSQL.add(sql);
 			chat.handleMessageFromClient(sendSQL);
@@ -516,10 +413,10 @@ public class RegistrationHandler implements Initializable {
 				TimeUnit.MILLISECONDS.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				canRegister=false;
+				canRegister = false;
 				e.printStackTrace();
 			}
-			
+
 		}
 		if (canRegister)
 
@@ -549,25 +446,59 @@ public class RegistrationHandler implements Initializable {
 	}
 
 	@FXML
+	private TextField cardnumber;
+
+	@FXML
+	void savePayment(ActionEvent event) {
+		String cvv,cardNumber;
+		cardNumber = cardnumber.getText();
+		int exM = _monthComboBox.getSelectionModel().selectedIndexProperty().intValue();
+		int exY = _yearComboBox.getSelectionModel().selectedIndexProperty().intValue();
+		 cvv = cvvfieldNewfield.getText();
+		// insert the payment details to the class visa
+		if (!cardNumber.isEmpty())
+			s.setCard(Integer.parseInt(cardNumber));
+		if (exM != -1) {
+			s.setExM(exM + 1);
+		}
+
+		if (exY != -1) {
+			s.setExY(exY + 2019);
+		}
+		if(!cvv.isEmpty())
+			s.setCvv(Integer.parseInt(cvv));
+		System.out.println("card " + s.getCard());
+		System.out.println("exM " + s.getExM());
+		System.out.println("exY " + s.getExY());
+		System.out.println("cvv " + s.getCvv());
+	}
+
+	@FXML
 	void clickEnterPayment(ActionEvent event) {
+
+		String card = String.valueOf(s.getCard());
+		String cvv = String.valueOf(s.getCvv());
+		int exM = s.getExM();
+		int exY = s.getExY();
+		
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			Pane root =  FXMLLoader.load(getClass().getResource("/Login/Methods of Payment.fxml"));
-			visa s = loader.getController();
-			
-			int i =1;
-			s.getting(i);
-			
+			Pane root = loader.load(getClass().getResource("/Login/Methods of Payment.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			Stage stage = new Stage();
-			stage.setScene(scene);
-			stage.show();
+			Stage newStage = new Stage();
+			newStage.setScene(scene);
+			setStage(newStage);
+			newStage.show();
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	private void setStage(Stage newStage) {
+		this.paymentWindow = newStage;
 	}
 
 	@FXML
@@ -590,7 +521,8 @@ public class RegistrationHandler implements Initializable {
 			e1.printStackTrace();
 			// return false;
 		}
+		s = new visa();
+
 	}
 
->>>>>>> refs/remotes/origin/Doron
 }
