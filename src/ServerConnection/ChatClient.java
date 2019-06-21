@@ -6,6 +6,7 @@ import ocsf.client.*;
 
 import java.io.*;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,12 +16,7 @@ public class ChatClient extends AbstractClient
 {
 	
   private ArrayList<Object> str=new ArrayList<Object>();
-  private String ipAddressString;
-  public String getIpAddressString() {
-	return ipAddressString;
-}
-
-private ResultSet rs;
+  private ResultSet rs;
   private ArrayList<ArrayList<String>> array;
   private byte[][] result;
 
@@ -35,11 +31,10 @@ public void setRs(ResultSet rs) {
 	this.rs = rs;
 }
 
-public ChatClient() throws IOException 
+public ChatClient() 
+    throws IOException 
   {
     super("localhost", 5550); //Call the superclass constructor
-    InetAddress ipAddress =this.getInetAddress();
-    this.ipAddressString = ipAddress.getHostAddress();
     openConnection();
   }
 
@@ -51,23 +46,16 @@ public ChatClient() throws IOException
 	  switch(command)
 	  {
 	  case "1":
-	  {
+	  
 		  String sql=(String)dataFromServer.get(dataFromServer.size()-1);
 		  System.out.println("1");
-	  }
+	  break;
 	  case "2":
-	  {
+		  
 		  array = (ArrayList<ArrayList<String>>) dataFromServer.get(1);
-		  
-		  //ResultSet rsFromServer=(ResultSet)dataFromServer.get(1);
-		  //this.rs=rsFromServer;
-	  }
-	  case "3":
-	  {
-		  
-	  }
-	  default:
-	  {}
+
+	  break;
+	  case "3": break;
 	  }
   }
 public ArrayList<Object> getStr()
@@ -86,15 +74,24 @@ public void clearStr()
    */
   public void handleMessageFromClient(Object message)  
   {
-    try
-    {
-    	sendToServer(message);
-    }
-    catch(IOException e)
-    {
-        System.out.println("Could not send message to server.  Terminating client.");
-      quit();
-    }
+	  try
+	    {
+	    	ArrayList<Object> sendSQL=(ArrayList<Object>)message;
+			InetAddress inetAddress=null;
+			try {
+				inetAddress = InetAddress.getLocalHost();
+			} catch (UnknownHostException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			sendSQL.add(inetAddress);
+	    	sendToServer(message);
+	    }
+	    catch(IOException e)
+	    {
+	        System.out.println("Could not send message to server.  Terminating client.");
+	      quit();
+	    }
   }
   
   /**
