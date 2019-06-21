@@ -207,7 +207,10 @@ public class LoginHandler implements Initializable{
  			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
  			 Stage stage = new Stage();
  			 stage.setScene(scene);
- 			 stage.showAndWait();
+ 			 stage.show();
+ 			
+ 			 Stage s = (Stage)((Node)(event.getSource())).getScene().getWindow();
+             s.close();
              
          }
          catch (IOException e) {

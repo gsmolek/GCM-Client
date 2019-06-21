@@ -6,15 +6,12 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.sun.corba.se.spi.activation._InitialNameServiceImplBase;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -71,16 +68,18 @@ public class RegistrationHandler implements Initializable{
     @FXML
     void clickToLoginButton(ActionEvent event)
     {
-    	Stage stage = (Stage)_toLoginButton.getScene().getWindow();
-    	// do what you have to do
-       	stage.close();
-    	
     	List<Window> open = Stage.getWindows().filtered(window -> window.isShowing());
-    	Stage s=(Stage)open.get(0);
-    	s.close();
+    	
+    	Stage s;
+    	int lengh = open.size();
+    	
+    	for (int i = 0; i < lengh ; i++)
+    	{
+    		s = (Stage)open.get(0);
+    		s.close();
+		}
     	
     	new LoginMain().start(new Stage());
-    	
     }
     
     @FXML
@@ -159,8 +158,8 @@ public class RegistrationHandler implements Initializable{
     void clickEnterPayment(ActionEvent event)
     {
     	  try {
-          	FXMLLoader loader = new FXMLLoader();
-  			Pane root = (Pane) loader.load(getClass().getResource("/Login/Registration_MethodsOfPayment.fxml"));
+         
+  			Pane root = (Pane) FXMLLoader.load(getClass().getResource("/Login/Registration_MethodsOfPayment.fxml"));
   			Scene scene = new Scene( root );
   			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
   			 Stage stage =new Stage();
