@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -7,11 +8,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.EmployeeHandler">
+<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerWindow.ManagerHandler">
    <children>
-      <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="942.0">
+      <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="831.0" prefWidth="943.0">
          <children>
-            <Pane layoutX="485.0" layoutY="84.0" prefHeight="594.0" prefWidth="430.0">
+            <Pane layoutX="494.0" layoutY="74.0" prefHeight="594.0" prefWidth="430.0">
                <children>
                   <ImageView fitHeight="81.0" fitWidth="246.0" layoutX="121.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,20 +62,20 @@
                   </Button>
                </children>
             </Pane>
-            <Separator layoutX="442.0" layoutY="101.0" orientation="VERTICAL" prefHeight="510.0" prefWidth="22.0" />
-            <ImageView fitHeight="104.0" fitWidth="94.0" layoutX="395.0" layoutY="614.0" pickOnBounds="true" preserveRatio="true">
+            <Separator layoutX="456.0" layoutY="67.0" orientation="VERTICAL" prefHeight="583.0" prefWidth="22.0" />
+            <ImageView fitHeight="109.0" fitWidth="122.0" layoutX="415.0" layoutY="643.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../clientWindow/anyQustion.png" />
                </image>
             </ImageView>
-            <Button fx:id="_forQuestionButton" layoutX="386.0" layoutY="708.0" mnemonicParsing="false" style="-fx-background-color: MediumAquamarine;" text="For Any Question">
+            <Button fx:id="_forQuestionButton" layoutX="411.0" layoutY="753.0" mnemonicParsing="false" style="-fx-background-color: MediumAquamarine;" text="For Any Question">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Button>
             <ImageView fitHeight="43.0" fitWidth="81.0" layoutX="26.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@system-administrator-female.png" />
+                  <Image url="@iconManager.png" />
                </image>
             </ImageView>
             <MenuButton layoutX="59.0" layoutY="34.0" minWidth="0.0" mnemonicParsing="false" prefHeight="3.0" prefWidth="0.0">
@@ -88,17 +89,7 @@
                   <Font name="Constantia Italic" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="_addNewMapButton" layoutX="45.0" layoutY="412.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="326.0" style="-fx-background-color: Gold;" text="Add A New Map" textFill="WHITE">
-               <font>
-                  <Font name="FrankRuehl" size="24.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="357.0" layoutY="444.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@add-1-icon.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="_downloadMapButton1" layoutX="45.0" layoutY="323.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="326.0" style="-fx-background-color: LightSkyBlue;" text="Edit Map" textFill="WHITE">
+            <Button fx:id="_downloadMapButton1" layoutX="59.0" layoutY="277.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Manage the information archive" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
@@ -106,18 +97,48 @@
                   <Tooltip text="You need to choose map from catalog" />
                </tooltip>
             </Button>
-            <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="357.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="30.0" layoutX="382.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Gear-icon.png" />
+                  <Image url="@Files-icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="874.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="_downloadMapButton12" layoutX="59.0" layoutY="359.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: Gold;" text="Approve Version" textFill="WHITE">
+               <font>
+                  <Font name="FrankRuehl" size="24.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="You need to choose map from catalog" />
+               </tooltip>
+            </Button>
+            <Circle fill="#31a821" layoutX="400.0" layoutY="405.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label layoutX="397.0" layoutY="396.0" prefHeight="17.0" prefWidth="30.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Numbers of versions to approve" />
+               </tooltip>
+            </Label>
+            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="869.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Go-back.png" />
                </image>
             </ImageView>
-            <Label layoutX="28.0" layoutY="60.0" text="GCM" textAlignment="CENTER" textFill="RED" wrapText="true" />
+            <Button fx:id="_downloadMapButton111" layoutX="59.0" layoutY="438.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Set A Map Collection rate" textFill="WHITE">
+               <font>
+                  <Font name="FrankRuehl" size="24.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="You need to choose map from catalog" />
+               </tooltip>
+            </Button>
+            <ImageView fitHeight="43.0" fitWidth="30.0" layoutX="385.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Cash-icon.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
+      <Label layoutX="50.0" layoutY="72.0" text="GCM " textAlignment="CENTER" textFill="RED" wrapText="true" />
    </children>
 </AnchorPane>

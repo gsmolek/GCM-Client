@@ -14,27 +14,39 @@
             <Font name="Ebrima" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="42.0" layoutY="83.0" text="List of places" />
-      <TableView layoutX="42.0" layoutY="104.0" prefHeight="267.0" prefWidth="330.0">
+      <Label layoutX="43.0" layoutY="122.0" text="List of places in Tour" />
+      <TableView layoutX="43.0" layoutY="149.0" prefHeight="246.0" prefWidth="325.0">
          <columns>
             <TableColumn prefWidth="35.0" text="No" />
             <TableColumn prefWidth="96.0" text="Place Name " />
             <TableColumn prefWidth="198.0" text="Recommended visit time" />
          </columns>
       </TableView>
-      <Button defaultButton="true" layoutX="43.0" layoutY="393.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="330.0" text="Add Place To Tour" textFill="WHITE">
+      <Button layoutX="217.0" layoutY="406.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: LightSkyBlue;" text="Delete Place To Tour" textFill="WHITE">
          <font>
-            <Font size="19.0" />
+            <Font size="14.0" />
          </font>
       </Button>
-      <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="353.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@add-1-icon.png" />
-         </image>
-      </ImageView>
       <TextArea layoutX="56.0" layoutY="507.0" prefHeight="148.0" prefWidth="303.0" promptText="general description" />
       <Separator layoutX="39.0" layoutY="485.0" prefHeight="3.0" prefWidth="339.0" />
       <Button defaultButton="true" layoutX="54.0" layoutY="685.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Save" />
       <Button cancelButton="true" layoutX="269.0" layoutY="685.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Cancel" />
+      <Button layoutX="38.0" layoutY="406.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: LightSkyBlue;" text="Add Place To Tour" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="179.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@add-1-icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="352.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@trash-icon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="42.0" layoutY="84.0" text="Tour Name : " />
+      <TextField layoutX="120.0" layoutY="80.0" prefHeight="25.0" prefWidth="249.0" />
    </children>
 </AnchorPane>
