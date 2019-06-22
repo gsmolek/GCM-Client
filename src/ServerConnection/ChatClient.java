@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javafx.scene.image.Image;
+
 
 public class ChatClient extends AbstractClient
 {
@@ -19,6 +21,7 @@ public class ChatClient extends AbstractClient
   private ResultSet rs;
   private ArrayList<ArrayList<String>> array;
   private byte[][] result;
+  private Image image;
 
   public byte[][] returnByteArray() {
 	  return result;
@@ -40,7 +43,7 @@ public ChatClient()
 
   public void handleMessageFromServer(Object msg) 
   {
-	  
+	  System.out.println("hmfc");
 	  ArrayList<Object> dataFromServer = (ArrayList<Object>)msg;
 	  String command= (String)dataFromServer.get(0);
 	  switch(command)
@@ -56,6 +59,27 @@ public ChatClient()
 
 	  break;
 	  case "3": break;
+	  case "5":
+	  {
+		  String SaveFileAtPath="C:/Users/PP/Desktop";
+		  ImageStream image =(ImageStream) dataFromServer.get(1);
+		  int fileSize=image.getSize();
+		  System.out.println("Image: "+image.getFileName() +", Size: "+image.getSize()+ " Received from server");
+		  
+		  byte[] imageByteArray=new byte[fileSize];
+		  try 
+		  {
+			  FileOutputStream fos = new FileOutputStream(SaveFileAtPath);  
+			  imageByteArray = image.getImageStreamByteArray();
+			  fos.write(imageByteArray);
+			  fos.flush();
+			  fos.close();
+		  }
+		 catch (IOException e) {
+			 System.out.println("couldn't get image file from server");
+		}
+		  break;
+	  }
 	  }
   }
 public ArrayList<Object> getStr()
@@ -105,6 +129,10 @@ public void clearStr()
     }
     catch(IOException e) {}
     System.exit(0);
+  }
+  public Image getImage()
+  {
+	  return this.image;
   }
 }
 
