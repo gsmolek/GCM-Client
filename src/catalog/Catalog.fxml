@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<Pane prefHeight="655.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="catalog.CatalogControl">
+   <children>
+      <Pane fx:id="_catalogPane" layoutX="414.0" layoutY="34.0" prefHeight="532.0" prefWidth="412.0">
+         <children>
+            <ImageView fitHeight="97.0" fitWidth="129.0" layoutX="205.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Login/searchIcon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="37.0" layoutY="45.0" text="Catalog Map">
+               <font>
+                  <Font name="Century" size="25.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="_radioCityName" layoutX="32.0" layoutY="126.0" mnemonicParsing="false" onAction="#radioCitySelect" selected="true" text="Search By City Name">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="_radioPlaceOfInterestName" layoutX="32.0" layoutY="166.0" mnemonicParsing="false" onAction="#radioPlaceOfInterestName" text="Search By Place Of Interest Name">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="_radioDescription" layoutX="32.0" layoutY="209.0" mnemonicParsing="false" onAction="#radioDescription" text="Search By Description">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </RadioButton>
+            <TextArea fx:id="_searchTextFiled" layoutX="32.0" layoutY="250.0" prefHeight="59.0" prefWidth="344.0" promptText="Search Text">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextArea>
+            <ListView fx:id="_listViewResult" disable="true" layoutX="34.0" layoutY="391.0" prefHeight="112.0" prefWidth="344.0" />
+            <Button fx:id="_searchButton" layoutX="32.0" layoutY="329.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Search" textFill="WHITE">
+               <font>
+                  <Font name="FrankRuehl" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</Pane>
