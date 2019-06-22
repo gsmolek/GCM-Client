@@ -6,15 +6,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
-import com.sun.media.jfxmediaimpl.platform.Platform;
-
 import ServerConnection.ChatClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -160,8 +157,25 @@ public class LoginHandler implements Initializable {
 
 	}
 
+    @FXML
+    void clickForgotPassword(ActionEvent event) {
+    	try {
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Login/Login_ForgotPassword.fxml"));
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+		}
+    	catch (IOException e)
+    	{
+			e.printStackTrace();
+		}
+    }
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		m = null;
 		try {
 			chat = new ChatClient();
@@ -172,9 +186,5 @@ public class LoginHandler implements Initializable {
 		}
 		// TODO Auto-generated method stub
 
-		
-
-		
-		
 	}
 }
