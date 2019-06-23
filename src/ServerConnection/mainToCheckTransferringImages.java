@@ -31,9 +31,8 @@ public class mainToCheckTransferringImages extends Application{
 			ChatClient a= new ChatClient();
 			ArrayList<Object> array= new ArrayList<Object>();
 			array.add("5");
+			array.add("afula.jpg");
 			a.handleMessageFromClient(array);
-			Image i=a.getImage();
-			System.out.println(i.getHeight());
 	        }catch(Exception e)
 	        {
 	        	

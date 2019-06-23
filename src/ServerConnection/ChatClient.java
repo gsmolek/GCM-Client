@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.commons.io.FileUtils;
+
 import javafx.scene.image.Image;
 
 
@@ -61,23 +63,35 @@ public ChatClient()
 	  case "3": break;
 	  case "5":
 	  {
-		  String SaveFileAtPath="C:/Users/PP/Desktop";
-		  ImageStream image =(ImageStream) dataFromServer.get(1);
-		  int fileSize=image.getSize();
-		  System.out.println("Image: "+image.getFileName() +", Size: "+image.getSize()+ " Received from server");
-		  
-		  byte[] imageByteArray=new byte[fileSize];
-		  try 
-		  {
+		  String SaveFileAtPath="C:\\Users\\MOLEK\\Desktop\\afula.jpg";
+		  byte[] image =(byte[]) dataFromServer.get(1);
+		  int fileSize=image.length;
+
+		  try {
+			FileUtils.writeByteArrayToFile(new File(SaveFileAtPath), image);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  System.out.println(", Size: "+image.length+ " Received from server");
+
+		  //try 
+		  //{
+			  //FileUtils.writeByteArrayToFile(new File("pathname"), myByteArray)
+			  /*
+			  System.out.println("1");
 			  FileOutputStream fos = new FileOutputStream(SaveFileAtPath);  
-			  imageByteArray = image.getImageStreamByteArray();
-			  fos.write(imageByteArray);
+			  System.out.println("2");
+			  fos.write(image);
+			  System.out.println("3");
+			  
 			  fos.flush();
 			  fos.close();
-		  }
-		 catch (IOException e) {
-			 System.out.println("couldn't get image file from server");
-		}
+			  */
+		  //}
+		// catch (IOException e) {
+		//	 System.out.println("couldn't get image file from server");
+		//}
 		  break;
 	  }
 	  }
