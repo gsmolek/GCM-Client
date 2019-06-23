@@ -31,44 +31,45 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class LoginHandler implements Initializable{
+public class LoginHandler implements Initializable {
 
-    @FXML
-    private Button _searchButton;
+	@FXML
+	private Button _searchButton;
 
-    @FXML
-    private RadioButton _radioCityName;
+	@FXML
+	private RadioButton _radioCityName;
 
-    @FXML
-    private RadioButton _radioDescription;
+	@FXML
+	private RadioButton _radioDescription;
 
-    @FXML
-    private ImageView _xIcon;
+	@FXML
+	private ImageView _xIcon;
 
-    @FXML
-    private ListView<?> _listViewResult;
+	@FXML
+	private ListView<?> _listViewResult;
 
-    @FXML
-    private Hyperlink _hyperForgot;
+	@FXML
+	private Hyperlink _hyperForgot;
 
-    @FXML
-    private Button _forQuestionButton;
+	@FXML
+	private Button _forQuestionButton;
 
-    @FXML
-    private Label _errorMessageLabel;
+	@FXML
+	private Label _errorMessageLabel;
 
-    @FXML
-    private Hyperlink _hyperSignUp;
+	@FXML
+	private Hyperlink _hyperSignUp;
 
-    @FXML
-    private TextField _userNameFiled;
+	@FXML
+	private TextField _userNameFiled;
 
-    @FXML
-    private TextArea _searchTextFiled;
+	@FXML
+	private TextArea _searchTextFiled;
 
-    @FXML
-    private PasswordField _passwordFiled;
+	@FXML
+	private PasswordField _passwordFiled;
 
+<<<<<<< HEAD
     @FXML
     private RadioButton _radioPlaceOfInterestName;
     
@@ -101,8 +102,28 @@ public class LoginHandler implements Initializable{
     		_radioCityName.setSelected(false);
     	}
     }
+=======
+	@FXML
+	private RadioButton _radioPlaceOfInterestName;
+	
 
+	private ArrayList<Object> sendSQL = new ArrayList<Object>();
+	private ChatClient chat = null;
+	private ArrayList<ArrayList<String>> m;
+>>>>>>> branch 'gilad' of https://github.com/gsmolek/GCM-Client.git
 
+	
+	
+	
+	@FXML
+	void radioCitySelect(ActionEvent event) {
+		if (_radioCityName.isSelected()) {
+			_radioPlaceOfInterestName.setSelected(false);
+			_radioDescription.setSelected(false);
+		}
+	}
+
+<<<<<<< HEAD
     @FXML
     void logInClick(ActionEvent event) 
     {
@@ -111,13 +132,47 @@ public class LoginHandler implements Initializable{
     	String sql;
     	String sql2;
     	String table = "users";
+=======
+	@FXML
+	void radioPlaceOfInterestName(ActionEvent event) {
+		if (_radioPlaceOfInterestName.isSelected()) {
+			_radioCityName.setSelected(false);
+			_radioDescription.setSelected(false);
+		}
+	}
+
+	@FXML
+	void radioDescription(ActionEvent event) {
+		if (_radioDescription.isSelected()) {
+			_radioPlaceOfInterestName.setSelected(false);
+			_radioCityName.setSelected(false);
+		}
+	}
+
+	@FXML
+	void logInClick(ActionEvent event) {
+		sendSQL.clear();
+		String sql;
+		String table = "users";
+>>>>>>> branch 'gilad' of https://github.com/gsmolek/GCM-Client.git
 		String username = _userNameFiled.getText();
 		String password = _passwordFiled.getText();
+<<<<<<< HEAD
 		sql = "SELECT user_name, password FROM " + table + " WHERE user_name = '" + username
 				+ "' AND password = '" + password + "';";
 		sql2 = "SELECT General_description FROM tours;";
+=======
+		sql = "SELECT * FROM " + table + " WHERE user_name = '" + username + "' AND password = '" + password + "';";
+>>>>>>> branch 'gilad' of https://github.com/gsmolek/GCM-Client.git
 		sendSQL.add("2");
 		sendSQL.add(sql);
+<<<<<<< HEAD
+=======
+
+		///////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////
+
+>>>>>>> branch 'gilad' of https://github.com/gsmolek/GCM-Client.git
 		chat.handleMessageFromClient(sendSQL);
 		
 		
@@ -127,43 +182,63 @@ public class LoginHandler implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		ArrayList<ArrayList<String>> m = chat.getArray();
-		for(int i = 0;i<m.size();i++) {
-			for(int j = 0 ; j<m.get(i).size();j++) {
-				System.out.println(m.get(i).get(j));
-			}
+		m = chat.getArray();
+		if (m == null || m.isEmpty()) {
+			_errorMessageLabel.setText("Username or password is incorrect");
+			_errorMessageLabel.setVisible(true);
+		} else {
+			System.out.println("success");
+		}
+<<<<<<< HEAD
+
+    }
+=======
+		/*
+		 * byte[][] result = chat.returnByteArray(); String s = new String(result[0]);
+		 * System.out.println("main: "+s); s = new String(result[1]);
+		 * System.out.println("main: "+s);
+		 */
+	}
+>>>>>>> branch 'gilad' of https://github.com/gsmolek/GCM-Client.git
+
+	@FXML
+	void signUpClick(ActionEvent event) {
+
+		try {
+
+			FXMLLoader loader = new FXMLLoader();
+			Pane root = (Pane) loader.load(getClass().getResource("/Login/RegistrationWindow.fxml"));
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+
+			// Hide this current window (if this is what you want)
+			((Node) (event.getSource())).getScene().getWindow().hide();
+
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
-    }
-
-    @FXML
-    void signUpClick(ActionEvent event)
-    {
-    	 
-        try {
-        	FXMLLoader loader = new FXMLLoader();
-			Pane root = (Pane) loader.load(getClass().getResource("/Login/RegistrationWindow.fxml"));
-			Scene scene = new Scene( root );
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			 Stage stage =new Stage();
-			 stage.setScene(scene);
-			 stage.show();
-			
-			
-            // Hide this current window (if this is what you want)
-            ((Node)(event.getSource())).getScene().getWindow().hide();
-            
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		m = null;
+		try {
+			chat = new ChatClient();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			// return false;
+		}
 		// TODO Auto-generated method stub
+
+		
+
+		
 		
 	}
 }

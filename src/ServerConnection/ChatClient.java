@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javafx.scene.image.Image;
+
 
 public class ChatClient extends AbstractClient
 {
@@ -19,6 +21,7 @@ public class ChatClient extends AbstractClient
   private ResultSet rs;
   private ArrayList<ArrayList<String>> array;
   private byte[][] result;
+  private Image image;
 
   public byte[][] returnByteArray() {
 	  return result;
@@ -47,29 +50,43 @@ public ChatClient()
 
   public void handleMessageFromServer(Object msg) 
   {
-	  
+	  System.out.println("hmfc");
 	  ArrayList<Object> dataFromServer = (ArrayList<Object>)msg;
 	  String command= (String)dataFromServer.get(0);
 	  switch(command)
 	  {
 	  case "1":
-	  {
+	  
 		  String sql=(String)dataFromServer.get(dataFromServer.size()-1);
 		  System.out.println("1");
-	  }
+	  break;
 	  case "2":
-	  {
+		  
 		  array = (ArrayList<ArrayList<String>>) dataFromServer.get(1);
-		  
-		  //ResultSet rsFromServer=(ResultSet)dataFromServer.get(1);
-		  //this.rs=rsFromServer;
-	  }
-	  case "3":
+
+	  break;
+	  case "3": break;
+	  case "5":
 	  {
+		  String SaveFileAtPath="C:/Users/PP/Desktop";
+		  ImageStream image =(ImageStream) dataFromServer.get(1);
+		  int fileSize=image.getSize();
+		  System.out.println("Image: "+image.getFileName() +", Size: "+image.getSize()+ " Received from server");
 		  
+		  byte[] imageByteArray=new byte[fileSize];
+		  try 
+		  {
+			  FileOutputStream fos = new FileOutputStream(SaveFileAtPath);  
+			  imageByteArray = image.getImageStreamByteArray();
+			  fos.write(imageByteArray);
+			  fos.flush();
+			  fos.close();
+		  }
+		 catch (IOException e) {
+			 System.out.println("couldn't get image file from server");
+		}
+		  break;
 	  }
-	  default:
-	  {}
 	  }
   }
 public ArrayList<Object> getStr()
@@ -88,6 +105,7 @@ public void clearStr()
    */
   public void handleMessageFromClient(Object message)  
   {
+<<<<<<< HEAD
     try
     {
     	ArrayList<Object> sendSQL=(ArrayList<Object>)message;
@@ -106,6 +124,26 @@ public void clearStr()
         System.out.println("Could not send message to server.  Terminating client.");
       quit();
     }
+=======
+	  try
+	    {
+	    	ArrayList<Object> sendSQL=(ArrayList<Object>)message;
+			InetAddress inetAddress=null;
+			try {
+				inetAddress = InetAddress.getLocalHost();
+			} catch (UnknownHostException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			sendSQL.add(inetAddress);
+	    	sendToServer(message);
+	    }
+	    catch(IOException e)
+	    {
+	        System.out.println("Could not send message to server.  Terminating client.");
+	      quit();
+	    }
+>>>>>>> branch 'gilad' of https://github.com/gsmolek/GCM-Client.git
   }
   
   /**
@@ -119,6 +157,10 @@ public void clearStr()
     }
     catch(IOException e) {}
     System.exit(0);
+  }
+  public Image getImage()
+  {
+	  return this.image;
   }
 }
 
