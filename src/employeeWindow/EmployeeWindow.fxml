@@ -70,6 +70,22 @@
                   <Image url="@Gear-icon.png" />
                </image>
             </ImageView>
+            <Label layoutX="28.0" layoutY="60.0" text="GCM" textAlignment="CENTER" textFill="RED" wrapText="true" />
+            <Button fx:id="_buyMapButton" layoutX="508.0" layoutY="567.0" mnemonicParsing="false"  prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Show Map Data" textFill="WHITE">
+               <font>
+                  <Font name="FrankRuehl" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="_downloadMapButton" layoutX="508.0" layoutY="633.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map" textFill="WHITE">
+               <font>
+                  <Font name="FrankRuehl" size="24.0" />
+               </font>
+            </Button>
+            <Pane layoutX="477.0" layoutY="24.0" prefHeight="474.0" prefWidth="288.0">
+               <children>
+                  <fx:include source="../catalog/Catalog.fxml" />
+               </children>
+            </Pane>
             <ImageView fx:id="_goBackButton" fitHeight="65.0" fitWidth="58.0" layoutX="860.0" layoutY="22.0" onMouseClicked="#clickGoBackButton" pickOnBounds="true" smooth="false">
                <image>
                   <Image url="@../Go-back.png" />
@@ -81,22 +97,6 @@
                   <Rectangle2D width="32.0" />
                </viewport>
             </ImageView>
-            <Label layoutX="28.0" layoutY="60.0" text="GCM" textAlignment="CENTER" textFill="RED" wrapText="true" />
-            <Button fx:id="_buyMapButton" layoutX="508.0" layoutY="567.0" mnemonicParsing="false" onAction="#clickBuyMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Show Map Data" textFill="WHITE">
-               <font>
-                  <Font name="FrankRuehl" size="24.0" />
-               </font>
-            </Button>
-            <Button fx:id="_downloadMapButton" layoutX="508.0" layoutY="633.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map" textFill="WHITE">
-               <font>
-                  <Font name="FrankRuehl" size="24.0" />
-               </font>
-            </Button>
-            <Pane layoutX="471.0" layoutY="45.0" prefHeight="510.0" prefWidth="366.0">
-               <children>
-                  <fx:include source="../catalog/Catalog.fxml" />
-               </children>
-            </Pane>
          </children>
       </Pane>
    </children>

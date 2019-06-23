@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -47,7 +48,7 @@
                   <Font name="FrankRuehl" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="_buyMapButton" layoutX="38.0" layoutY="491.0" mnemonicParsing="false" onAction="#clickBuyMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Show Map Data" textFill="WHITE">
+            <Button fx:id="_buyMapButton" layoutX="38.0" layoutY="491.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Show Map Data" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
@@ -90,6 +91,9 @@
          <image>
             <Image url="@../Go-back.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Label layoutX="33.0" layoutY="65.0" text="GCM -&gt; Add New Map" textAlignment="CENTER" textFill="RED" wrapText="true" />
       <Label layoutX="31.0" layoutY="118.0" text="Ask new map :" />

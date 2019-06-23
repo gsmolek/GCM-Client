@@ -2,11 +2,13 @@ package employeeWindow;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
+import ServerConnection.ChatClient;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +27,7 @@ import javafx.stage.Window;
 
 public class EmployeeHandler implements Initializable{
 
-	static private Stack<Window> _openWin;
+	static private ArrayList<Scene> _openWin = new ArrayList<>();
     
 	@FXML
     private Button _buyMapButton;
@@ -43,11 +45,21 @@ public class EmployeeHandler implements Initializable{
     private Label _userNameLabel;
 
     @FXML
+    private Label _tempLabel;
+    
+    @FXML
     private Button _addNewMapButton;
 
     @FXML
     private Button _editMapEmployee;
 
+    @FXML
+    private Pane _editPane;
+
+	private ArrayList<Object> sendSQL = new ArrayList<Object>();
+	private ChatClient chat = null;
+	private ArrayList<ArrayList<String>> m;
+    
     @FXML
     void clickGoBackButtonInEdit() {
     	
@@ -56,24 +68,18 @@ public class EmployeeHandler implements Initializable{
 		alert.setContentText("you arr going back you sure ?? ");
 		
 		Optional <ButtonType> action = alert.showAndWait();
-    	if(action.get() == ButtonType.OK)
+    	
+		if(action.get() == ButtonType.OK)
     	{
-    	    Stage s =(Stage) _openWin.pop();
-    	    s.close();
+    		
     	    
 	    	try {
-				AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/employeeWindow/EmployeeWindow.fxml"));
-				Scene scene = new Scene( root);
 				
-				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-				Stage stage = new Stage();
-				stage.setScene(scene);
+				Stage stage = (Stage)_openWin.get(1).getWindow();
+				stage.close();
 				
-				
-				
+				stage = (Stage)_openWin.get(0).getWindow();
 				stage.show();
-				
-				
 				
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -116,25 +122,27 @@ public class EmployeeHandler implements Initializable{
 		}
     }
 
-
     @FXML
     void clickEditMapEmployee() {
     	
-    	
-    	Stage s = (Stage)_editMapEmployee.getScene().getWindow();
+    	_openWin.add(_editMapEmployee.getScene());
+    	Stage sToClose =(Stage)(_editMapEmployee.getScene().getWindow());
+    	sToClose.hide();
     	
     	AnchorPane root;
 		try {
 			root = (AnchorPane) FXMLLoader.load(getClass().getResource("/employeeWindow/EmployeeEditMapWindow.fxml"));
 			Scene scene = new Scene( root);
-		
-			s.setScene(scene);
 			
-			s.show();
+			_openWin.add(scene);
+			
+			Stage sToOpen=new Stage();
+			sToOpen.setScene(scene);
+			sToOpen.show();
 			
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -143,16 +151,18 @@ public class EmployeeHandler implements Initializable{
     @FXML
     void clickAddMapEmployee() {
     	
+    	_openWin.add(_editMapEmployee.getScene());
     	Stage s = (Stage)_editMapEmployee.getScene().getWindow();
+    	s.hide();
     	
     	Pane root;
 		try {
 			root = (Pane) FXMLLoader.load(getClass().getResource("/employeeWindow/Employee_AddNewMap.fxml"));
-			Scene scene = new Scene( root);
-		
-			s.setScene(scene);
-			_openWin.add(s);
-			s.show();
+			Scene scene = new Scene(root);
+			_openWin.add(scene);
+			Stage s2 = new Stage();
+			s2.setScene(scene);
+			s2.show();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -191,13 +201,25 @@ public class EmployeeHandler implements Initializable{
     }
 
     @FXML
-    void clickBuyMapButton(ActionEvent event) {
-
+    void clickShowMapButton(ActionEvent event)
+    {
+    	
+    	//if there is choose map 
+    	_editPane.setVisible(true);
+    	_tempLabel.setVisible(false);
     }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		m = null;
+		try {
+			chat = new ChatClient();
+		} catch (IOException e1) {
+			
+			e1.printStackTrace();
+			// return false;
+		}
 		
 	}
 }

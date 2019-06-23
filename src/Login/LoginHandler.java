@@ -125,6 +125,8 @@ public class LoginHandler implements Initializable {
 		if (m == null || m.isEmpty()) {
 			_errorMessageLabel.setText("Username or password is incorrect");
 			_errorMessageLabel.setVisible(true);
+			_userNameFiled.setText("");
+			_passwordFiled.setText("");
 		} else {
 			System.out.println("success");
 		}

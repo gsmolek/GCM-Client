@@ -41,7 +41,7 @@
                   <Font name="Constantia Italic" size="15.0" />
                </font>
             </Label>
-            <Pane layoutX="32.0" layoutY="84.0" prefHeight="625.0" prefWidth="348.0" visible="false">
+            <Pane fx:id="_editPane" layoutX="32.0" layoutY="84.0" prefHeight="625.0" prefWidth="348.0" visible="false">
                <children>
                   <Button fx:id="_editPlaceButton" layoutX="2.0" layoutY="316.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: LightSkyBlue;" text="Edit Place" textFill="WHITE">
                      <font>
@@ -137,7 +137,7 @@
                   <Font name="FrankRuehl" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="_buyMapButton" layoutX="499.0" layoutY="550.0" mnemonicParsing="false" onAction="#clickBuyMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Show Map Data" textFill="WHITE">
+            <Button fx:id="_buyMapButton" layoutX="499.0" layoutY="550.0" mnemonicParsing="false" onAction="#clickShowMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Show Map Data" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>

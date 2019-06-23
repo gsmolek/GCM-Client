@@ -20,11 +20,6 @@ public class LoginMain extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
-			//Alert alert = new Alert(Alert.AlertType.ERROR);
-			//alert.setTitle("");
-			//alert.setContentText("what you want to showing");
-			//alert.showAndWait();
-			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
