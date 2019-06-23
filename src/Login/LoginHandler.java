@@ -1,9 +1,7 @@
 package Login;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
@@ -69,40 +67,6 @@ public class LoginHandler implements Initializable {
 	@FXML
 	private PasswordField _passwordFiled;
 
-<<<<<<< HEAD
-    @FXML
-    private RadioButton _radioPlaceOfInterestName;
-    
-    private ArrayList<Object> sendSQL = new ArrayList<Object>();
-    ChatClient chat= new ChatClient();
-    @FXML
-    void radioCitySelect(ActionEvent event)
-    {
-    	if(_radioCityName.isSelected())
-    	{
-    		_radioPlaceOfInterestName.setSelected(false);
-    		_radioDescription.setSelected(false);
-    	}
-    }
-    @FXML
-    void radioPlaceOfInterestName(ActionEvent event)
-    {
-    	if(_radioPlaceOfInterestName.isSelected())
-    	{
-    		_radioCityName.setSelected(false);
-    		_radioDescription.setSelected(false);
-    	}
-    }
-    @FXML
-    void radioDescription(ActionEvent event)
-    {
-    	if(_radioDescription.isSelected())
-    	{
-    		_radioPlaceOfInterestName.setSelected(false);
-    		_radioCityName.setSelected(false);
-    	}
-    }
-=======
 	@FXML
 	private RadioButton _radioPlaceOfInterestName;
 	
@@ -110,7 +74,6 @@ public class LoginHandler implements Initializable {
 	private ArrayList<Object> sendSQL = new ArrayList<Object>();
 	private ChatClient chat = null;
 	private ArrayList<ArrayList<String>> m;
->>>>>>> branch 'gilad' of https://github.com/gsmolek/GCM-Client.git
 
 	
 	
@@ -123,16 +86,6 @@ public class LoginHandler implements Initializable {
 		}
 	}
 
-<<<<<<< HEAD
-    @FXML
-    void logInClick(ActionEvent event) 
-    {
-    	
-    	System.out.println("sdd");
-    	String sql;
-    	String sql2;
-    	String table = "users";
-=======
 	@FXML
 	void radioPlaceOfInterestName(ActionEvent event) {
 		if (_radioPlaceOfInterestName.isSelected()) {
@@ -154,28 +107,16 @@ public class LoginHandler implements Initializable {
 		sendSQL.clear();
 		String sql;
 		String table = "users";
->>>>>>> branch 'gilad' of https://github.com/gsmolek/GCM-Client.git
 		String username = _userNameFiled.getText();
 		String password = _passwordFiled.getText();
-<<<<<<< HEAD
-		sql = "SELECT user_name, password FROM " + table + " WHERE user_name = '" + username
-				+ "' AND password = '" + password + "';";
-		sql2 = "SELECT General_description FROM tours;";
-=======
 		sql = "SELECT * FROM " + table + " WHERE user_name = '" + username + "' AND password = '" + password + "';";
->>>>>>> branch 'gilad' of https://github.com/gsmolek/GCM-Client.git
 		sendSQL.add("2");
 		sendSQL.add(sql);
-<<<<<<< HEAD
-=======
 
 		///////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////
 
->>>>>>> branch 'gilad' of https://github.com/gsmolek/GCM-Client.git
 		chat.handleMessageFromClient(sendSQL);
-		
-		
 		try {
 			TimeUnit.MILLISECONDS.sleep(100);
 		} catch (InterruptedException e) {
@@ -189,17 +130,12 @@ public class LoginHandler implements Initializable {
 		} else {
 			System.out.println("success");
 		}
-<<<<<<< HEAD
-
-    }
-=======
 		/*
 		 * byte[][] result = chat.returnByteArray(); String s = new String(result[0]);
 		 * System.out.println("main: "+s); s = new String(result[1]);
 		 * System.out.println("main: "+s);
 		 */
 	}
->>>>>>> branch 'gilad' of https://github.com/gsmolek/GCM-Client.git
 
 	@FXML
 	void signUpClick(ActionEvent event) {

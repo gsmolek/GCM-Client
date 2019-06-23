@@ -29,23 +29,16 @@ public class ChatClient extends AbstractClient
   public ArrayList<ArrayList<String>> getArray() {
 	return array;
 }
-  public void clearArray() {
-	this.array.clear();
-}
 
 public void setRs(ResultSet rs) {
 	this.rs = rs;
 }
 
 public ChatClient() 
+    throws IOException 
   {
     super("localhost", 5550); //Call the superclass constructor
-    try {
-		openConnection();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+    openConnection();
   }
 
   public void handleMessageFromServer(Object msg) 
@@ -105,26 +98,6 @@ public void clearStr()
    */
   public void handleMessageFromClient(Object message)  
   {
-<<<<<<< HEAD
-    try
-    {
-    	ArrayList<Object> sendSQL=(ArrayList<Object>)message;
-		InetAddress inetAddress=null;
-		try {
-			inetAddress = InetAddress.getLocalHost();
-		} catch (UnknownHostException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-		sendSQL.add(inetAddress);
-    	sendToServer(message);
-    }
-    catch(IOException e)
-    {
-        System.out.println("Could not send message to server.  Terminating client.");
-      quit();
-    }
-=======
 	  try
 	    {
 	    	ArrayList<Object> sendSQL=(ArrayList<Object>)message;
@@ -143,7 +116,6 @@ public void clearStr()
 	        System.out.println("Could not send message to server.  Terminating client.");
 	      quit();
 	    }
->>>>>>> branch 'gilad' of https://github.com/gsmolek/GCM-Client.git
   }
   
   /**
