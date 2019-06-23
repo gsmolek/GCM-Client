@@ -76,7 +76,30 @@ public class LoginHandler implements Initializable {
 	private ArrayList<ArrayList<String>> m;
 
 	
-	
+	@FXML
+	void clickHyperForgot(ActionEvent event)
+	{
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			Pane root = (Pane) loader.load(getClass().getResource("/Login/RegistrationWindow.fxml"));
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+
+			// Hide this current window (if this is what you want)
+			((Node) (event.getSource())).getScene().getWindow().hide();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@FXML
+	void clickBuyMapCollectionBeforeRegistration(ActionEvent event)
+	{
+		
+	}
 	
 	@FXML
 	void radioCitySelect(ActionEvent event) {
