@@ -81,7 +81,7 @@ public class LoginHandler implements Initializable {
 	{
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			Pane root = (Pane) loader.load(getClass().getResource("/Login/RegistrationWindow.fxml"));
+			Pane root = (Pane) loader.load(getClass().getResource("/Login/Login_ForgotPassword.fxml‬"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			Stage stage = new Stage();
