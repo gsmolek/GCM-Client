@@ -80,17 +80,12 @@
                      </image>
                   </ImageView>
                   <Hyperlink fx:id="_hyperSignUp" layoutX="264.0" layoutY="380.0" onAction="#signUpClick" text="Sign Up" />
-                  <Label fx:id="_errorMessageLabel" layoutX="69.0" layoutY="387.0" prefHeight="32.0" prefWidth="254.0" text="Error Message" textFill="RED" visible="false" />
+                  <Label fx:id="_errorMessageLabel" layoutX="41.0" layoutY="276.0" prefHeight="32.0" prefWidth="254.0" text="Error Message" textFill="RED" visible="false" />
                   <ImageView fx:id="_xIcon" fitHeight="32.0" fitWidth="30.0" layoutX="28.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@Letter-X-icon.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="32.0" layoutY="261.0" prefHeight="59.0" prefWidth="294.0" text="The user name or password you entered is incorrect." textFill="RED" visible="false" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
                   <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="122.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@Letter-X-icon.png" />

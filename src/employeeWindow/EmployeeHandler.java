@@ -1,48 +1,34 @@
 package employeeWindow;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import java.util.Stack;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
-public class EmployeeHandler {
+public class EmployeeHandler implements Initializable{
 
-    @FXML
-    private Button _searchButton;
-
-    @FXML
+	static private Stack<Window> _openWin;
+    
+	@FXML
     private Button _buyMapButton;
-
-    @FXML
-    private Button _addTourButton;
-
-    @FXML
-    private RadioButton _radioCityName;
-
-    @FXML
-    private Button _editTourButton;
-
-    @FXML
-    private RadioButton _radioDescription;
-
-    @FXML
-    private ListView<?> _listViewResult;
-
-    @FXML
-    private Label _userNameLabel;
-
-    @FXML
-    private Button _addPlaceButton;
-
-    @FXML
-    private Button _addNewMapButton;
 
     @FXML
     private Button _downloadMapButton;
@@ -51,35 +37,56 @@ public class EmployeeHandler {
     private Button _forQuestionButton;
 
     @FXML
-    private Button _editPlaceButton;
+    private ImageView _goBackButton;
 
     @FXML
-    private TextArea _searchTextFiled;
+    private Label _userNameLabel;
 
     @FXML
-    private RadioButton _radioPlaceOfInterestName;
+    private Button _addNewMapButton;
 
     @FXML
-    void radioCitySelect(ActionEvent event) {
+    private Button _editMapEmployee;
 
+    @FXML
+    void clickGoBackButtonInEdit() {
+    	
+    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Logout Confirm");
+		alert.setContentText("you arr going back you sure ?? ");
+		
+		Optional <ButtonType> action = alert.showAndWait();
+    	if(action.get() == ButtonType.OK)
+    	{
+    	    Stage s =(Stage) _openWin.pop();
+    	    s.close();
+    	    
+	    	try {
+				AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/employeeWindow/EmployeeWindow.fxml"));
+				Scene scene = new Scene( root);
+				
+				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				
+				
+				
+				stage.show();
+				
+				
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+    	}
     }
-
-    @FXML
-    void radioPlaceOfInterestName(ActionEvent event) {
-
-    }
-
-    @FXML
-    void radioDescription(ActionEvent event) {
-
-    }
-
+	
     @FXML
     void clickAddPlace(ActionEvent event)
     {
     	try {
-			FXMLLoader loader = new FXMLLoader();
-			AnchorPane root = (AnchorPane) loader.load(getClass().getResource("/employeeWindow/AddPlace.fxml"));
+			
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/employeeWindow/AddPlace.fxml"));
 			Scene scene = new Scene( root, 400,763);
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -96,8 +103,7 @@ public class EmployeeHandler {
     void clickAddTour(ActionEvent event)
     {
     	try {
-			FXMLLoader loader = new FXMLLoader();
-			AnchorPane root = (AnchorPane) loader.load(getClass().getResource("/employeeWindow/AddTour.fxml"));
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/employeeWindow/AddTour.fxml"));
 			Scene scene = new Scene( root);
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -110,9 +116,88 @@ public class EmployeeHandler {
 		}
     }
 
+
+    @FXML
+    void clickEditMapEmployee() {
+    	
+    	
+    	Stage s = (Stage)_editMapEmployee.getScene().getWindow();
+    	
+    	AnchorPane root;
+		try {
+			root = (AnchorPane) FXMLLoader.load(getClass().getResource("/employeeWindow/EmployeeEditMapWindow.fxml"));
+			Scene scene = new Scene( root);
+		
+			s.setScene(scene);
+			
+			s.show();
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+    }
+
+    @FXML
+    void clickAddMapEmployee() {
+    	
+    	Stage s = (Stage)_editMapEmployee.getScene().getWindow();
+    	
+    	Pane root;
+		try {
+			root = (Pane) FXMLLoader.load(getClass().getResource("/employeeWindow/Employee_AddNewMap.fxml"));
+			Scene scene = new Scene( root);
+		
+			s.setScene(scene);
+			_openWin.add(s);
+			s.show();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+    }
+    
+    @FXML
+    void clickGoBackButton() {
+    	
+    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Logout Confirm");
+		alert.setContentText("you are doing logout are you sure ?? ");
+		
+		Optional <ButtonType> action = alert.showAndWait();
+    	if(action.get() == ButtonType.OK)
+    	{
+    	    Stage s = (Stage) _goBackButton.getScene().getWindow();
+    	    s.close();
+    	    
+	    	try {
+				AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Login/Login_MainWindow.fxml"));
+				Scene scene = new Scene( root);
+				
+				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				
+				stage.show();
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+    	}
+    }
+
     @FXML
     void clickBuyMapButton(ActionEvent event) {
 
     }
 
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		
+	}
 }
