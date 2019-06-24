@@ -72,7 +72,14 @@ public class LoginHandler implements Initializable {
 	
 
 	private ArrayList<Object> sendSQL = new ArrayList<Object>();
-	private ChatClient chat = null;
+	protected ChatClient chat = null;
+	public ChatClient getChat() {
+		return chat;
+	}
+	public void setChat(ChatClient chat) {
+		this.chat = chat;
+	}
+
 	private ArrayList<ArrayList<String>> m;
 
 	
@@ -80,20 +87,24 @@ public class LoginHandler implements Initializable {
 	void clickHyperForgot(ActionEvent event)
 	{
 		try {
-			FXMLLoader loader = new FXMLLoader();
-			Pane root = (Pane) loader.load(getClass().getResource("/Login/Login_ForgotPassword.fxml‬"));
+			FXMLLoader loader=new FXMLLoader();
+			loader.setLocation(getClass().getResource("/Login/Login_ForgotPassword.fxml"));
+			AnchorPane root = loader.load();
+			
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			Stage stage = new Stage();
+			ForgotPasswordController control =loader.getController();
+			control.setHandler(this,stage);
+			
 			stage.setScene(scene);
 			stage.show();
-
-			// Hide this current window (if this is what you want)
-			((Node) (event.getSource())).getScene().getWindow().hide();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		}
+    	catch (IOException e)
+    	{
 			e.printStackTrace();
 		}
+    
 	}
 	@FXML
 	void clickBuyMapCollectionBeforeRegistration(ActionEvent event)

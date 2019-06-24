@@ -56,9 +56,10 @@ public ChatClient()
 		  System.out.println("1");
 	  break;
 	  case "2":
-		  
-		  array = (ArrayList<ArrayList<String>>) dataFromServer.get(1);
-
+	  {
+		  System.out.println("2");
+		  this.array = (ArrayList<ArrayList<String>>) dataFromServer.get(1);
+	  }
 	  break;
 	  case "3": break;
 	  case "5":
@@ -128,6 +129,7 @@ public void clearStr()
 	    catch(IOException e)
 	    {
 	        System.out.println("Could not send message to server.  Terminating client.");
+	        e.printStackTrace();
 	      quit();
 	    }
   }
