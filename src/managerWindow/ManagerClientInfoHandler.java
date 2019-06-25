@@ -89,7 +89,12 @@ public class ManagerClientInfoHandler implements Initializable{
     @FXML
     private ImageView _backBattuon;
 
- 
+    @FXML
+    private Pane _paneUserInfo;
+    
+    @FXML
+    private Pane _paneUserInfoPruchase;
+    
 
     @FXML
     private Button _userPruchaseDataButton;
@@ -126,6 +131,9 @@ public class ManagerClientInfoHandler implements Initializable{
 		if (m == null || m.isEmpty())
 		{
 			_notFindLabel.setVisible(true);
+			
+			_paneUserInfo.setVisible(false);
+	    	_paneUserInfoPruchase.setVisible(false);
 			
 			_userInformationDataButton.setVisible(false);
 			_userPruchaseDataButton.setVisible(false);
@@ -184,6 +192,21 @@ public class ManagerClientInfoHandler implements Initializable{
 		 */
 
     }
+    
+    @FXML
+    void clickUserInformationDataButton(ActionEvent event)
+    {
+    	_paneUserInfo.setVisible(true);
+    	_paneUserInfoPruchase.setVisible(false);
+    }
+    
+    @FXML
+    void clickUserPruchaseDataButton(ActionEvent event)
+    {
+    	_paneUserInfo.setVisible(false);
+    	_paneUserInfoPruchase.setVisible(true);
+    }
+    
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1)

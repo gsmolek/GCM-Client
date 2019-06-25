@@ -52,44 +52,40 @@
                </cursor>
             </ImageView>
             <Label layoutX="40.0" layoutY="62.0" text="GCM -&gt; Manage client information" textAlignment="CENTER" textFill="RED" wrapText="true" />
-            <ComboBox fx:id="_yearComboBox" layoutX="321.0" layoutY="455.0" prefHeight="31.0" prefWidth="93.0" promptText="yyyy">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></ComboBox>
-            <ComboBox fx:id="_monthComboBox" layoutX="231.0" layoutY="455.0" prefHeight="31.0" prefWidth="81.0" promptText="mm">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></ComboBox>
-            <Label layoutX="69.0" layoutY="510.0" prefHeight="22.0" prefWidth="113.0" text="CVV/CVD :">
-               <font>
-                  <Font name="Arial" size="19.0" />
-               </font>
-            </Label>
-            <Label layoutX="67.0" layoutY="460.0" prefHeight="22.0" prefWidth="139.0" text="Expiration date :">
-               <font>
-                  <Font name="Arial" size="19.0" />
-               </font>
-            </Label>
-            <TextField fx:id="_cardNumberField" layoutX="232.0" layoutY="407.0" prefHeight="25.0" prefWidth="184.0" promptText="Card number">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <Label layoutX="67.0" layoutY="412.0" prefHeight="22.0" prefWidth="139.0" text="Card number :">
-               <font>
-                  <Font name="Arial" size="19.0" />
-               </font>
-            </Label>
-            <Button fx:id="_updateUserInformationButton" layoutX="70.0" layoutY="568.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="351.0" style="-fx-background-color: LightSkyBlue;" text="Update User Information" textFill="WHITE">
-               <font>
-                  <Font name="FrankRuehl" size="24.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Pane fx:id="_paneManageClient" layoutX="520.0" layoutY="56.0" prefHeight="619.0" prefWidth="331.0">
+            <Pane fx:id="_paneUserInfo" layoutX="67.0" layoutY="133.0" visible="false">
                <children>
-                  <Button fx:id="_userPruchaseDataButton" layoutY="461.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="User Pruchase Data" textFill="WHITE" visible="false">
+                  <Label layoutX="2.0" layoutY="377.0" prefHeight="22.0" prefWidth="113.0" text="CVV/CVD :">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutY="90.0" prefHeight="17.0" prefWidth="105.0" text="User name :">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutY="327.0" prefHeight="22.0" prefWidth="139.0" text="Expiration date :">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="_passwordField" layoutX="162.0" layoutY="131.0" prefHeight="31.0" prefWidth="188.0" promptText="Password">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <ComboBox fx:id="_monthComboBox" layoutX="164.0" layoutY="322.0" prefHeight="31.0" prefWidth="81.0" promptText="mm">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ComboBox>
+                  <PasswordField fx:id="_cVVField" layoutX="164.0" layoutY="373.0" promptText="CVV / CVD" />
+                  <TextField fx:id="_lastNameField" layoutX="161.0" layoutY="43.0" prefHeight="31.0" prefWidth="188.0" promptText="Last Name">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <Button fx:id="_updateUserInformationButton" layoutX="3.0" layoutY="435.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="351.0" style="-fx-background-color: LightSkyBlue;" text="Update User Information" textFill="WHITE">
                      <font>
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
@@ -97,7 +93,79 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="_userInformationDataButton" layoutY="395.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: Gold;" text="User Information Data" textFill="WHITE" visible="false">
+                  <ComboBox fx:id="_yearComboBox" layoutX="254.0" layoutY="322.0" prefHeight="31.0" prefWidth="93.0" promptText="yyyy">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ComboBox>
+                  <TextField fx:id="_emailField" layoutX="162.0" layoutY="179.0" prefHeight="31.0" prefWidth="188.0" promptText="exm@yhaoo.com">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <TextField fx:id="_phoneField" layoutX="164.0" layoutY="227.0" prefHeight="31.0" prefWidth="184.0" promptText="052-1234567">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <Label layoutY="279.0" prefHeight="22.0" prefWidth="139.0" text="Card number :">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="_cardNumberField" layoutX="165.0" layoutY="274.0" prefHeight="25.0" prefWidth="184.0" promptText="Card number">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <Label layoutX="1.0" layoutY="4.0" prefHeight="22.0" prefWidth="139.0" text="First name :">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="3.0" layoutY="184.0" text="Email :">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1.0" layoutY="232.0" prefHeight="22.0" prefWidth="139.0" text="Phone number :">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1.0" layoutY="135.0" text="Password :">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1.0" layoutY="47.0" prefHeight="22.0" prefWidth="139.0" text="Last Name :">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="_userNameField" layoutX="163.0" layoutY="86.0" prefHeight="31.0" prefWidth="188.0" promptText="User Name">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <TextField fx:id="_firstNameField" layoutX="160.0" prefHeight="31.0" prefWidth="188.0" promptText="First name">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+               </children>
+            </Pane>
+            <Pane fx:id="_paneManageClient" layoutX="520.0" layoutY="56.0" prefHeight="619.0" prefWidth="331.0">
+               <children>
+                  <Button fx:id="_userPruchaseDataButton" layoutY="461.0" mnemonicParsing="false" onAction="#clickUserPruchaseDataButton" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="User Pruchase Data" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="FrankRuehl" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="_userInformationDataButton" layoutY="395.0" mnemonicParsing="false" onAction="#clickUserInformationDataButton" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: Gold;" text="User Information Data" textFill="WHITE" visible="false">
                      <font>
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
@@ -126,67 +194,50 @@
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="68.0" layoutY="180.0" prefHeight="22.0" prefWidth="139.0" text="Last Name :">
-               <font>
-                  <Font name="Arial" size="19.0" />
-               </font>
-            </Label>
-            <Label layoutX="68.0" layoutY="137.0" prefHeight="22.0" prefWidth="139.0" text="First name :">
-               <font>
-                  <Font name="Arial" size="19.0" />
-               </font>
-            </Label>
-            <TextField fx:id="_lastNameField" layoutX="228.0" layoutY="176.0" prefHeight="31.0" prefWidth="188.0" promptText="Last Name">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </TextField>
-            <Label layoutX="67.0" layoutY="223.0" prefHeight="17.0" prefWidth="105.0" text="User name :">
-               <font>
-                  <Font name="Arial" size="19.0" />
-               </font>
-            </Label>
-            <TextField fx:id="_userNameField" layoutX="230.0" layoutY="219.0" prefHeight="31.0" prefWidth="188.0" promptText="User Name">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </TextField>
-            <Label layoutX="68.0" layoutY="268.0" text="Password :">
-               <font>
-                  <Font name="Arial" size="19.0" />
-               </font>
-            </Label>
-            <TextField fx:id="_emailField" layoutX="229.0" layoutY="312.0" prefHeight="31.0" prefWidth="188.0" promptText="exm@yhaoo.com">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </TextField>
-            <Label layoutX="70.0" layoutY="317.0" text="Email :">
-               <font>
-                  <Font name="Arial" size="19.0" />
-               </font>
-            </Label>
-            <TextField fx:id="_phoneField" layoutX="231.0" layoutY="360.0" prefHeight="31.0" prefWidth="184.0" promptText="052-1234567">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </TextField>
-            <Label layoutX="68.0" layoutY="365.0" prefHeight="22.0" prefWidth="139.0" text="Phone number :">
-               <font>
-                  <Font name="Arial" size="19.0" />
-               </font>
-            </Label>
-            <TextField fx:id="_firstNameField" layoutX="227.0" layoutY="133.0" prefHeight="31.0" prefWidth="188.0" promptText="First name">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </TextField>
-            <PasswordField fx:id="_cVVField" layoutX="231.0" layoutY="506.0" promptText="CVV / CVD" />
-            <TextField fx:id="_passwordField" layoutX="229.0" layoutY="264.0" prefHeight="31.0" prefWidth="188.0" promptText="Password">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </TextField>
+            <Pane fx:id="_paneUserInfoPruchase" layoutX="40.0" layoutY="118.0" prefHeight="496.0" prefWidth="331.0" visible="false">
+               <children>
+                  <Button fx:id="_addNewMapButton11" layoutX="35.0" layoutY="139.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="324.0" style="-fx-background-color: LightSkyBlue;" text="View Purchase History" textFill="WHITE">
+                     <font>
+                        <Font name="FrankRuehl" size="24.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="2.0" layoutY="232.0" prefHeight="32.0" prefWidth="324.0" text="View Result :" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Sitka Text" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="36.0" layoutY="14.0" prefHeight="32.0" prefWidth="324.0" text="Select Date To Showing:" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Sitka Text" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="37.0" layoutY="46.0" prefHeight="32.0" prefWidth="63.0" text="From:" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Sitka Text" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="240.0" layoutY="46.0" prefHeight="32.0" prefWidth="63.0" text="To:" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Sitka Text" size="15.0" />
+                     </font>
+                  </Label>
+                  <DatePicker layoutX="240.0" layoutY="78.0" prefHeight="25.0" prefWidth="113.0" />
+                  <DatePicker layoutX="34.0" layoutY="78.0" prefHeight="25.0" prefWidth="113.0" />
+                  <TableView layoutY="264.0" prefHeight="216.0" prefWidth="397.0">
+                     <columns>
+                        <TableColumn prefWidth="71.0" text="Version" />
+                        <TableColumn prefWidth="140.0" text="Map Collection" />
+                        <TableColumn prefWidth="110.0" text="Type Of Pruchase" />
+                        <TableColumn minWidth="9.0" prefWidth="72.0" text="Period" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="29.0" layoutY="-16.0" prefHeight="32.0" prefWidth="324.0" text="&lt;User Name&gt; " textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Sitka Text" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>
