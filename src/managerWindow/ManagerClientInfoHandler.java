@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 import ServerConnection.ChatClient;
+import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,20 +17,26 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.util.Callback;
+import javafx.util.StringConverter;
 
 public class ManagerClientInfoHandler implements Initializable{
 
+	@FXML
+	private ListView<String> _resList = new ListView<String>();
     @FXML
     private ComboBox<String> _yearComboBox;
-
     @FXML
     private ComboBox<String> _monthComboBox;
+
     
     @FXML
     private Button _userInformationDataButton;
@@ -65,8 +72,8 @@ public class ManagerClientInfoHandler implements Initializable{
     private PasswordField _cVVField;
 
     @FXML
-    private RadioButton _searchByUserName;
-
+    private Label _notFindLabel;
+    
     @FXML
     private TextField _emailField;
 
@@ -74,7 +81,7 @@ public class ManagerClientInfoHandler implements Initializable{
     private Button _updateUserInformationButton;
 
     @FXML
-    private PasswordField _passwordField;
+    private TextField _passwordField;
 
     @FXML
     private Button _forQuestionButton;
@@ -82,85 +89,30 @@ public class ManagerClientInfoHandler implements Initializable{
     @FXML
     private ImageView _backBattuon;
 
+ 
+
     @FXML
     private Button _userPruchaseDataButton;
 
-    @FXML
-    private RadioButton _searchByEmail;
-
-    @FXML
-    private ListView<String> _resList;
-    
-    private static final int SEARCH_NOT_CHOOSE = -1;
-    private static final int SEARCH_BY_USER_NAME = 0;
-    private static final int SEARCH_BY_EMAIL = 1;
-    
-    private int chooseHowToSearch = SEARCH_BY_USER_NAME;
-    
     private ArrayList<Object> sendSQL = new ArrayList<Object>();
 	private ChatClient chat = null;
 	private ArrayList<ArrayList<String>> m;
     
-    @FXML
-    void clickSearchByUserName(ActionEvent event)
-    {
-    	if(_searchByUserName.isSelected())
-    	{
-    		_searchByEmail.setSelected(false);
-    		chooseHowToSearch = SEARCH_BY_USER_NAME;
-    	}
-    	else
-    	{
-    		chooseHowToSearch = SEARCH_NOT_CHOOSE;
-    	}
-    }
-
-    @FXML
-    void clickSearchByEmail(ActionEvent event) 
-    {
-    	if(_searchByEmail.isSelected())
-    	{
-    		_searchByUserName.setSelected(false);
-    		chooseHowToSearch = SEARCH_BY_EMAIL;
-    	}
-    	else
-    	{
-    		chooseHowToSearch = SEARCH_NOT_CHOOSE;
-    	}
-    }
-
+	ObservableList<String> listToShow = FXCollections.observableArrayList();
+	
     @FXML
     void clickSearchUser(ActionEvent event)
     {
     	sendSQL.clear();
 		String sql=null;
-		String table = "users";
-		
 		String textToSearch = _searchTextField.getText();
 		
-		switch (chooseHowToSearch) {
-		case SEARCH_BY_USER_NAME:
-			sql = "SELECT * FROM " + table + " WHERE user_name = '" + textToSearch + "';";
-			break;
-		case SEARCH_BY_EMAIL:
-			sql = "SELECT * FROM " + table + " WHERE email = '" + textToSearch + "';";
-			break;
-		default:
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Search Error");
-			alert.setContentText("Not Choose How to Search");
-			alert.showAndWait();
-			break;
-		}
+		sql = "SELECT first_name,last_name,user_name,password,email,phone,creditcard,expirationM,expirationY,cvv \r\n" + 
+				"FROM gcm.users,gcm.user_card \r\n" + 
+				"Where user_id=Id AND (email=\""+ textToSearch +"\" OR user_name=\"" + textToSearch + "\");";
 		
-		if(chooseHowToSearch!=SEARCH_NOT_CHOOSE)
-		{
 		sendSQL.add("2");
 		sendSQL.add(sql);
-
-		///////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////
-
 		chat.handleMessageFromClient(sendSQL);
 		try {
 			TimeUnit.MILLISECONDS.sleep(100);
@@ -168,22 +120,68 @@ public class ManagerClientInfoHandler implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		m = chat.getArray();
 		
 		if (m == null || m.isEmpty())
 		{
-			_resList.setAccessibleText("Empty");
+			_notFindLabel.setVisible(true);
+			
+			_userInformationDataButton.setVisible(false);
+			_userPruchaseDataButton.setVisible(false);
+			
+			
+			_firstNameField.setText("");
+			_lastNameField.setText("");
+			_userNameField.setText("");
+			_passwordField.setText("");
+			
+			_emailField.setText("");
+			_phoneField.setText("");
+			_cardNumberField.setText("");
+			_monthComboBox.setValue("mm");
+			_yearComboBox.setValue("yyyy");
+			_cVVField.setText("");
 		}
 		else 
 		{
+			_notFindLabel.setVisible(false);
+			
+			_userInformationDataButton.setVisible(true);
+			_userPruchaseDataButton.setVisible(true);
+			
+			for (ArrayList<String> arrayList : m)
+			{
+				_firstNameField.setText(arrayList.get(0));
+				_lastNameField.setText(arrayList.get(1));
+				_userNameField.setText(arrayList.get(2));
+				_passwordField.setText(arrayList.get(3));
+				
+				_emailField.setText(arrayList.get(4));
+				_phoneField.setText(arrayList.get(5));
+				_cardNumberField.setText(arrayList.get(6));
+				_monthComboBox.setValue(arrayList.get(7));
+				_yearComboBox.setValue(arrayList.get(8));
+				_cVVField.setText(arrayList.get(9));
+			}
 			System.out.println("success");
 		}
+			
+			
+		//sql = "SELECT * FROM " + table + " WHERE email = '" + textToSearch + "';";
+			
+		
+		
+		///////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////
+
+		
+		
 		/*
 		 * byte[][] result = chat.returnByteArray(); String s = new String(result[0]);
 		 * System.out.println("main: "+s); s = new String(result[1]);
 		 * System.out.println("main: "+s);
 		 */
-		}
 
     }
     

@@ -8,12 +8,12 @@ import javafx.scene.layout.AnchorPane;
 
 
 
-public class MainEmployee extends Application {
+public class MainManager extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/managerWindow/ManagerWindow.fxml"));
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/managerWindow/ManagerCompany_ClientDataShow.fxml"));
 			Scene scene = new Scene( root );
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			

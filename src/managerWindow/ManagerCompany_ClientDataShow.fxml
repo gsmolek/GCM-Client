@@ -89,7 +89,7 @@
             </Button>
             <Pane fx:id="_paneManageClient" layoutX="520.0" layoutY="56.0" prefHeight="619.0" prefWidth="331.0">
                <children>
-                  <Button fx:id="_userPruchaseDataButton" layoutY="540.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="User Pruchase Data" textFill="WHITE">
+                  <Button fx:id="_userPruchaseDataButton" layoutY="461.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="User Pruchase Data" textFill="WHITE" visible="false">
                      <font>
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
@@ -97,7 +97,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="_userInformationDataButton" layoutY="474.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: Gold;" text="User Information Data" textFill="WHITE">
+                  <Button fx:id="_userInformationDataButton" layoutY="395.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: Gold;" text="User Information Data" textFill="WHITE" visible="false">
                      <font>
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
@@ -105,25 +105,13 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ListView fx:id="_resList" layoutX="4.0" layoutY="306.0" prefHeight="152.0" prefWidth="324.0">
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </ListView>
-                  <Label layoutX="4.0" layoutY="274.0" prefHeight="32.0" prefWidth="324.0" text="View Result :" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="Sitka Text" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="3.0" layoutY="34.0" prefHeight="32.0" prefWidth="324.0" text="Search User " textAlignment="CENTER" wrapText="true">
+                  <Label layoutX="6.0" layoutY="60.0" prefHeight="32.0" prefWidth="324.0" text="Search User " textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Sitka Text" size="27.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="_searchTextField" layoutX="3.0" layoutY="170.0" prefHeight="32.0" prefWidth="324.0" promptText="Search Text" />
-                  <RadioButton fx:id="_searchByUserName" layoutY="89.0" mnemonicParsing="false" onAction="#clickSearchByUserName" selected="true" text="Search By User name" />
-                  <RadioButton fx:id="_searchByEmail" layoutY="127.0" mnemonicParsing="false" onAction="#clickSearchByEmail" text="Search By Email" />
-                  <Button fx:id="_searchUserButton" layoutX="1.0" layoutY="213.0" mnemonicParsing="false" onAction="#clickSearchUser" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="Search User" textFill="WHITE">
+                  <TextField fx:id="_searchTextField" layoutX="3.0" layoutY="122.0" prefHeight="71.0" prefWidth="324.0" promptText="Enter User Name Or Email To Search" />
+                  <Button fx:id="_searchUserButton" layoutY="216.0" mnemonicParsing="false" onAction="#clickSearchUser" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="Search User" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -131,6 +119,11 @@
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
                   </Button>
+                  <Label fx:id="_notFindLabel" layoutX="6.0" layoutY="278.0" prefHeight="62.0" prefWidth="311.0" text="User name / email address doen't exist in DB please try again ." textFill="RED" visible="false" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <Label layoutX="68.0" layoutY="180.0" prefHeight="22.0" prefWidth="139.0" text="Last Name :">
@@ -163,11 +156,6 @@
                   <Font name="Arial" size="19.0" />
                </font>
             </Label>
-            <PasswordField fx:id="_passwordField" layoutX="229.0" layoutY="264.0" prefHeight="31.0" prefWidth="188.0" promptText="Password">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </PasswordField>
             <TextField fx:id="_emailField" layoutX="229.0" layoutY="312.0" prefHeight="31.0" prefWidth="188.0" promptText="exm@yhaoo.com">
                <cursor>
                   <Cursor fx:constant="TEXT" />
@@ -194,6 +182,11 @@
                </cursor>
             </TextField>
             <PasswordField fx:id="_cVVField" layoutX="231.0" layoutY="506.0" promptText="CVV / CVD" />
+            <TextField fx:id="_passwordField" layoutX="229.0" layoutY="264.0" prefHeight="31.0" prefWidth="188.0" promptText="Password">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
          </children>
       </Pane>
    </children>
