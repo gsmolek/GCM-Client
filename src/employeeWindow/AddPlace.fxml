@@ -1,58 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="763.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.EmployeeHandler">
+<AnchorPane prefHeight="663.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.EmployeeHandler">
    <children>
       <Label layoutX="78.0" layoutY="14.0" text="Add Place Of Interest" textFill="#000000fc">
          <font>
             <Font name="Ebrima" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="60.0" layoutY="71.0" text="Name Of Place  :" />
-      <TableView layoutX="60.0" layoutY="104.0" prefHeight="149.0" prefWidth="296.0">
-        <columns>
-          <TableColumn prefWidth="119.0" text="Map Name" />
-          <TableColumn prefWidth="176.0" text="Location in Map" />
-        </columns>
-      </TableView>
-      <Button defaultButton="true" layoutX="60.0" layoutY="265.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="296.0" text="Add Place To Map" textFill="WHITE">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Button>
-      <Label layoutX="59.0" layoutY="355.0" prefHeight="21.0" prefWidth="96.0" text="Classification:" wrapText="true" />
-      <ComboBox layoutX="158.0" layoutY="350.0" prefHeight="31.0" prefWidth="195.0" promptText="Choose Classification" />
-      <Button defaultButton="true" layoutX="59.0" layoutY="393.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="296.0" text="Add Classification Type" textFill="WHITE">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Button>
-      <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="341.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@add-1-icon.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="342.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@add-1-icon.png" />
-         </image>
-      </ImageView>
-      <TextArea layoutX="60.0" layoutY="546.0" prefHeight="129.0" prefWidth="296.0" promptText="short explanation" />
-      <Separator layoutX="40.0" layoutY="331.0" prefHeight="3.0" prefWidth="339.0" />
-      <Separator layoutX="39.0" layoutY="463.0" prefHeight="3.0" prefWidth="339.0" />
-      <Button defaultButton="true" layoutX="59.0" layoutY="698.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Save" />
-      <Button cancelButton="true" layoutX="269.0" layoutY="698.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Cancel" />
-      <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="81.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true">
+      <Label layoutX="59.0" layoutY="97.0" text="Name Of Place  :" />
+      <Label layoutX="63.0" layoutY="139.0" prefHeight="21.0" prefWidth="96.0" text="Classification:" wrapText="true" />
+      <TextArea layoutX="65.0" layoutY="406.0" prefHeight="129.0" prefWidth="296.0" promptText="short explanation" />
+      <Separator layoutX="43.0" layoutY="237.0" prefHeight="3.0" prefWidth="339.0" />
+      <Separator layoutX="39.0" layoutY="357.0" prefHeight="3.0" prefWidth="339.0" />
+      <Button defaultButton="true" layoutX="62.0" layoutY="578.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Save" />
+      <Button cancelButton="true" layoutX="271.0" layoutY="578.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Cancel" />
+      <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="85.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@20171012153839-special-assistance-500x500.png" />
          </image>
       </ImageView>
-      <CheckBox layoutX="137.0" layoutY="504.0" mnemonicParsing="false" text="Accessible special needs" />
+      <CheckBox layoutX="149.0" layoutY="296.0" mnemonicParsing="false" text="Accessible special needs" />
+      <TextField layoutX="157.0" layoutY="93.0" />
+      <TextField layoutX="157.0" layoutY="137.0" />
+      <TextField layoutX="157.0" layoutY="183.0" />
+      <Label layoutX="63.0" layoutY="185.0" prefHeight="21.0" prefWidth="96.0" text="Time" wrapText="true" />
+      <Label layoutX="63.0" layoutY="371.0" prefHeight="21.0" prefWidth="96.0" text="Description" wrapText="true" />
    </children>
 </AnchorPane>

@@ -31,6 +31,7 @@ import javafx.stage.Stage;
 
 public class LoginHandler implements Initializable {
 
+	
 	@FXML
 	private Button _searchButton;
 
@@ -101,6 +102,14 @@ public class LoginHandler implements Initializable {
 			_radioCityName.setSelected(false);
 		}
 	}
+	 @FXML
+	    void clickHyperForgot(ActionEvent event) {
+
+	    }
+	 @FXML
+	    void clickBuyMapCollectionBeforeRegistration(ActionEvent event) {
+
+	    }
 
 	@FXML
 	void logInClick(ActionEvent event) {

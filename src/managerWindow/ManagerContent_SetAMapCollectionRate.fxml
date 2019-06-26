@@ -1,67 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerWindow.ManagerHandler">
+<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerWindow.setRateHandler">
    <children>
       <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="831.0" prefWidth="867.0">
          <children>
-            <Pane layoutX="452.0" layoutY="76.0" prefHeight="594.0" prefWidth="430.0">
-               <children>
-                  <ImageView fitHeight="81.0" fitWidth="246.0" layoutX="121.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../clientWindow/searchIcon.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="87.0" layoutY="-14.0" text="Catalog Map">
-                     <font>
-                        <Font name="Century" size="25.0" />
-                     </font>
-                  </Label>
-                  <RadioButton fx:id="_radioCityName" layoutX="33.0" layoutY="73.0" mnemonicParsing="false" onAction="#radioCitySelect" selected="true" text="Search By City Name">
-                     <font>
-                        <Font name="Comic Sans MS" size="12.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="_radioPlaceOfInterestName" layoutX="33.0" layoutY="113.0" mnemonicParsing="false" onAction="#radioPlaceOfInterestName" text="Search By Place Of Interest Name">
-                     <font>
-                        <Font name="Comic Sans MS" size="12.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="_radioDescription" layoutX="33.0" layoutY="156.0" mnemonicParsing="false" onAction="#radioDescription" text="Search By Description">
-                     <font>
-                        <Font name="Comic Sans MS" size="12.0" />
-                     </font>
-                  </RadioButton>
-                  <TextArea fx:id="_searchTextFiled" layoutX="33.0" layoutY="197.0" prefHeight="59.0" prefWidth="344.0" promptText="Search Text">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextArea>
-                  <ListView fx:id="_listViewResult" disable="true" layoutX="38.0" layoutY="346.0" prefHeight="127.0" prefWidth="344.0" />
-                  <Button fx:id="_searchButton" layoutX="33.0" layoutY="276.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Search" textFill="WHITE">
-                     <font>
-                        <Font name="FrankRuehl" size="24.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="_buyMapButton" layoutX="38.0" layoutY="491.0" mnemonicParsing="false" onAction="#clickBuyMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Show Map Data" textFill="WHITE">
-                     <font>
-                        <Font name="FrankRuehl" size="24.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="_downloadMapButton" layoutX="38.0" layoutY="557.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map" textFill="WHITE">
-                     <font>
-                        <Font name="FrankRuehl" size="24.0" />
-                     </font>
-                  </Button>
-               </children>
-            </Pane>
             <Separator layoutX="404.0" layoutY="59.0" orientation="VERTICAL" prefHeight="583.0" prefWidth="22.0" />
             <ImageView fitHeight="109.0" fitWidth="122.0" layoutX="361.0" layoutY="634.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -97,29 +54,27 @@
                   <Tooltip text="Numbers of versions to approve" />
                </tooltip>
             </Label>
-            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="792.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="backImg" fitHeight="46.0" fitWidth="53.0" layoutX="792.0" layoutY="22.0" onMouseClicked="#backToMain" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Go-back.png" />
                </image>
             </ImageView>
             <Label layoutX="59.0" layoutY="108.0" text="Choose Map Collection City:" />
-            <ComboBox layoutX="59.0" layoutY="136.0" prefHeight="25.0" prefWidth="300.0" promptText="Cities list" />
-            <ListView layoutX="59.0" layoutY="216.0" prefHeight="200.0" prefWidth="300.0" />
+            <ComboBox fx:id="cityList" layoutX="59.0" layoutY="136.0" onAction="#chooseeCollection" prefHeight="25.0" prefWidth="300.0" promptText="Cities list" />
+            <ListView fx:id="mapCollectionListView" layoutX="59.0" layoutY="216.0" onMouseClicked="#getDeitellsOfTheCollection" prefHeight="200.0" prefWidth="300.0" />
             <Label layoutX="59.0" layoutY="187.0" text="Map Collection : " />
-            <Button fx:id="_searchButton1" layoutX="58.0" layoutY="666.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="300.0" style="-fx-background-color: LightSkyBlue;" text="Set A Map Collection Rate " textFill="WHITE">
+            <Button fx:id="_searchButton1" layoutX="58.0" layoutY="666.0" mnemonicParsing="false" onAction="#setRates" prefHeight="46.0" prefWidth="300.0" style="-fx-background-color: LightSkyBlue;" text="Set A Map Collection Rate " textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
             </Button>
-            <TextField layoutX="229.0" layoutY="465.0" prefHeight="32.0" prefWidth="100.0" />
-            <Label layoutX="68.0" layoutY="458.0" prefHeight="32.0" prefWidth="148.0" text="One Time Purchase Rate :" />
+            <TextField fx:id="priceOnce" layoutX="229.0" layoutY="492.0" prefHeight="32.0" prefWidth="100.0" />
+            <Label layoutX="74.0" layoutY="492.0" prefHeight="32.0" prefWidth="148.0" text="One Time Purchase Rate :" />
             <Separator layoutX="48.0" layoutY="426.0" prefHeight="17.0" prefWidth="328.0" />
-            <Label layoutX="68.0" layoutY="516.0" prefHeight="32.0" prefWidth="148.0" text="Purchase Subscription :" />
-            <Label layoutX="68.0" layoutY="548.0" prefHeight="32.0" prefWidth="148.0" text="Period : " />
-            <ComboBox layoutX="63.0" layoutY="580.0" prefHeight="32.0" prefWidth="140.0" />
+            <Label layoutX="76.0" layoutY="584.0" prefHeight="32.0" prefWidth="148.0" text="Purchase Subscription :" />
             <Label layoutX="229.0" layoutY="548.0" prefHeight="32.0" prefWidth="148.0" text="Rate:" />
-            <TextField layoutX="229.0" layoutY="584.0" prefHeight="32.0" prefWidth="100.0" />
-            <ImageView fitHeight="21.0" fitWidth="22.0" layoutX="332.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="subscriptionPrice" layoutX="229.0" layoutY="584.0" prefHeight="32.0" prefWidth="100.0" />
+            <ImageView fitHeight="21.0" fitWidth="22.0" layoutX="332.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@512shhjWrQL.png" />
                </image>
@@ -129,6 +84,8 @@
                   <Image url="@512shhjWrQL.png" />
                </image>
             </ImageView>
+            <Label layoutX="481.0" layoutY="179.0" prefHeight="367.0" prefWidth="312.0" />
+            <Label layoutX="229.0" layoutY="458.0" prefHeight="32.0" prefWidth="148.0" text="Rate:" />
          </children>
       </Pane>
       <Label layoutX="50.0" layoutY="72.0" text="GCM -&gt; Set A Map Collection Rate " textAlignment="CENTER" textFill="RED" wrapText="true" />

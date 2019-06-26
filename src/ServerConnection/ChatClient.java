@@ -83,12 +83,14 @@ public void clearStr()
 			} catch (UnknownHostException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
+				
 			}
 			sendSQL.add(inetAddress);
 	    	sendToServer(message);
 	    }
 	    catch(IOException e)
 	    {
+	    	System.out.println(e);
 	        System.out.println("Could not send message to server.  Terminating client.");
 	      quit();
 	    }

@@ -23,16 +23,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import managerWindow.aprroveHandler;
 
 public class RegistrationHandler implements Initializable {
 
-	private ObservableList<String> listMounth;
-	private ObservableList<String> listYear;
 	@FXML
-	private ComboBox<String> _yearComboBox;
+	private TextField _lastName;
 
 	@FXML
-	private ComboBox<String> _monthComboBox;
+	private TextField _firstName;
 
 	@FXML
 	private ImageView _markQustionImage;
@@ -72,20 +71,20 @@ public class RegistrationHandler implements Initializable {
 
 	@FXML
 	private TextField _phone;
-	
-    @FXML
-    private TextField cvvfieldNewfield;
-    
-    @FXML
-    private ImageView paymentImg;
 
-	private ChatClient chat;
+	@FXML
+	private ImageView paymentImg;
+
+	protected static ChatClient chat = null;
 	private String sql;
 	private ArrayList<Object> sendSQL = new ArrayList<Object>();
 	private ArrayList<ArrayList<String>> m;
 	private String table;
-	private visa s;
-	private Stage paymentWindow;
+	protected static visa s;
+	private FXMLLoader loader;
+	private Pane root;
+	private Scene scene;
+	private Stage stage;
 
 	@FXML
 	void clickToLoginButton(ActionEvent event) {
@@ -162,6 +161,22 @@ public class RegistrationHandler implements Initializable {
 	}
 
 	@FXML
+	void firstNameChanged(KeyEvent event) {
+		if (!_firstName.getText().isEmpty()) {
+			_firstName.getStyleClass().clear();
+			_firstName.getStyleClass().addAll("text-field", "text-input");
+		}
+	}
+
+	@FXML
+	void lastNameChanged(KeyEvent event) {
+		if (!_lastName.getText().isEmpty()) {
+			_lastName.getStyleClass().clear();
+			_lastName.getStyleClass().addAll("text-field", "text-input");
+		}
+	}
+
+	@FXML
 	void phoneChanged(KeyEvent event) {
 		if (!_phone.getText().isEmpty()) {
 			_phone.getStyleClass().clear();
@@ -196,16 +211,14 @@ public class RegistrationHandler implements Initializable {
 		_rePasswordFieldShow.setVisible(false);
 		_rePasswordField.setVisible(true);
 	}
-	
-	
 
 	@FXML
 	void clickRegister() {
 		boolean filedsEmpty = true, userFree = false, emailFree = false, canRegister = false;
 		// check for fields && payment
 		String userName = _username.getText();
-		String fName = "av";
-		String lName = "lac";
+		String fName = _firstName.getText();
+		String lName = _lastName.getText();
 		String password = _passwordField.getText();
 		String rePassword = _rePasswordField.getText();
 		String email = _email.getText();
@@ -214,9 +227,30 @@ public class RegistrationHandler implements Initializable {
 		String phone = _phone.getText();
 		int expirationM = s.getExM();
 		int expirationY = s.getExY();
-		String cvv= Integer.toString(s.getCvv());
+		String cvv = Integer.toString(s.getCvv());
 
 		sendSQL.clear();
+
+		// first name
+		if (fName.isEmpty()) {
+			filedsEmpty = true;
+			_firstName.getStyleClass().add("error");
+		} else {
+			filedsEmpty = false;
+			_firstName.getStyleClass().clear();
+			_firstName.getStyleClass().addAll("text-field", "text-input");
+		}
+
+		// last name
+		if (lName.isEmpty()) {
+			filedsEmpty = true;
+			_lastName.getStyleClass().add("error");
+		} else {
+			filedsEmpty = false;
+			_lastName.getStyleClass().clear();
+			_lastName.getStyleClass().addAll("text-field", "text-input");
+		}
+
 		// userName
 		if (userName.isEmpty()) {
 			filedsEmpty = true;
@@ -276,36 +310,34 @@ public class RegistrationHandler implements Initializable {
 			_phone.getStyleClass().clear();
 			_phone.getStyleClass().addAll("text-field", "text-input");
 		}
-		
+
 		// cardNumber
-		if(creditCard.equals("0")) {
+		if (creditCard.equals("0")) {
 			filedsEmpty = true;
-		}
-		else {
+		} else {
 			filedsEmpty = false;
 		}
-		
-		//Expiration month
-		if(expirationM == 0)
+
+		// Expiration month
+		if (expirationM == 0)
 			filedsEmpty = true;
 		else
 			filedsEmpty = false;
-		
-		//Expiration year
-		if(expirationY == 0)
+
+		// Expiration year
+		if (expirationY == 0)
 			filedsEmpty = true;
 		else
 			filedsEmpty = false;
-		
-		//cvv
-		if(cvv.equals("0")) {
+
+		// cvv
+		if (cvv.equals("0")) {
 			filedsEmpty = true;
 			paymentImg.getStyleClass().add("image-view-wrapper");
-		}
-		else {
+		} else {
 			filedsEmpty = false;
 		}
-		
+
 		if (!filedsEmpty)
 			if ((password.equals(rePassword)) && email.equals(reEmail)) {
 
@@ -419,77 +451,38 @@ public class RegistrationHandler implements Initializable {
 
 		}
 		if (canRegister)
-
+			// success register
 			try {
-				FXMLLoader loader = new FXMLLoader();
-				Pane root = (Pane) loader.load(getClass().getResource("/Login/ConfirmRegistration.fxml"));
-				Scene scene = new Scene(root);
+				loader = new FXMLLoader();
+				root = (Pane) loader.load(getClass().getResource("/Login/ConfirmRegistration.fxml"));
+				scene = new Scene(root);
 				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-				Stage stage = new Stage();
+				stage = new Stage();
 				stage.setScene(scene);
 				stage.show();
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 	}
 
-	@FXML
-	void cvvShow() {
-		_cvvImage.setVisible(true);
-	}
-
-	@FXML
-	void cvvUnshow() {
-		_cvvImage.setVisible(false);
-	}
-
-	@FXML
-	private TextField cardnumber;
-
-	@FXML
-	void savePayment(ActionEvent event) {
-		String cvv,cardNumber;
-		cardNumber = cardnumber.getText();
-		int exM = _monthComboBox.getSelectionModel().selectedIndexProperty().intValue();
-		int exY = _yearComboBox.getSelectionModel().selectedIndexProperty().intValue();
-		 cvv = cvvfieldNewfield.getText();
-		// insert the payment details to the class visa
-		if (!cardNumber.isEmpty())
-			s.setCard(Integer.parseInt(cardNumber));
-		if (exM != -1) {
-			s.setExM(exM + 1);
-		}
-
-		if (exY != -1) {
-			s.setExY(exY + 2019);
-		}
-		if(!cvv.isEmpty())
-			s.setCvv(Integer.parseInt(cvv));
-		System.out.println("card " + s.getCard());
-		System.out.println("exM " + s.getExM());
-		System.out.println("exY " + s.getExY());
-		System.out.println("cvv " + s.getCvv());
-	}
-
+	// enter the credit card pyment
 	@FXML
 	void clickEnterPayment(ActionEvent event) {
-
-		String card = String.valueOf(s.getCard());
-		String cvv = String.valueOf(s.getCvv());
-		int exM = s.getExM();
-		int exY = s.getExY();
-		
 		try {
-			FXMLLoader loader = new FXMLLoader();
-			Pane root = loader.load(getClass().getResource("/Login/Methods of Payment.fxml"));
-			Scene scene = new Scene(root);
+			loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/Login/Registration_MethodsOfPayment.fxml"));
+			root = loader.load();
+
+			scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			Stage newStage = new Stage();
-			newStage.setScene(scene);
-			setStage(newStage);
-			newStage.show();
+
+			paymentHandler control = loader.getController();
+			control.setRegistrationHandler(this);
+
+			stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -497,30 +490,8 @@ public class RegistrationHandler implements Initializable {
 
 	}
 
-	private void setStage(Stage newStage) {
-		this.paymentWindow = newStage;
-	}
-
-	@FXML
-	void initializationMethodsOfPayment() {
-		_yearComboBox.setItems(listYear);
-		_monthComboBox.setItems(listMounth);
-
-	}
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		listMounth = FXCollections.observableArrayList("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
-				"12");
-		listYear = FXCollections.observableArrayList("2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026",
-				"2027", "2028", "2029", "2030");
-		try {
-			chat = new ChatClient();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			// return false;
-		}
 		s = new visa();
 
 	}

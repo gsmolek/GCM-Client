@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="655.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientWindow.ClientWindowHandler">
+<AnchorPane prefHeight="655.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientWindow.ClientWindowHandler">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="861.0">
          <children>
             <Pane layoutX="449.0" layoutY="85.0" prefHeight="499.0" prefWidth="412.0">
                <children>
-                  <ImageView fitHeight="81.0" fitWidth="246.0" layoutX="121.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="81.0" fitWidth="246.0" layoutX="121.0" layoutY="-73.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@searchIcon.png" />
                      </image>
@@ -24,37 +30,38 @@
                         <Font name="Century" size="25.0" />
                      </font>
                   </Label>
-                  <RadioButton fx:id="_radioCityName" layoutX="33.0" layoutY="73.0" mnemonicParsing="false" onAction="#radioCitySelect" selected="true" text="Search By City Name">
+                  <RadioButton fx:id="_radioCityName" layoutX="36.0" layoutY="27.0" mnemonicParsing="false" onAction="#radioCitySelect" selected="true" text="Search By City Name">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="_radioPlaceOfInterestName" layoutX="33.0" layoutY="113.0" mnemonicParsing="false" onAction="#radioPlaceOfInterestName" text="Search By Place Of Interest Name">
+                  <RadioButton fx:id="_radioPlaceOfInterestName" layoutX="36.0" layoutY="60.0" mnemonicParsing="false" onAction="#radioPlaceOfInterestName" text="Search By Place Of Interest Name">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="_radioDescription" layoutX="33.0" layoutY="156.0" mnemonicParsing="false" onAction="#radioDescription" text="Search By Description">
+                  <RadioButton fx:id="_radioDescription" layoutX="36.0" layoutY="93.0" mnemonicParsing="false" onAction="#radioDescription" text="Search By Description">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </RadioButton>
-                  <TextArea fx:id="_searchTextFiled" layoutX="33.0" layoutY="197.0" prefHeight="59.0" prefWidth="344.0" promptText="Search Text">
+                  <TextArea fx:id="_searchTextFiled" layoutX="33.0" layoutY="130.0" onKeyReleased="#checkIfEmpty" prefHeight="59.0" prefWidth="344.0" promptText="Search Text">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextArea>
-                  <ListView fx:id="_listViewResult" disable="true" layoutX="38.0" layoutY="346.0" prefHeight="127.0" prefWidth="344.0" />
-                  <Button fx:id="_searchButton" layoutX="33.0" layoutY="276.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Search" textFill="WHITE">
+                  <ListView fx:id="_listViewResult" disable="true" layoutX="38.0" layoutY="361.0" onMouseClicked="#checkIfChoose" prefHeight="127.0" prefWidth="344.0" />
+                  <Button fx:id="_searchButton" disable="true" layoutX="33.0" layoutY="208.0" mnemonicParsing="false" onAction="#searchForMap" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Search" textFill="WHITE">
                      <font>
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="_buyMapButton" layoutX="38.0" layoutY="485.0" mnemonicParsing="false" onAction="#clickBuyMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Buy Map Collection" textFill="WHITE">
+                  <Button fx:id="_buyMapButton" disable="true" layoutX="38.0" layoutY="506.0" mnemonicParsing="false" onAction="#clickBuyMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Buy Map Collection" textFill="WHITE">
                      <font>
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
                   </Button>
+                  <Label fx:id="resultLable" layoutX="41.0" layoutY="271.0" prefHeight="81.0" prefWidth="344.0" />
                </children>
             </Pane>
             <Separator layoutX="391.0" layoutY="70.0" orientation="VERTICAL" prefHeight="411.0" prefWidth="22.0" />
@@ -83,7 +90,7 @@
                   <Font name="Constantia Italic" size="15.0" />
                </font>
             </Label>
-            <ListView disable="true" layoutX="29.0" layoutY="139.0" prefHeight="267.0" prefWidth="344.0" />
+            <ListView fx:id="purchasesList" disable="true" layoutX="29.0" layoutY="139.0" prefHeight="267.0" prefWidth="344.0" />
             <Button fx:id="_downloadMapButton" layoutX="29.0" layoutY="425.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map Collection" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
