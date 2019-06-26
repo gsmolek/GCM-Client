@@ -36,10 +36,10 @@ public void setRs(ResultSet rs) {
 	this.rs = rs;
 }
 
-public ChatClient() 
+public ChatClient(String ip , int port) 
     throws IOException 
   {
-    super("localhost", 5550); //Call the superclass constructor
+    super(ip, port); //Call the superclass constructor
     openConnection();
   }
 

@@ -515,7 +515,7 @@ public class RegistrationHandler implements Initializable {
 		listYear = FXCollections.observableArrayList("2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026",
 				"2027", "2028", "2029", "2030");
 		try {
-			chat = new ChatClient();
+			chat = new ChatClient(IpConfigurationController.getIp(),Integer.valueOf(IpConfigurationController.getPort()));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

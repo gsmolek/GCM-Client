@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="190.0" prefWidth="396.0" style="-fx-background-color: #bbd0f2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.IpConfigurationController">
+   <children>
+      <Label layoutX="32.0" layoutY="58.0" prefHeight="30.0" prefWidth="69.0" text="Server IP:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="31.0" layoutY="112.0" text="Server Port:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="ipText" layoutX="115.0" layoutY="61.0" prefHeight="25.0" prefWidth="157.0" promptText="IP Address" />
+      <TextField fx:id="portText" layoutX="115.0" layoutY="109.0" prefHeight="25.0" prefWidth="157.0" promptText="Port Number" />
+      <Button fx:id="okButton" layoutX="308.0" layoutY="134.0" mnemonicParsing="false" onAction="#clickOk" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #98d696; -fx-border-color: #00ff62; -fx-background-radius: 10; -fx-border-radius: 10;" text="OK" />
+      <Label layoutX="32.0" layoutY="22.0" prefHeight="30.0" prefWidth="298.0" text="Please Enter your server configuration:" textFill="#e46e00">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

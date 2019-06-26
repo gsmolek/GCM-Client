@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import Login.IpConfigurationController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -28,7 +29,9 @@ public class mainToCheckTransferringImages extends Application{
 
 	        try {
 			System.out.println("entered");
-			ChatClient a= new ChatClient();
+			int port=Integer.valueOf(IpConfigurationController.getPort());
+			String ip = IpConfigurationController.getIp();
+			ChatClient a= new ChatClient(ip,port);
 			ArrayList<Object> array= new ArrayList<Object>();
 			array.add("5");
 			array.add("afula.jpg");

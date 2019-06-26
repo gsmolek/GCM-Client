@@ -73,6 +73,8 @@ public class LoginHandler implements Initializable {
 
 	private ArrayList<Object> sendSQL = new ArrayList<Object>();
 	protected ChatClient chat = null;
+	private int port;
+	private String ip;
 	public ChatClient getChat() {
 		return chat;
 	}
@@ -198,7 +200,9 @@ public class LoginHandler implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		m = null;
 		try {
-			chat = new ChatClient();
+			port=Integer.valueOf(IpConfigurationController.getPort());
+			ip=IpConfigurationController.getIp();
+			chat = new ChatClient(ip,port);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

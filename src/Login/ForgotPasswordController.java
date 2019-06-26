@@ -52,7 +52,7 @@ public class ForgotPasswordController implements Initializable {
 		ArrayList<Object> toSend=new ArrayList<Object>();
 		toSend.add("6");
 		toSend.add(email);
-		this.a.chat=new ChatClient();
+		this.a.chat=new ChatClient(IpConfigurationController.getIp(),Integer.valueOf(IpConfigurationController.getPort()));
 		this.a.chat.handleMessageFromClient(toSend);
 		
 			TimeUnit.MILLISECONDS.sleep(300);
