@@ -132,13 +132,13 @@
                         <TableColumn minWidth="9.0" prefWidth="72.0" text="Period" />
                     </columns>
                   </TableView>
+                  <Label layoutX="29.0" layoutY="-16.0" prefHeight="32.0" prefWidth="324.0" text="&lt;User Name&gt; " textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Sitka Text" size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
-            <Label layoutX="76.0" layoutY="99.0" prefHeight="32.0" prefWidth="324.0" text="&lt;User Name&gt; " textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font name="Sitka Text" size="15.0" />
-               </font>
-            </Label>
          </children>
       </Pane>
    </children>
