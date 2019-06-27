@@ -16,7 +16,7 @@ public class MainEmployee extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			AnchorPane root = (AnchorPane) loader.load(getClass().getResource("/managerWindow/ManagerWindow.fxml"));
+			AnchorPane root = (AnchorPane) loader.load(getClass().getResource("/managerWindow/ManagerCompany_UserPruchaseData.fxml"));
 			Scene scene = new Scene( root );
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
