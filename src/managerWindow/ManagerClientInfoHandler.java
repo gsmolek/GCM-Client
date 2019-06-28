@@ -28,12 +28,14 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
@@ -47,6 +49,9 @@ public class ManagerClientInfoHandler implements Initializable{
     @FXML
     private ComboBox<String> _monthComboBox;
 
+    @FXML
+    private ImageView _qeustionImage;
+    
     @FXML
     private Label _userNamePurchaseLabel;
 
@@ -130,8 +135,16 @@ public class ManagerClientInfoHandler implements Initializable{
     private TableColumn<PruchaseRowView, String> _typeOfPruchaseColumn;
 
     @FXML
-    private TableColumn<PruchaseRowView, String> _periodColumn;
+    private TableColumn<PruchaseRowView, String> _fromColumn;
+
+    @FXML
+    private TableColumn<PruchaseRowView, String> _untilColumn;
     
+    @FXML
+    private Separator _separator;
+    
+    @FXML
+    private Pane _mainWindow;
     
     private ArrayList<Object> sendSQL = new ArrayList<Object>();
 	private ChatClient chat = null;
@@ -144,6 +157,7 @@ public class ManagerClientInfoHandler implements Initializable{
 	private final String GET_IMAGE = "5";
 	
 	private static String _idClient ;
+	
 	
     @FXML
     void clickSearchUser(ActionEvent event)
@@ -178,18 +192,6 @@ public class ManagerClientInfoHandler implements Initializable{
 			_userInformationDataButton.setVisible(false);
 			_userPruchaseDataButton.setVisible(false);
 			
-			/*
-			_firstNameField.setText("");
-			_lastNameField.setText("");
-			_userNameField.setText("");
-			_passwordField.setText("");
-			
-			_emailField.setText("");
-			_phoneField.setText("");
-			_cardNumberField.setText("");
-			_monthComboBox.setValue("mm");
-			_yearComboBox.setValue("yyyy");
-			_cVVField.setText("");*/
 		}
 		else 
 		{
@@ -214,9 +216,7 @@ public class ManagerClientInfoHandler implements Initializable{
 			_cVVField.setText(arrayList.get(9));
 			
 			_idClient = arrayList.get(10);
-			
-			
-			System.out.println("success");
+
 		}
 
     }
@@ -226,6 +226,14 @@ public class ManagerClientInfoHandler implements Initializable{
     {
     	_paneUserInfo.setVisible(true);
     	_paneUserInfoPruchase.setVisible(false);
+    	
+    	_paneManageClient.getScene().getWindow().setWidth(1054-98);
+    	
+    	_backBattuon.setLayoutX(967 - 98);
+    	_paneManageClient.setLayoutX(618 - 98);
+    	_separator.setLayoutX(540-98);
+    	_forQuestionButton.setLayoutX(484- 98);
+    	_qeustionImage.setLayoutX(493- 98);
     }
     
     @FXML
@@ -235,8 +243,19 @@ public class ManagerClientInfoHandler implements Initializable{
     	_paneUserInfoPruchase.setVisible(true);
     	
     	_userNamePurchaseLabel.setText(_userNameField.getText());
+    	
+    	_paneManageClient.getScene().getWindow().setWidth(1054);
+    	
+    	_mainWindow.setPrefWidth(1040);
+    	_backBattuon.setLayoutX(967);
+    	_paneManageClient.setLayoutX(618);
+    	_separator.setLayoutX(540);
+    	_forQuestionButton.setLayoutX(484);
+    	_qeustionImage.setLayoutX(493);
+    	
     }
    
+  
     @FXML
     void clickUpdateUserInformationButton(ActionEvent event)
     {
@@ -268,10 +287,7 @@ public class ManagerClientInfoHandler implements Initializable{
 		}
 		
 		m = chat.getArray();
-		if(m.size()>0)
-		{
-			System.out.println(m.get(0).get(0));
-		}
+
 		
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Update");
@@ -280,21 +296,19 @@ public class ManagerClientInfoHandler implements Initializable{
     	
     }
 
+  
     @FXML
     void clickViewPurchaseHistoryButton()
-    {
-    
-    	
+    {	
     	sendSQL.clear();
 		String sql=null;
 	
-		sql = "SELECT version,collaction_id,type_of_purchases,date_end\r\n" + 
+		sql = "SELECT version,collaction_id,type_of_purchases,date_buy,date_end\r\n" + 
 				"FROM gcm.purchases ,map_collection\r\n" + 
 				"Where user_id="+ _idClient +" AND "
 						+ "collaction_id=map_collection.Id AND"
 						+ " date_buy >= \""+_fromDate.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE)+"\" AND date_buy <= \""+_toDate.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) +"\";";
 		
-		System.out.println(sql);
 		
 		sendSQL.add(GET_DATA);
 		sendSQL.add(sql);
@@ -321,7 +335,15 @@ public class ManagerClientInfoHandler implements Initializable{
 			
 			for (ArrayList<String> arrayList : m) 
 			{
-				pruchaseRowView = new PruchaseRowView (arrayList.get(0),arrayList.get(1),arrayList.get(2),arrayList.get(3));
+				if(arrayList.get(2).equals("1"))
+				{
+					pruchaseRowView = new PruchaseRowView (arrayList.get(0),arrayList.get(1),"Subscription",arrayList.get(3),arrayList.get(4));
+				}
+				else
+				{
+					pruchaseRowView = new PruchaseRowView (arrayList.get(0),arrayList.get(1),"One time",arrayList.get(3),arrayList.get(4));
+				}
+				
 				_resTable.getItems().addAll(pruchaseRowView);
 			}
 		}
@@ -349,35 +371,22 @@ public class ManagerClientInfoHandler implements Initializable{
 		_mapCollectionColumn.setCellValueFactory(new PropertyValueFactory<>("mapCollection"));
 		_versionColumn.setCellValueFactory(new PropertyValueFactory<>("version"));
 		_typeOfPruchaseColumn.setCellValueFactory(new PropertyValueFactory<>("typeOfPruchase"));
-		_periodColumn.setCellValueFactory(new PropertyValueFactory<>("Period"));
+		_fromColumn.setCellValueFactory(new PropertyValueFactory<>("from"));
+		_untilColumn.setCellValueFactory(new PropertyValueFactory<>("until"));
 		
-		_periodColumn.setText("Until");
+		
 	}
 
+	
 	public class PruchaseRowView {
 	   
-		private String version;
-	    private String mapCollection;
-	    private String typeOfPruchase;
-	    private String period;
-	    
-	    
-		public PruchaseRowView(String version, String mapCollection, String typeOfPruchase, String periodEnd) {
-			super();
-			this.version = version;
-			this.mapCollection = mapCollection;
-			this.typeOfPruchase = typeOfPruchase;
-			this.period = periodEnd;
-			
-		}
-		
-		
 		/**
 		 * @return the version
 		 */
 		public String getVersion() {
 			return version;
 		}
+
 
 		/**
 		 * @return the mapCollection
@@ -386,6 +395,7 @@ public class ManagerClientInfoHandler implements Initializable{
 			return mapCollection;
 		}
 
+
 		/**
 		 * @return the typeOfPruchase
 		 */
@@ -393,12 +403,22 @@ public class ManagerClientInfoHandler implements Initializable{
 			return typeOfPruchase;
 		}
 
+
 		/**
-		 * @return the period
+		 * @return the from
 		 */
-		public String getPeriod() {
-			return period;
+		public String getFrom() {
+			return from;
 		}
+
+
+		/**
+		 * @return the until
+		 */
+		public String getUntil() {
+			return until;
+		}
+
 
 		/**
 		 * @param version the version to set
@@ -407,12 +427,14 @@ public class ManagerClientInfoHandler implements Initializable{
 			this.version = version;
 		}
 
+
 		/**
 		 * @param mapCollection the mapCollection to set
 		 */
 		public void setMapCollection(String mapCollection) {
 			this.mapCollection = mapCollection;
 		}
+
 
 		/**
 		 * @param typeOfPruchase the typeOfPruchase to set
@@ -421,15 +443,39 @@ public class ManagerClientInfoHandler implements Initializable{
 			this.typeOfPruchase = typeOfPruchase;
 		}
 
+
 		/**
-		 * @param period the period to set
+		 * @param from the from to set
 		 */
-		public void setPeriod(String period) {
-			this.period = period;
+		public void setFrom(String from) {
+			this.from = from;
 		}
 
-		
 
-	
-	}
+		/**
+		 * @param until the until to set
+		 */
+		public void setUntil(String until) {
+			this.until = until;
+		}
+
+
+		private String version;
+	    private String mapCollection;
+	    private String typeOfPruchase;
+	    private String from;
+	    private String until;
+	    
+	    
+		public PruchaseRowView(String version, String mapCollection, String typeOfPruchase, String from, String until) {
+			super();
+			this.version = version;
+			this.mapCollection = mapCollection;
+			this.typeOfPruchase = typeOfPruchase;
+			this.from = from;
+			this.until = until;
+			
+		}
+		
+			}
 }

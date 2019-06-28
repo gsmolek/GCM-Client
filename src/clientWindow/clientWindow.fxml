@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
@@ -10,63 +11,21 @@
 
 <AnchorPane prefHeight="655.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientWindow.ClientWindowHandler">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="861.0">
+      <Pane layoutX="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="726.0" prefWidth="931.0">
          <children>
-            <Pane layoutX="449.0" layoutY="85.0" prefHeight="499.0" prefWidth="412.0">
-               <children>
-                  <ImageView fitHeight="81.0" fitWidth="246.0" layoutX="121.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@searchIcon.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="87.0" layoutY="-14.0" text="Catalog Map">
-                     <font>
-                        <Font name="Century" size="25.0" />
-                     </font>
-                  </Label>
-                  <RadioButton fx:id="_radioCityName" layoutX="33.0" layoutY="73.0" mnemonicParsing="false" onAction="#radioCitySelect" selected="true" text="Search By City Name">
-                     <font>
-                        <Font name="Comic Sans MS" size="12.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="_radioPlaceOfInterestName" layoutX="33.0" layoutY="113.0" mnemonicParsing="false" onAction="#radioPlaceOfInterestName" text="Search By Place Of Interest Name">
-                     <font>
-                        <Font name="Comic Sans MS" size="12.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="_radioDescription" layoutX="33.0" layoutY="156.0" mnemonicParsing="false" onAction="#radioDescription" text="Search By Description">
-                     <font>
-                        <Font name="Comic Sans MS" size="12.0" />
-                     </font>
-                  </RadioButton>
-                  <TextArea fx:id="_searchTextFiled" layoutX="33.0" layoutY="197.0" prefHeight="59.0" prefWidth="344.0" promptText="Search Text">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextArea>
-                  <ListView fx:id="_listViewResult" disable="true" layoutX="38.0" layoutY="346.0" prefHeight="127.0" prefWidth="344.0" />
-                  <Button fx:id="_searchButton" layoutX="33.0" layoutY="276.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Search" textFill="WHITE">
-                     <font>
-                        <Font name="FrankRuehl" size="24.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="_buyMapButton" layoutX="38.0" layoutY="485.0" mnemonicParsing="false" onAction="#clickBuyMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Buy Map Collection" textFill="WHITE">
-                     <font>
-                        <Font name="FrankRuehl" size="24.0" />
-                     </font>
-                  </Button>
-               </children>
-            </Pane>
-            <Separator layoutX="391.0" layoutY="70.0" orientation="VERTICAL" prefHeight="411.0" prefWidth="22.0" />
-            <ImageView fitHeight="159.0" fitWidth="217.0" layoutX="290.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
+            <Separator layoutX="426.0" layoutY="73.0" orientation="VERTICAL" prefHeight="500.0" prefWidth="22.0" />
+            <ImageView fitHeight="121.0" fitWidth="138.0" layoutX="377.0" layoutY="570.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@anyQustion.png" />
                </image>
             </ImageView>
-            <Button fx:id="_forQuestionButton" layoutX="313.0" layoutY="618.0" mnemonicParsing="false" style="-fx-background-color: MediumAquamarine;" text="For Any Question">
+            <Button fx:id="_forQuestionButton" layoutX="381.0" layoutY="682.0" mnemonicParsing="false" style="-fx-background-color: MediumAquamarine;" text="For Any Question">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <ImageView fitHeight="43.0" fitWidth="81.0" layoutX="26.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -83,17 +42,68 @@
                   <Font name="Constantia Italic" size="15.0" />
                </font>
             </Label>
-            <ListView disable="true" layoutX="29.0" layoutY="139.0" prefHeight="267.0" prefWidth="344.0" />
-            <Button fx:id="_downloadMapButton" layoutX="29.0" layoutY="425.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map Collection" textFill="WHITE">
+            <Button fx:id="_buyMapButton" layoutX="502.0" layoutY="547.0" mnemonicParsing="false" onAction="#clickBuyMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Buy Map Collection" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Label layoutX="29.0" layoutY="106.0" prefHeight="21.0" prefWidth="170.0" text="Your list of pruchases : ">
-               <font>
-                  <Font name="Sitka Text" size="15.0" />
-               </font>
-            </Label>
+            <Pane layoutX="466.0" layoutY="12.0" prefHeight="21.0" prefWidth="16.0">
+               <children>
+                  <fx:include source="../catalog/Catalog.fxml" />
+               </children>
+            </Pane>
+            <Pane fx:id="_paneDownloadMap" layoutX="14.0" layoutY="142.0" visible="false">
+               <children>
+                  <ListView disable="true" layoutY="29.0" prefHeight="133.0" prefWidth="366.0" />
+                  <Label layoutX="2.0" prefHeight="21.0" prefWidth="170.0" text="Your download Maps : ">
+                     <font>
+                        <Font name="Sitka Text" size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="_downloadMapButton1" layoutX="1.0" layoutY="198.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="366.0" style="-fx-background-color: LightSkyBlue;" text="Watch Map" textFill="WHITE">
+                     <font>
+                        <Font name="FrankRuehl" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane fx:id="_paneListOfPruchase" layoutX="48.0" layoutY="142.0" prefHeight="373.0" prefWidth="346.0">
+               <children>
+                  <Button fx:id="_downloadMapButton" layoutY="209.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map Collection" textFill="WHITE">
+                     <font>
+                        <Font name="FrankRuehl" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label layoutX="2.0" prefHeight="21.0" prefWidth="170.0" text="Your list of pruchases : ">
+                     <font>
+                        <Font name="Sitka Text" size="15.0" />
+                     </font>
+                  </Label>
+                  <ListView disable="true" layoutX="2.0" layoutY="33.0" prefHeight="161.0" prefWidth="344.0" />
+                  <Button fx:id="_downloadMapButton2" layoutY="303.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Watch Maps" textFill="WHITE">
+                     <font>
+                        <Font name="FrankRuehl" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </Pane>
+            <ImageView fx:id="_backBattuon" fitHeight="46.0" fitWidth="53.0" layoutX="838.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <image>
+                  <Image url="@../Go-back.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

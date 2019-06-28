@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 
 
@@ -13,7 +14,7 @@ public class MainManager extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/managerWindow/ManagerCompany_ClientDataShow.fxml"));
+			Pane root = (Pane) FXMLLoader.load(getClass().getResource("/managerWindow/ManagerCompany_ClientDataShow.fxml"));
 			Scene scene = new Scene( root );
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
