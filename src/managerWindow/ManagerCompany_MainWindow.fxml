@@ -89,7 +89,7 @@
                   <Font name="Constantia Italic" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="_downloadMapButton1" layoutX="59.0" layoutY="277.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Manage the information archive" textFill="WHITE">
+            <Button fx:id="_manageInfoArchive" layoutX="59.0" layoutY="277.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Manage the information archive" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
@@ -97,7 +97,7 @@
                   <Tooltip text="You need to choose map from catalog" />
                </tooltip>
             </Button>
-            <Button fx:id="_downloadMapButton11" layoutX="59.0" layoutY="358.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: Gold;" text="Manage client information" textFill="WHITE">
+            <Button fx:id="_manageClientInfo" layoutX="59.0" layoutY="358.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: Gold;" text="Manage client information" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
@@ -115,7 +115,7 @@
                   <Image url="@Files-icon.png" />
                </image>
             </ImageView>
-            <Button fx:id="_downloadMapButton12" layoutX="59.0" layoutY="437.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Approve Rate" textFill="WHITE">
+            <Button fx:id="_approveRate" layoutX="59.0" layoutY="437.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Approve Rate" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
@@ -135,6 +135,19 @@
             <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="869.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Go-back.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="_activityReport" layoutX="59.0" layoutY="522.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: Gold;" text="Activity Report" textFill="WHITE">
+               <font>
+                  <Font name="FrankRuehl" size="24.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="You need to choose map from catalog" />
+               </tooltip>
+            </Button>
+            <ImageView fitHeight="43.0" fitWidth="30.0" layoutX="382.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Clipboard-icon.png" />
                </image>
             </ImageView>
          </children>

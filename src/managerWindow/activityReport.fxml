@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerWindow.ManagerHandler">
+   <children>
+      <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="817.0" prefWidth="1236.0">
+         <children>
+            <Separator layoutX="456.0" layoutY="67.0" orientation="VERTICAL" prefHeight="583.0" prefWidth="22.0" />
+            <ImageView fitHeight="109.0" fitWidth="122.0" layoutX="415.0" layoutY="643.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../git/GCM-Client2/src/clientWindow/anyQustion.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="_forQuestionButton" layoutX="411.0" layoutY="753.0" mnemonicParsing="false" style="-fx-background-color: MediumAquamarine;" text="For Any Question">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="43.0" fitWidth="81.0" layoutX="26.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../git/GCM-Client2/src/managerWindow/iconManager.png" />
+               </image>
+            </ImageView>
+            <MenuButton layoutX="59.0" layoutY="34.0" minWidth="0.0" mnemonicParsing="false" prefHeight="3.0" prefWidth="0.0">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Save Version" />
+                  <MenuItem mnemonicParsing="false" text="Log Out" />
+               </items>
+            </MenuButton>
+            <Label fx:id="_userNameLabel" layoutX="76.0" layoutY="24.0" prefHeight="21.0" prefWidth="188.0" text="User Name   [Type Of User]" textFill="#12bcff" underline="true" wrapText="true">
+               <font>
+                  <Font name="Constantia Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="397.0" layoutY="474.0" prefHeight="17.0" prefWidth="30.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Numbers of versions to approve" />
+               </tooltip>
+            </Label>
+            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="1158.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../git/GCM-Client2/src/Go-back.png" />
+               </image>
+            </ImageView>
+            <Pane fx:id="_paneUserInfoPruchase" layoutX="48.0" layoutY="85.0" prefHeight="602.0" prefWidth="364.0">
+               <children>
+                  <Label layoutX="20.0" layoutY="56.0" prefHeight="32.0" prefWidth="324.0" text="Select date of report:" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Sitka Text" size="21.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="105.0" prefHeight="32.0" prefWidth="63.0" text="From:" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Sitka Text" size="21.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="198.0" layoutY="105.0" prefHeight="32.0" prefWidth="63.0" text="To:" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Sitka Text" size="21.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="_toDate" layoutX="198.0" layoutY="137.0" prefHeight="31.0" prefWidth="140.0" />
+                  <DatePicker fx:id="_fromDate" layoutX="19.0" layoutY="137.0" prefHeight="31.0" prefWidth="140.0" />
+                  <Button fx:id="_userInformationDataButton" layoutX="9.0" layoutY="416.0" mnemonicParsing="false" onAction="#clickUserInformationDataButton" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: Gold;" text="Get Report For All The Cities" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="FrankRuehl" size="24.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="15.0" layoutY="206.0" prefHeight="32.0" prefWidth="324.0" text="select city to show: " textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Sitka Text" size="23.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="_searchUserButton" layoutX="9.0" layoutY="324.0" mnemonicParsing="false" onAction="#clickSearchUser" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="Get Report For Choosen City" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="FrankRuehl" size="24.0" />
+                     </font>
+                  </Button>
+                  <ComboBox layoutX="9.0" layoutY="255.0" prefHeight="46.0" prefWidth="324.0" />
+               </children>
+            </Pane>
+            <Label layoutX="501.0" layoutY="134.0" prefHeight="32.0" prefWidth="324.0" text="View Result :" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Sitka Text" size="15.0" />
+               </font>
+            </Label>
+            <TableView fx:id="_resTable" layoutX="503.0" layoutY="174.0" prefHeight="409.0" prefWidth="701.0">
+               <columns>
+                  <TableColumn fx:id="_versionColumn" prefWidth="138.0" text="Quantity of maps" />
+                  <TableColumn fx:id="_mapCollectionColumn" prefWidth="153.0" text="one-time purchases" />
+                  <TableColumn fx:id="_typeOfPruchaseColumn" prefWidth="110.0" text="subscribers" />
+                  <TableColumn fx:id="_fromColumn" minWidth="9.0" prefWidth="118.0" text="renewals" />
+                  <TableColumn fx:id="_untilColumn" prefWidth="85.0" text="Views" />
+                  <TableColumn prefWidth="96.0" text="Downloads" />
+               </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <Label layoutX="50.0" layoutY="72.0" text="GCM -&gt; Activity Report" textAlignment="CENTER" textFill="RED" wrapText="true" />
+   </children>
+</AnchorPane>
