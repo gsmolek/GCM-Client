@@ -14,7 +14,7 @@ public class MainManager extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
-			Pane root = (Pane) FXMLLoader.load(getClass().getResource("/managerWindow/ManagerCompany_ClientDataShow.fxml"));
+			Pane root = (Pane) FXMLLoader.load(getClass().getResource("/managerWindow/Manager_ActivityReport.fxml"));
 			Scene scene = new Scene( root );
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			

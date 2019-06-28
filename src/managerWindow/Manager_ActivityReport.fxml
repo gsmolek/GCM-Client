@@ -9,24 +9,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerWindow.ManagerHandler">
+<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerWindow.ActivityReportHandler">
    <children>
       <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="817.0" prefWidth="1236.0">
          <children>
             <Separator layoutX="456.0" layoutY="67.0" orientation="VERTICAL" prefHeight="583.0" prefWidth="22.0" />
             <ImageView fitHeight="109.0" fitWidth="122.0" layoutX="415.0" layoutY="643.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../git/GCM-Client2/src/clientWindow/anyQustion.png" />
+                  <Image url="@../anyQustion.png" />
                </image>
             </ImageView>
-            <Button fx:id="_forQuestionButton" layoutX="411.0" layoutY="753.0" mnemonicParsing="false" style="-fx-background-color: MediumAquamarine;" text="For Any Question">
+            <Button fx:id="_forQuestionButton" layoutX="411.0" layoutY="753.0" mnemonicParsing="false" onAction="#clickforQuestionButton" style="-fx-background-color: MediumAquamarine;" text="For Any Question">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Button>
             <ImageView fitHeight="43.0" fitWidth="81.0" layoutX="26.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../git/GCM-Client2/src/managerWindow/iconManager.png" />
+                  <Image url="@iconManager.png" />
                </image>
             </ImageView>
             <MenuButton layoutX="59.0" layoutY="34.0" minWidth="0.0" mnemonicParsing="false" prefHeight="3.0" prefWidth="0.0">
@@ -48,9 +48,9 @@
                   <Tooltip text="Numbers of versions to approve" />
                </tooltip>
             </Label>
-            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="1158.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="_backIcon" fitHeight="46.0" fitWidth="53.0" layoutX="1158.0" layoutY="26.0" onMouseClicked="#clickBackIcon" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../git/GCM-Client2/src/Go-back.png" />
+                  <Image url="@../Go-back.png" />
                </image>
             </ImageView>
             <Pane fx:id="_paneUserInfoPruchase" layoutX="48.0" layoutY="85.0" prefHeight="602.0" prefWidth="364.0">
@@ -72,7 +72,7 @@
                   </Label>
                   <DatePicker fx:id="_toDate" layoutX="198.0" layoutY="137.0" prefHeight="31.0" prefWidth="140.0" />
                   <DatePicker fx:id="_fromDate" layoutX="19.0" layoutY="137.0" prefHeight="31.0" prefWidth="140.0" />
-                  <Button fx:id="_userInformationDataButton" layoutX="9.0" layoutY="416.0" mnemonicParsing="false" onAction="#clickUserInformationDataButton" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: Gold;" text="Get Report For All The Cities" textFill="WHITE">
+                  <Button fx:id="_getReportForCities" layoutX="9.0" layoutY="416.0" mnemonicParsing="false" onAction="#clickgetReportForCities" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: Gold;" text="Get Report For All The Cities" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -85,7 +85,7 @@
                         <Font name="Sitka Text" size="23.0" />
                      </font>
                   </Label>
-                  <Button fx:id="_searchUserButton" layoutX="9.0" layoutY="324.0" mnemonicParsing="false" onAction="#clickSearchUser" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="Get Report For Choosen City" textFill="WHITE">
+                  <Button fx:id="_getReportCity" layoutX="9.0" layoutY="324.0" mnemonicParsing="false" onAction="#clickgetReportCity" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: LightSkyBlue;" text="Get Report For Choosen City" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -93,7 +93,7 @@
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
                   </Button>
-                  <ComboBox layoutX="9.0" layoutY="255.0" prefHeight="46.0" prefWidth="324.0" />
+                  <ComboBox fx:id="_citySelect" layoutX="9.0" layoutY="255.0" prefHeight="46.0" prefWidth="324.0" promptText="City Select" />
                </children>
             </Pane>
             <Label layoutX="501.0" layoutY="134.0" prefHeight="32.0" prefWidth="324.0" text="View Result :" textAlignment="CENTER" wrapText="true">
@@ -103,12 +103,13 @@
             </Label>
             <TableView fx:id="_resTable" layoutX="503.0" layoutY="174.0" prefHeight="409.0" prefWidth="701.0">
                <columns>
-                  <TableColumn fx:id="_versionColumn" prefWidth="138.0" text="Quantity of maps" />
-                  <TableColumn fx:id="_mapCollectionColumn" prefWidth="153.0" text="one-time purchases" />
-                  <TableColumn fx:id="_typeOfPruchaseColumn" prefWidth="110.0" text="subscribers" />
-                  <TableColumn fx:id="_fromColumn" minWidth="9.0" prefWidth="118.0" text="renewals" />
-                  <TableColumn fx:id="_untilColumn" prefWidth="85.0" text="Views" />
-                  <TableColumn prefWidth="96.0" text="Downloads" />
+                  <TableColumn fx:id="_cityNameColumn" prefWidth="75.0" text="City name" visible="false" />
+                  <TableColumn fx:id="_quantityMapsColumn" prefWidth="138.0" text="Quantity of maps" />
+                  <TableColumn fx:id="_oneTimeColumn" prefWidth="153.0" text="one-time purchases" />
+                  <TableColumn fx:id="_subscribersColumn" prefWidth="110.0" text="subscribers" />
+                  <TableColumn fx:id="_renewalsColumn" minWidth="9.0" prefWidth="118.0" text="renewals" />
+                  <TableColumn fx:id="_ViewsColumn" prefWidth="85.0" text="Views" />
+                  <TableColumn fx:id="_downloadsColumn" prefWidth="96.0" text="Downloads" />
                </columns>
             </TableView>
          </children>
