@@ -101,14 +101,14 @@
                   <Font name="Sitka Text" size="15.0" />
                </font>
             </Label>
-            <TableView fx:id="_resTable" layoutX="503.0" layoutY="174.0" prefHeight="409.0" prefWidth="701.0">
+            <TableView fx:id="_resTable" editable="true" layoutX="503.0" layoutY="174.0" prefHeight="409.0" prefWidth="701.0">
                <columns>
                   <TableColumn fx:id="_cityNameColumn" prefWidth="75.0" text="City name" visible="false" />
                   <TableColumn fx:id="_quantityMapsColumn" prefWidth="138.0" text="Quantity of maps" />
-                  <TableColumn fx:id="_oneTimeColumn" prefWidth="153.0" text="one-time purchases" />
-                  <TableColumn fx:id="_subscribersColumn" prefWidth="110.0" text="subscribers" />
-                  <TableColumn fx:id="_renewalsColumn" minWidth="9.0" prefWidth="118.0" text="renewals" />
-                  <TableColumn fx:id="_ViewsColumn" prefWidth="85.0" text="Views" />
+                  <TableColumn fx:id="_oneTimeColumn" prefWidth="153.0" text="One-time purchases" />
+                  <TableColumn fx:id="_subscribersColumn" prefWidth="110.0" text="Subscribers" />
+                  <TableColumn fx:id="_renewalsColumn" minWidth="9.0" prefWidth="118.0" text="Renewals" />
+                  <TableColumn fx:id="_viewsColumn" prefWidth="85.0" text="Views" />
                   <TableColumn fx:id="_downloadsColumn" prefWidth="96.0" text="Downloads" />
                </columns>
             </TableView>

@@ -380,84 +380,6 @@ public class ManagerClientInfoHandler implements Initializable{
 	
 	public class PruchaseRowView {
 	   
-		/**
-		 * @return the version
-		 */
-		public String getVersion() {
-			return version;
-		}
-
-
-		/**
-		 * @return the mapCollection
-		 */
-		public String getMapCollection() {
-			return mapCollection;
-		}
-
-
-		/**
-		 * @return the typeOfPruchase
-		 */
-		public String getTypeOfPruchase() {
-			return typeOfPruchase;
-		}
-
-
-		/**
-		 * @return the from
-		 */
-		public String getFrom() {
-			return from;
-		}
-
-
-		/**
-		 * @return the until
-		 */
-		public String getUntil() {
-			return until;
-		}
-
-
-		/**
-		 * @param version the version to set
-		 */
-		public void setVersion(String version) {
-			this.version = version;
-		}
-
-
-		/**
-		 * @param mapCollection the mapCollection to set
-		 */
-		public void setMapCollection(String mapCollection) {
-			this.mapCollection = mapCollection;
-		}
-
-
-		/**
-		 * @param typeOfPruchase the typeOfPruchase to set
-		 */
-		public void setTypeOfPruchase(String typeOfPruchase) {
-			this.typeOfPruchase = typeOfPruchase;
-		}
-
-
-		/**
-		 * @param from the from to set
-		 */
-		public void setFrom(String from) {
-			this.from = from;
-		}
-
-
-		/**
-		 * @param until the until to set
-		 */
-		public void setUntil(String until) {
-			this.until = until;
-		}
 
 
 		private String version;
@@ -476,6 +398,7 @@ public class ManagerClientInfoHandler implements Initializable{
 			this.until = until;
 			
 		}
+		
 		
 			}
 }
