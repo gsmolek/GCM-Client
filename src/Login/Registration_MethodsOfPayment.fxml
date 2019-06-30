@@ -50,7 +50,7 @@
       <TextField fx:id="cvvField" layoutX="201.0" layoutY="219.0" prefHeight="25.0" prefWidth="184.0" promptText="CVV/CVD" />
       <ComboBox fx:id="_monthComboBox" layoutX="200.0" layoutY="169.0" prefHeight="31.0" prefWidth="81.0" promptText="mm" />
       <ComboBox fx:id="_yearComboBox" layoutX="290.0" layoutY="169.0" prefHeight="31.0" prefWidth="93.0" promptText="yyyy" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="385.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="visaIMG" fitHeight="150.0" fitWidth="200.0" layoutX="385.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@banking_cards-512.png" />
          </image>

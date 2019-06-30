@@ -1,4 +1,4 @@
-package managerWindow;
+package employeeWindow;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,9 +21,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import managerWindow.siteEntity;
+import managerWindow.toursEntity;
 
 public class addTourHandler implements Initializable {
-	private mapDataHandler mapHandler = null;
+	private mapDataHandlerEmployee mapDataHandler;
 	private String sql;
 	private ArrayList<Object> sendSQL;
 	private ArrayList<ArrayList<String>> m;
@@ -58,8 +60,8 @@ public class addTourHandler implements Initializable {
 	@FXML
 	private Button saveTheTourBtn;
 
-	public void setMapHandler(mapDataHandler map) {
-		this.mapHandler = map;
+	public void setMapDataHandlerEmployee(mapDataHandlerEmployee mapDataHandler) {
+		this.mapDataHandler = mapDataHandler;
 	}
 
 	@FXML
@@ -105,7 +107,7 @@ public class addTourHandler implements Initializable {
 		sendSQL.clear();
 		sendSQL.add("3");
 		sendSQL.add(sql);
-		mapHandler.chat.handleMessageFromClient(sendSQL);
+		mapDataHandler.chat.handleMessageFromClient(sendSQL);
 		try {
 			TimeUnit.MILLISECONDS.sleep(100);
 		} catch (InterruptedException e) {
@@ -118,7 +120,7 @@ public class addTourHandler implements Initializable {
 		sendSQL.clear();
 		sendSQL.add("2");
 		sendSQL.add(sql);
-		mapHandler.chat.handleMessageFromClient(sendSQL);
+		mapDataHandler.chat.handleMessageFromClient(sendSQL);
 		try {
 			TimeUnit.MILLISECONDS.sleep(100);
 		} catch (InterruptedException e) {
@@ -126,7 +128,7 @@ public class addTourHandler implements Initializable {
 			e.printStackTrace();
 		}
 		
-		m = mapHandler.chat.getArray();
+		m = mapDataHandler.chat.getArray();
 		if (m == null || m.isEmpty()) {
 			System.out.println("no result");
 
@@ -134,12 +136,13 @@ public class addTourHandler implements Initializable {
 			idOfTour = m.get(0).get(0);
 			String idOfSite;
 			for (siteEntity res : siteInTour) {
+				System.out.println(res);
 				idOfSite = res.getID();
 				sql = "INSERT INTO site_tour (site_id, tour_id, id_collection) VALUES ('" + idOfSite + "','" + idOfTour + "','"+mapDataHandler.collection_id+"');";
 				sendSQL.clear();
 				sendSQL.add("3");
 				sendSQL.add(sql);
-				mapHandler.chat.handleMessageFromClient(sendSQL);
+				mapDataHandler.chat.handleMessageFromClient(sendSQL);
 				try {
 					TimeUnit.MILLISECONDS.sleep(10);
 				} catch (InterruptedException e) {
@@ -147,16 +150,15 @@ public class addTourHandler implements Initializable {
 					e.printStackTrace();
 				}
 			}
-				 JOptionPane.showMessageDialog(null, "The tour has been added successfully");
-				 mapHandler.initializeListViewOfTour();
-				 Stage stage2 = (Stage) saveTheTourBtn.getScene().getWindow();
-					stage2.close();
-			
+			JOptionPane.showMessageDialog(null, "The tour has been added successfully");
+			 mapDataHandler.initializeListViewOfTour();
+			 Stage stage2 = (Stage) saveTheTourBtn.getScene().getWindow();
+				stage2.close();
 
 		}
 		toursEntity tE = new toursEntity(Integer.parseInt(idOfTour), description,name);
-		mapHandler.tours.add(tE);
-		mapHandler.initializeListViewOfTour();		
+		mapDataHandler.tours.add(tE);
+		mapDataHandler.initializeListViewOfTour();		
 	}
 
 	 @FXML
@@ -198,15 +200,18 @@ public class addTourHandler implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		chat = mapHandler.chat;
+		System.out.println("tour collection_id: "+mapDataHandler.collection_id);
+		chat = mapDataHandler.chat;
 		siteInTour = new ArrayList<siteEntity>();
 		sendSQL = new ArrayList<Object>();
 		sql = "SELECT site.id,site.name,site.type,site.description,site.accessing,site.time,map_site.location_x,map_site.location_y FROM (site INNER JOIN map_site ON map_site.site_id = site.id) WHERE map_site.Map_id='"
 				+ mapDataHandler.idOfCurrentMap 
 				+ "' AND id_collection='"+ mapDataHandler.collection_id +"';";
+		/*sql = "SELECT site.id,site.name FROM (map_site INNER JOIN site ON map_site.site_id = site.id) WHERE map_site.map_id = '"
+				+ mapDataHandler.idOfCurrentMap + "';";*/
 		sendSQL.add("2");
 		sendSQL.add(sql);
-		mapHandler.chat.handleMessageFromClient(sendSQL);
+		mapDataHandler.chat.handleMessageFromClient(sendSQL);
 		try {
 			TimeUnit.MILLISECONDS.sleep(100);
 		} catch (InterruptedException e) {
@@ -214,7 +219,7 @@ public class addTourHandler implements Initializable {
 			e.printStackTrace();
 		}
 
-		m = mapHandler.chat.getArray();
+		m = mapDataHandler.chat.getArray();
 		if (m == null || m.isEmpty()) {
 			System.out.println("no result");
 

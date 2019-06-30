@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="763.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.EmployeeHandler">
+<AnchorPane prefHeight="763.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.addTourHandler">
    <children>
       <Label fx:id="_labelAddOrEdit" layoutX="96.0" layoutY="21.0" text="Add Tour To City" textFill="#000000fc">
          <font>
@@ -15,23 +19,16 @@
          </font>
       </Label>
       <Label layoutX="43.0" layoutY="122.0" text="List of places in Tour" />
-      <TableView layoutX="43.0" layoutY="149.0" prefHeight="246.0" prefWidth="325.0">
-         <columns>
-            <TableColumn prefWidth="35.0" text="No" />
-            <TableColumn prefWidth="96.0" text="Place Name " />
-            <TableColumn prefWidth="198.0" text="Recommended visit time" />
-         </columns>
-      </TableView>
-      <Button layoutX="217.0" layoutY="406.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: LightSkyBlue;" text="Delete Place To Tour" textFill="WHITE">
+      <Button fx:id="delieteSiteBtn" disable="true" layoutX="217.0" layoutY="406.0" mnemonicParsing="false" onAction="#deleteSiteFromTour" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: LightSkyBlue;" text="Delete Place To Tour" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextArea layoutX="56.0" layoutY="507.0" prefHeight="148.0" prefWidth="303.0" promptText="general description" />
+      <TextArea fx:id="descriptionOfTour" layoutX="56.0" layoutY="507.0" onKeyReleased="#somethingChanged" prefHeight="148.0" prefWidth="303.0" promptText="general description" />
       <Separator layoutX="39.0" layoutY="485.0" prefHeight="3.0" prefWidth="339.0" />
-      <Button defaultButton="true" layoutX="54.0" layoutY="685.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Save" />
-      <Button cancelButton="true" layoutX="269.0" layoutY="685.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Cancel" />
-      <Button layoutX="38.0" layoutY="406.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: LightSkyBlue;" text="Add Place To Tour" textFill="WHITE">
+      <Button fx:id="saveTheTourBtn" defaultButton="true" disable="true" layoutX="54.0" layoutY="685.0" mnemonicParsing="false" onAction="#saveTheTour" prefHeight="51.0" prefWidth="84.0" text="Save" />
+      <Button cancelButton="true" layoutX="269.0" layoutY="685.0" mnemonicParsing="false" onAction="#closeTour" prefHeight="51.0" prefWidth="84.0" text="Cancel" />
+      <Button fx:id="addPlaceBTN" disable="true" layoutX="38.0" layoutY="406.0" mnemonicParsing="false" onAction="#addPlaceTotour" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: LightSkyBlue;" text="Add Place To Tour" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -47,6 +44,9 @@
          </image>
       </ImageView>
       <Label layoutX="42.0" layoutY="84.0" text="Tour Name : " />
-      <TextField layoutX="120.0" layoutY="80.0" prefHeight="25.0" prefWidth="249.0" />
+      <TextField fx:id="nameOfTheTour" layoutX="120.0" layoutY="80.0" onKeyReleased="#somethingChanged" prefHeight="25.0" prefWidth="249.0" />
+      <ListView fx:id="tourListView" layoutX="38.0" layoutY="149.0" onMouseClicked="#checkIfTourListClicked" prefHeight="220.0" prefWidth="173.0" />
+      <ListView fx:id="sitesInCityListview" layoutX="225.0" layoutY="149.0" onMouseClicked="#checkIfChoose" prefHeight="220.0" prefWidth="173.0" />
+      <Label layoutX="225.0" layoutY="122.0" text="List of sites in the city" />
    </children>
 </AnchorPane>

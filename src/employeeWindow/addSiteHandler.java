@@ -1,4 +1,4 @@
-package managerWindow;
+package employeeWindow;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,10 +18,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import managerWindow.siteEntity;
 
 public class addSiteHandler implements Initializable {
 
-	private mapDataHandler mapHandler = null;
+	private mapDataHandlerEmployee mapDataHandler;
 	protected static ChatClient chat = null;
 	private String sql;
 	private ArrayList<Object> sendSQL;
@@ -50,8 +51,8 @@ public class addSiteHandler implements Initializable {
 	@FXML
 	private Label errorTimeField;
 
-	public void setMapHandler(mapDataHandler map) {
-		this.mapHandler = map;
+	public void setEmployeeHandler(mapDataHandlerEmployee mapDataHandler) {
+		this.mapDataHandler = mapDataHandler;
 	}
 
 	// check if the string is double
@@ -101,7 +102,7 @@ public class addSiteHandler implements Initializable {
 				sendSQL.clear();
 				sendSQL.add("3");
 				sendSQL.add(sql);
-				mapHandler.chat.handleMessageFromClient(sendSQL);
+				mapDataHandler.chat.handleMessageFromClient(sendSQL);
 				try {
 					TimeUnit.MILLISECONDS.sleep(100);
 				} catch (InterruptedException e) {
@@ -113,7 +114,7 @@ public class addSiteHandler implements Initializable {
 				sendSQL.clear();
 				sendSQL.add("2");
 				sendSQL.add(sql);
-				mapHandler.chat.handleMessageFromClient(sendSQL);
+				mapDataHandler.chat.handleMessageFromClient(sendSQL);
 				try {
 					TimeUnit.MILLISECONDS.sleep(100);
 				} catch (InterruptedException e) {
@@ -121,7 +122,7 @@ public class addSiteHandler implements Initializable {
 					e.printStackTrace();
 				}
 
-				m = mapHandler.chat.getArray();
+				m = mapDataHandler.chat.getArray();
 				if (m == null || m.isEmpty()) {
 					System.out.println("no result");
 
@@ -129,11 +130,11 @@ public class addSiteHandler implements Initializable {
 
 					idOSite = m.get(0).get(0);
 					sql = "INSERT INTO map_site (map_id,site_id,location_x,location_y, id_collection) values ('"
-					+ mapDataHandler.idOfCurrentMap + "','" + idOSite + "','0','0','"+mapDataHandler.collection_id+"');";
+							+ mapDataHandler.idOfCurrentMap + "','" + idOSite + "','0','0','"+mapDataHandler.collection_id+"');";
 					sendSQL.clear();
 					sendSQL.add("3");
 					sendSQL.add(sql);
-					mapHandler.chat.handleMessageFromClient(sendSQL);
+					mapDataHandler.chat.handleMessageFromClient(sendSQL);
 
 					JOptionPane.showMessageDialog(null, "The site has been added successfully");
 					Stage stage2 = (Stage) saveBTN.getScene().getWindow();
@@ -148,8 +149,8 @@ public class addSiteHandler implements Initializable {
 				temp.setTime(Double.parseDouble(time));
 				temp.setID(idOSite);
 
-				mapHandler.sites.add(temp);
-				mapHandler.initializeListViewOfsites();
+				mapDataHandler.sites.add(temp);
+				mapDataHandler.initializeListViewOfsites();
 			} else {
 				errorTimeField.setVisible(true);
 				timeField.setFocusTraversable(true);

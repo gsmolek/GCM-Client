@@ -85,13 +85,13 @@
                 <MenuItem mnemonicParsing="false" text="Log Out" />
               </items>
             </MenuButton>
-            <Label fx:id="_userNameLabel" layoutX="76.0" layoutY="24.0" prefHeight="21.0" prefWidth="188.0" text="User Name   [Type Of User]" textFill="#12bcff" underline="true" wrapText="true">
+            <Label fx:id="_userNameLabel" layoutX="76.0" layoutY="24.0" prefHeight="21.0" prefWidth="188.0" text="Hello: " textFill="#12bcff" underline="true" wrapText="true">
                <font>
                   <Font name="Constantia Italic" size="15.0" />
                </font>
             </Label>
-            <ListView fx:id="purchasesList" disable="true" layoutX="29.0" layoutY="139.0" prefHeight="267.0" prefWidth="344.0" />
-            <Button fx:id="_downloadMapButton" layoutX="29.0" layoutY="425.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map Collection" textFill="WHITE">
+            <ListView fx:id="purchasesList" disable="true" layoutX="29.0" layoutY="139.0" onMouseClicked="#checkIfPurchasesChoose" prefHeight="267.0" prefWidth="344.0" />
+            <Button fx:id="_downloadMapButton" disable="true" layoutX="29.0" layoutY="425.0" mnemonicParsing="false" onAction="#openViewMapWindow" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map Collection" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>

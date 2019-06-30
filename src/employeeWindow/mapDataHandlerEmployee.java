@@ -1,4 +1,4 @@
-package managerWindow;
+package employeeWindow;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 
 import ServerConnection.ChatClient;
-import employeeWindow.EmployeeHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -46,13 +45,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import managerWindow.toursEntity;
+import managerWindow.siteEntity;;
 
-public class mapDataHandler implements Initializable {
-	private ManagerHandler managerHandler = null;
-	private ManagerCompanyHandler managerCompanyHandler = null;
+public class mapDataHandlerEmployee implements Initializable {
+	private EmployeeHandler mployeeHandler;
 
-	protected ChatClient chat = null;
-	private String mapIdForShow;
+	protected static ChatClient chat = null;
 	private String sql;
 	private ArrayList<Object> sendSQL;
 	private ArrayList<ArrayList<String>> m;
@@ -71,21 +70,20 @@ public class mapDataHandler implements Initializable {
 	private static ObservableList<String> sitesInTourResult;
 	private static ObservableList<String> sitesResult;
 	private static ObservableList<String> tourResult;
-	protected static String collection_id;
 	private static ObservableList<String> accessiableCombobox = FXCollections.observableArrayList();
 	private boolean chageWasMadeInSiteOfTour = false;
 	private boolean canDragPin = false;
-	private boolean ifNameFiledOfSiteEditeEmpty=true;
-	private boolean ifTimeFiledOfSiteEditeEmpty=true;
-	private boolean ifDescriptionFiledOfSiteEditeEmpty=true;
-	private boolean ifTypeFiledOfSiteEditeEmpty=true;
+	protected static String collection_id;
+	private boolean ifNameFiledOfSiteEditeEmpty = true;
+	private boolean ifTimeFiledOfSiteEditeEmpty = true;
+	private boolean ifDescriptionFiledOfSiteEditeEmpty = true;
+	private boolean ifTypeFiledOfSiteEditeEmpty = true;
 	protected boolean initializeWithoutDB = true;
 	protected boolean initializeSitesWithoutDB = true;
 	private GraphicsContext context;
 	private Image te = null;
 	private Image pin;
-	private String versionNumber;
-	private static String idOfSelectedCollection;
+	private byte[] imageFromServer;
 
 	@FXML
 	private Button deleteTourBtn;
@@ -176,31 +174,29 @@ public class mapDataHandler implements Initializable {
 
 	@FXML
 	private Button saveTourEdit;
-	 @FXML
-	    private ImageView backImg;
-	
 	@FXML
-    void goBackToMain(MouseEvent event) {
-		if(managerHandler !=null) 
-			managerHandler.openThisWindow();
-		if(managerCompanyHandler !=null )
-			managerCompanyHandler.openThisWindow();
+	private ImageView backImg;
+
+	@FXML
+	void goBackToMain(MouseEvent event) {
+		mployeeHandler.openThisWindow();
 		Stage stage2 = (Stage) backImg.getScene().getWindow();
 		stage2.close();
-    }
-	
+
+	}
+
 	@FXML
 	void clickAddPlace(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/managerWindow/AddPlace.fxml"));
+			loader.setLocation(getClass().getResource("/employeeWindow/AddPlace.fxml"));
 			Pane root = loader.load();
 
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			addSiteHandler control = loader.getController();
-			control.setMapHandler(this);
+			control.setEmployeeHandler(this);
 
 			Stage stage = new Stage();
 			stage.setScene(scene);
@@ -215,17 +211,17 @@ public class mapDataHandler implements Initializable {
 
 	@FXML
 	void clickAddTour(ActionEvent event) {
-
+System.out.println("collection id: " +collection_id);
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/managerWindow/AddTour.fxml"));
+			loader.setLocation(getClass().getResource("/employeeWindow/AddTour.fxml"));
 			Pane root = loader.load();
 
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			addTourHandler control = loader.getController();
-			control.setMapHandler(this);
+			control.setMapDataHandlerEmployee(this);
 
 			Stage stage = new Stage();
 			stage.setScene(scene);
@@ -235,81 +231,8 @@ public class mapDataHandler implements Initializable {
 		}
 	}
 
-	public void setManagerHandler(ManagerHandler managerHandler) {
-		this.managerHandler = managerHandler;
-		chat = managerHandler.chat;
-		idOfCurrentMap = managerHandler.mapIdForShow;
-		mapIdForShow = String.valueOf(managerHandler.mapIdForShow);
-		versionNumber = managerHandler.versionNumber;
-		idOfSelectedCollection = managerHandler.idOfSelectedCollection;
-		
-		
-		
-		String path = managerHandler.paths.get(managerHandler.idOfMap);
-		sendSQL.clear();
-		sendSQL.add("5");
-		sendSQL.add(path);
-		
-		managerHandler.chat.handleMessageFromClient(sendSQL);
-		try {
-			TimeUnit.MILLISECONDS.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("path: "+path);
-		byte[] bytesArray  = managerHandler.chat.returnByteArray();
-		
-		System.out.println(bytesArray);
-		
-		try {
-			BufferedImage img = ImageIO.read(new ByteArrayInputStream(bytesArray));
-			te = SwingFXUtils.toFXImage(img, null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-		init();
-	}
-	
-	public void setManagerCompanyHandler (ManagerCompanyHandler managerCompanyHandler) {
-		this.managerCompanyHandler = managerCompanyHandler;
-		chat = managerCompanyHandler.chat;
-		idOfCurrentMap = managerCompanyHandler.mapIdForShow;
-		mapIdForShow = String.valueOf(managerCompanyHandler.mapIdForShow);
-		versionNumber = managerCompanyHandler.versionNumber;
-		idOfSelectedCollection = managerCompanyHandler.idOfSelectedCollection;
-		
-		String path = managerCompanyHandler.paths.get(managerCompanyHandler.idOfMap);
-		sendSQL.clear();
-		sendSQL.add("5");
-		sendSQL.add(path);
-		
-		managerCompanyHandler.chat.handleMessageFromClient(sendSQL);
-		try {
-			TimeUnit.MILLISECONDS.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("path: "+path);
-		byte[] bytesArray  = managerCompanyHandler.chat.returnByteArray();
-		
-		System.out.println(bytesArray);
-		
-		try {
-			BufferedImage img = ImageIO.read(new ByteArrayInputStream(bytesArray));
-			te = SwingFXUtils.toFXImage(img, null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		init();
+	public void setEmployeeHandler(EmployeeHandler mployeeHandler) {
+		this.mployeeHandler = mployeeHandler;
 	}
 
 	private static byte[] readBytesFromFile(String filePath) {
@@ -519,19 +442,20 @@ public class mapDataHandler implements Initializable {
 		if (!time.isEmpty() && !isNumeric(time)) {
 			saveSite.setDisable(true);
 			timeSiteField.getStyleClass().add("error");
-			ifTimeFiledOfSiteEditeEmpty=false;
+			ifTimeFiledOfSiteEditeEmpty = false;
 		} else {
-			ifTimeFiledOfSiteEditeEmpty=true;
+			ifTimeFiledOfSiteEditeEmpty = true;
 			timeSiteField.getStyleClass().clear();
 			timeSiteField.getStyleClass().addAll("text-field", "text-input");
 		}
-		
-		if(time.isEmpty()) {
+
+		if (time.isEmpty()) {
 			saveSite.setDisable(true);
 			timeSiteField.getStyleClass().add("error");
-			ifTimeFiledOfSiteEditeEmpty=false;
+			ifTimeFiledOfSiteEditeEmpty = false;
 		}
-		if(ifTypeFiledOfSiteEditeEmpty && ifDescriptionFiledOfSiteEditeEmpty && ifTimeFiledOfSiteEditeEmpty && ifNameFiledOfSiteEditeEmpty)
+		if (ifTypeFiledOfSiteEditeEmpty && ifDescriptionFiledOfSiteEditeEmpty && ifTimeFiledOfSiteEditeEmpty
+				&& ifNameFiledOfSiteEditeEmpty)
 			saveSite.setDisable(false);
 		else
 			saveSite.setDisable(true);
@@ -543,38 +467,39 @@ public class mapDataHandler implements Initializable {
 		name = nameSiteField.getText();
 		description = descriptionTextArea.getText();
 		type = typeSiteField.getText();
-		
+
 		if (name.isEmpty()) {
 			nameSiteField.getStyleClass().add("error");
-			ifNameFiledOfSiteEditeEmpty=false;
+			ifNameFiledOfSiteEditeEmpty = false;
 		} else {
-			ifNameFiledOfSiteEditeEmpty=true;
+			ifNameFiledOfSiteEditeEmpty = true;
 			nameSiteField.getStyleClass().clear();
 			nameSiteField.getStyleClass().addAll("text-field", "text-input");
 			// set red border
 		}
-		
+
 		if (description.isEmpty()) {
 			descriptionTextArea.getStyleClass().add("error");
-			ifDescriptionFiledOfSiteEditeEmpty=false;
+			ifDescriptionFiledOfSiteEditeEmpty = false;
 		} else {
-			ifDescriptionFiledOfSiteEditeEmpty=true;
+			ifDescriptionFiledOfSiteEditeEmpty = true;
 			descriptionTextArea.getStyleClass().clear();
 			descriptionTextArea.getStyleClass().addAll("text-area", "text-input");
 			// red border
 		}
-		
+
 		if (type.isEmpty()) {
 			typeSiteField.getStyleClass().add("error");
-			ifTypeFiledOfSiteEditeEmpty=false;
+			ifTypeFiledOfSiteEditeEmpty = false;
 		} else {
-			ifTypeFiledOfSiteEditeEmpty=true;
+			ifTypeFiledOfSiteEditeEmpty = true;
 			typeSiteField.getStyleClass().clear();
 			typeSiteField.getStyleClass().addAll("text-field", "text-input");
 			// red border
 		}
 		System.out.println("hey");
-		if(ifTypeFiledOfSiteEditeEmpty && ifDescriptionFiledOfSiteEditeEmpty && ifTimeFiledOfSiteEditeEmpty && ifNameFiledOfSiteEditeEmpty)
+		if (ifTypeFiledOfSiteEditeEmpty && ifDescriptionFiledOfSiteEditeEmpty && ifTimeFiledOfSiteEditeEmpty
+				&& ifNameFiledOfSiteEditeEmpty)
 			saveSite.setDisable(false);
 		else
 			saveSite.setDisable(true);
@@ -636,14 +561,14 @@ public class mapDataHandler implements Initializable {
 			sendSQL.clear();
 			sendSQL.add("2");
 			sendSQL.add(sql);
-			chat.handleMessageFromClient(sendSQL);
+			mployeeHandler.chat.handleMessageFromClient(sendSQL);
 			try {
 				TimeUnit.MILLISECONDS.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			m = chat.getArray();
+			m = mployeeHandler.chat.getArray();
 			if (m == null || m.isEmpty()) {
 				System.out.println("no result");
 
@@ -667,19 +592,19 @@ public class mapDataHandler implements Initializable {
 					temp.setDescription(description);
 
 					// get the location of each site from the tour
-					sql = "SELECT location_x,location_y FROM map_site WHERE map_id='" + mapIdForShow
+					sql = "SELECT location_x,location_y FROM map_site WHERE map_id='" + mployeeHandler.mapIdForShow
 							+ "' AND site_id='" + id + "'AND id_collection='"+collection_id+"';";
 					sendSQL.clear();
 					sendSQL.add("2");
 					sendSQL.add(sql);
-					chat.handleMessageFromClient(sendSQL);
+					mployeeHandler.chat.handleMessageFromClient(sendSQL);
 					try {
 						TimeUnit.MILLISECONDS.sleep(100);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					m2 = chat.getArray();
+					m2 = mployeeHandler.chat.getArray();
 					// check if there is sites in the tour
 					if (m == null || m.isEmpty()) {
 						System.out.println("no result");
@@ -758,16 +683,19 @@ public class mapDataHandler implements Initializable {
 	@FXML
 	void saveOldVertion(ActionEvent event) {
 		// create new collection in DB and set the user how created
-		int mapId = Integer.parseInt(mapIdForShow);
+		int mapId = mployeeHandler.mapIdForShow;
+		// String s = mployeeHandler.idOfSelectedCollection;
+		String mapDescription = descriptionFeild.getText();
 		String userName = "user";
-		double version = Double.parseDouble(versionNumber);
+		double version = Double.parseDouble(mployeeHandler.versionNumber);
 		version +=1;
-		sql = "INSERT INTO map_collection (vertion,oneTimePrice,approved,subscriptionprice,userName) VALUES ('"+version+"', '0','1','0','"	+ userName + "');";
+		sql = "INSERT INTO map_collection (vertion,oneTimePrice,approved,subscriptionprice,userName) VALUES ('"+version+"', '0','0','0','"
+				+ userName + "');";
 
 		sendSQL.clear();
 		sendSQL.add("3");
 		sendSQL.add(sql);
-		chat.handleMessageFromClient(sendSQL);
+		mployeeHandler.chat.handleMessageFromClient(sendSQL);
 
 		try {
 			TimeUnit.MILLISECONDS.sleep(10);
@@ -782,14 +710,14 @@ public class mapDataHandler implements Initializable {
 		sendSQL.clear();
 		sendSQL.add("2");
 		sendSQL.add(sql);
-		chat.handleMessageFromClient(sendSQL);
+		mployeeHandler.chat.handleMessageFromClient(sendSQL);
 		try {
 			TimeUnit.MILLISECONDS.sleep(100);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		m = chat.getArray();
+		m = mployeeHandler.chat.getArray();
 		// check if there is sites in the tour
 		if (m == null || m.isEmpty()) {
 			System.out.println("no result");
@@ -832,7 +760,7 @@ public class mapDataHandler implements Initializable {
 					sql = "INSERT INTO site (name,type,description,time,accessing) VALUES ('" + nameSite + "' , '" + type+ "' , '" + description + "' , '" + time + "' , '" + accessible + "');";
 					sendSQL.add("3");
 					sendSQL.add(sql);
-					chat.handleMessageFromClient(sendSQL);
+					mployeeHandler.chat.handleMessageFromClient(sendSQL);
 	
 					try {
 						TimeUnit.MILLISECONDS.sleep(10);
@@ -845,14 +773,14 @@ public class mapDataHandler implements Initializable {
 					sendSQL.clear();
 					sendSQL.add("2");
 					sendSQL.add(sql);
-					chat.handleMessageFromClient(sendSQL);
+					mployeeHandler.chat.handleMessageFromClient(sendSQL);
 					try {
 						TimeUnit.MILLISECONDS.sleep(100);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					m = chat.getArray();
+					m = mployeeHandler.chat.getArray();
 					// check if there is sites in the tour
 					if (m == null || m.isEmpty()) {
 						System.out.println("no result");
@@ -876,7 +804,7 @@ public class mapDataHandler implements Initializable {
 				sendSQL.clear();
 				sendSQL.add("3");
 				sendSQL.add(sql);
-				chat.handleMessageFromClient(sendSQL);
+				mployeeHandler.chat.handleMessageFromClient(sendSQL);
 
 				try {
 					TimeUnit.MILLISECONDS.sleep(10);
@@ -913,7 +841,7 @@ public class mapDataHandler implements Initializable {
 				sendSQL.add("3");
 				sendSQL.add(sql);
 
-				chat.handleMessageFromClient(sendSQL);
+				mployeeHandler.chat.handleMessageFromClient(sendSQL);
 
 				try {
 					TimeUnit.MILLISECONDS.sleep(10);
@@ -936,14 +864,14 @@ public class mapDataHandler implements Initializable {
 				}
 			}
 		}
-		System.out.println("mployeeHandler.idOfSelectedCollection: " + idOfSelectedCollection);
+		System.out.println("mployeeHandler.idOfSelectedCollection: " + mployeeHandler.idOfSelectedCollection);
 		for (int i = 0; i < tours.size(); i++) {
 			sql = "SELECT site_id,tour_id FROM site_tour WHERE tour_id = '" + tours.get(i).getId()
-					+ "' AND id_collection= '" + idOfSelectedCollection + "';";
+					+ "' AND id_collection= '" + mployeeHandler.idOfSelectedCollection + "';";
 			sendSQL.clear();
 			sendSQL.add("2");
 			sendSQL.add(sql);
-			chat.handleMessageFromClient(sendSQL);
+			mployeeHandler.chat.handleMessageFromClient(sendSQL);
 			
 			try {
 				TimeUnit.MILLISECONDS.sleep(100);
@@ -951,7 +879,7 @@ public class mapDataHandler implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			m = chat.getArray();
+			m = mployeeHandler.chat.getArray();
 			// check if there is sites in the tour
 			if (m == null || m.isEmpty()) {
 				System.out.println("no result");
@@ -967,7 +895,7 @@ public class mapDataHandler implements Initializable {
 					sendSQL.clear();
 					sendSQL.add("3");
 					sendSQL.add(sql);
-					chat.handleMessageFromClient(sendSQL);
+					mployeeHandler.chat.handleMessageFromClient(sendSQL);
 					try {
 						TimeUnit.MILLISECONDS.sleep(5);
 					} catch (InterruptedException e) {
@@ -980,12 +908,12 @@ public class mapDataHandler implements Initializable {
 
 		}
 
-		sql = "SELECT id FROM map WHERE id_collaction ='"+idOfSelectedCollection+"';";
+		sql = "SELECT id FROM map WHERE id_collaction ='"+mployeeHandler.idOfSelectedCollection+"';";
 		sendSQL.clear();
 		sendSQL.add("2");
 		sendSQL.add(sql);
-		chat.handleMessageFromClient(sendSQL);
-		m = chat.getArray();
+		mployeeHandler.chat.handleMessageFromClient(sendSQL);
+		m = mployeeHandler.chat.getArray();
 		try {
 			TimeUnit.MILLISECONDS.sleep(100);
 		} catch (InterruptedException e) {
@@ -1004,7 +932,7 @@ public class mapDataHandler implements Initializable {
 				sendSQL.add("3");
 				sendSQL.add(sql);
 
-				chat.handleMessageFromClient(sendSQL);
+				mployeeHandler.chat.handleMessageFromClient(sendSQL);
 
 				try {
 					TimeUnit.MILLISECONDS.sleep(10);
@@ -1018,7 +946,6 @@ public class mapDataHandler implements Initializable {
 
 	}
 
-
 	protected void initializeListViewOfTour() {
 		tourResult = FXCollections.observableArrayList();
 
@@ -1029,10 +956,10 @@ public class mapDataHandler implements Initializable {
 			// tours.id = map_site.site_id )WHERE map_site.map_id = '"
 			// + managerHandler.mapIdForShow + "';";
 			sql = "SELECT tours.id,tours.description,tours.name FROM ((map_site INNER JOIN site_tour ON map_site.site_id = site_tour.site_id) INNER JOIN tours ON site_tour.tour_id = tours.id ) WHERE map_id = '"
-					+ mapIdForShow + "' GROUP BY (tours.id)";
+					+ mployeeHandler.mapIdForShow + "' AND map_site.id_collection='"+collection_id+"' GROUP BY (tours.id)";
 
 			sendSQL.add(sql);
-			chat.handleMessageFromClient(sendSQL);
+			mployeeHandler.chat.handleMessageFromClient(sendSQL);
 			try {
 				TimeUnit.MILLISECONDS.sleep(100);
 			} catch (InterruptedException e) {
@@ -1040,7 +967,7 @@ public class mapDataHandler implements Initializable {
 				e.printStackTrace();
 			}
 
-			m = chat.getArray();
+			m = mployeeHandler.chat.getArray();
 			if (m == null || m.isEmpty()) {
 				System.out.println("no result tours");
 			} else {
@@ -1072,20 +999,20 @@ public class mapDataHandler implements Initializable {
 
 	protected boolean initializeListViewOfsites() {
 		if (initializeSitesWithoutDB) {
-			
+			String mapIdForShow = String.valueOf(mployeeHandler.mapIdForShow);
 			sql = "SELECT city.name, map.description,city.id FROM (map INNER JOIN city ON city.id = map.city_id) WHERE map.id = '"
 					+ mapIdForShow + "';";
 			sendSQL.clear();
 			sendSQL.add("2");
 			sendSQL.add(sql);
-			chat.handleMessageFromClient(sendSQL);
+			mployeeHandler.chat.handleMessageFromClient(sendSQL);
 			try {
 				TimeUnit.MILLISECONDS.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			m = chat.getArray();
+			m = mployeeHandler.chat.getArray();
 			if (m == null || m.isEmpty()) {
 				System.out.println("no result maps is initialize sites");
 				return false;
@@ -1101,7 +1028,7 @@ public class mapDataHandler implements Initializable {
 				sendSQL.clear();
 				sendSQL.add("2");
 				sendSQL.add(sql);
-				chat.handleMessageFromClient(sendSQL);
+				mployeeHandler.chat.handleMessageFromClient(sendSQL);
 				try {
 					TimeUnit.MILLISECONDS.sleep(100);
 				} catch (InterruptedException e) {
@@ -1109,7 +1036,7 @@ public class mapDataHandler implements Initializable {
 					e.printStackTrace();
 				}
 				m.clear();
-				m = chat.getArray();
+				m = mployeeHandler.chat.getArray();
 				if (m == null || m.isEmpty()) {
 					System.out.println("no result site inside map");
 				} else {
@@ -1133,7 +1060,6 @@ public class mapDataHandler implements Initializable {
 				}
 			}
 		}
-		
 		String siteListView;
 		String tempstring;
 		// insert the sites of this map to the list view
@@ -1154,147 +1080,20 @@ public class mapDataHandler implements Initializable {
 
 	}
 
-	@FXML
-	void saveNewVertion(ActionEvent event) {
-		sendSQL.clear();
-		String cityName = cityNameField.getText();
-		String path = "";/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		String mapID = "";
-		String siteID = "";
-		String locationX;
-		String locationY;
-
-		sql = "SELECT * FROM city WHERE name= '" + cityName + "';";
-		sendSQL.add("2");
-		sendSQL.add(sql);
-		// check if the name of the city exist in the db
-		// if not create new city
-		chat.handleMessageFromClient(sendSQL);
-		try {
-			TimeUnit.MILLISECONDS.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		m = chat.getArray();
-		// create new city
-		if (m == null || m.isEmpty()) {
-			System.out.println("no city");
-			// insert city
-			sql = "INSERT INTO city (name) VALUES ('" + cityName + "');";
-			sendSQL.clear();
-			sendSQL.add("3");
-			sendSQL.add(sql);
-			chat.handleMessageFromClient(sendSQL);
-			try {
-				TimeUnit.MILLISECONDS.sleep(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			// get the id of the city
-			sql = "SELECT id FROM city ORDER BY ID DESC LIMIT 1;";
-			sendSQL.clear();
-			sendSQL.add("2");
-			sendSQL.add(sql);
-			chat.handleMessageFromClient(sendSQL);
-			try {
-				TimeUnit.MILLISECONDS.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			m = chat.getArray();
-			if (m == null || m.isEmpty()) {
-				System.out.println("no result");
-
-			} else {
-				// save the id of the new city
-				cityID = m.get(0).get(0);
-			}
-			// cityID
-			// continue to add the date for the DB
-		} else {
-			cityID = m.get(0).get(0);
-		}
-		System.out.println("id of city: " + cityID);
-
-		// insert new map into map table
-		String description = descriptionFeild.getText();
-		sql = "INSERT INTO map (city_id,description,id_collaction,path) VALUES ('" + cityID + "','" + description
-				+ "','-1','" + path + "');";
-		sendSQL.clear();
-		sendSQL.add("3");
-		sendSQL.add(sql);
-		chat.handleMessageFromClient(sendSQL);
-		try {
-			TimeUnit.MILLISECONDS.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		m = chat.getArray();
-		if (m == null || m.isEmpty()) {
-			System.out.println("no result");
-		} else {
-			sql = "SELECT id FROM map ORDER BY ID DESC LIMIT 1;";
-			sendSQL.clear();
-			sendSQL.add("2");
-			sendSQL.add(sql);
-			chat.handleMessageFromClient(sendSQL);
-			try {
-				TimeUnit.MILLISECONDS.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			m = chat.getArray();
-			if (m == null || m.isEmpty()) {
-				System.out.println("no result");
-
-			} else {
-				// save the id of the new city
-				mapID = m.get(0).get(0);
-			}
-		}
-
-		for (siteEntity sit : sites) {
-			siteID = sit.getID();
-			locationX = Double.toString(sit.getX());
-			locationY = Double.toString(sit.getY());
-			sql = "INSERT INTO map_site (map_id, site_id, location_x, location_y) VALUES ('" + mapID + "', '" + siteID
-					+ "' , '" + locationX + "' ,'" + locationY + "');";
-			sendSQL.clear();
-			sendSQL.add("3");
-			sendSQL.add(sql);
-			chat.handleMessageFromClient(sendSQL);
-			try {
-				TimeUnit.MILLISECONDS.sleep(5);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-	}
 	private void getTheRightCollectionID() {
 		
-		sql = "SELECT map_collection.id FROM (map INNER JOIN map_collection ON map.id_collaction = map_collection.id) WHERE map_collection.approved='1' AND map.id='"+mapIdForShow+"' ORDER BY map_collection.id DESC LIMIT 1;";
+		sql = "SELECT map_collection.id FROM (map INNER JOIN map_collection ON map.id_collaction = map_collection.id) WHERE map_collection.approved='1' AND map.id='"+mployeeHandler.mapIdForShow+"' ORDER BY map_collection.id DESC LIMIT 1;";
 		sendSQL.clear();
 		sendSQL.add("2");
 		sendSQL.add(sql);
-		chat.handleMessageFromClient(sendSQL);
+		mployeeHandler.chat.handleMessageFromClient(sendSQL);
 		try {
 			TimeUnit.MILLISECONDS.sleep(100);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		m = chat.getArray();
+		m = mployeeHandler.chat.getArray();
 		if (m == null || m.isEmpty()) {
 			System.out.println("no result site inside map");
 		} else {
@@ -1302,39 +1101,76 @@ public class mapDataHandler implements Initializable {
 		}
 		
 	}
+	
+	
+	@FXML
+	void saveNewVertion(ActionEvent event) {
+	
+
+	}
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {		
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		System.out.println("map id: " + mployeeHandler.mapIdForShow);
+		chat = mployeeHandler.chat;
 		// set the images for the map and pin for the sites
 		context = imageCanvas.getGraphicsContext2D();
 		pin = new Image("/managerWindow/pin.png");
+		
+
+		// initialize the map of the city
+		
+		
 
 		sitesInTourResult = FXCollections.observableArrayList();
 		sitesResult = FXCollections.observableArrayList();
 		tourResult = FXCollections.observableArrayList();
 		removedTours = new ArrayList<Integer>();
-		
+		idOfCurrentMap = mployeeHandler.mapIdForShow;
 		sitesResult.clear();
 		accessiableCombobox = FXCollections.observableArrayList("Not accessible", "Accessible");
 		accessiableCombo.getItems().addAll(accessiableCombobox);
 
 		// System.out.println(mapIdForShow);
-		sendSQL = new ArrayList<Object>();		
+		sendSQL = new ArrayList<Object>();
+		getTheRightCollectionID();
+		System.out.println("collection id: " + collection_id+"\n\n");
 
 		
 		
-	}
-	private void init() {
+		String path = EmployeeHandler.paths.get(EmployeeHandler.idOfMap);
+		sendSQL.clear();
+		sendSQL.add("5");
+		sendSQL.add(path);
+		
+		mployeeHandler.chat.handleMessageFromClient(sendSQL);
+		try {
+			TimeUnit.MILLISECONDS.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("path: "+path);
+		byte[] bytesArray  = mployeeHandler.chat.returnByteArray();
+		
+		System.out.println(bytesArray);
+		
+		try {
+			BufferedImage img = ImageIO.read(new ByteArrayInputStream(bytesArray));
+			te = SwingFXUtils.toFXImage(img, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		justSetImageOfMap();
 		
 		
-		
-		// initialize the map of the city
-				justSetImageOfMap();
-		
-		getTheRightCollectionID();
+		// check if there are sites in the map
+		// if it has look for tours in the map
+		// and insert the tours of the map to the list view
 		if (initializeListViewOfsites())
 			initializeListViewOfTour();
-}
-}
 
-
+	}
+}

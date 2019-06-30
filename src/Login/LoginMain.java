@@ -1,10 +1,15 @@
 package Login;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.WindowEvent;
+import javafx.event.EventHandler;
+
 
 
 
@@ -13,7 +18,16 @@ public class LoginMain extends Application {
 	public void start(Stage primaryStage) {
 		try {
 		
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Login/Login_MainWindow.fxml"));
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			    @Override
+			    public void handle(WindowEvent e) {
+			    	System.out.println("asdfasfsfs");
+			     Platform.exit();
+			     System.exit(0);
+			    }
+			  });
+			
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/Login/IpConfiguration.fxml"));
 			Scene scene = new Scene( root );
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			

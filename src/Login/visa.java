@@ -7,7 +7,10 @@ public class visa {
 	private int cvv;
 
 	public visa() {
-		cardNumber = expirationM = expirationy = cvv = 0;
+		this.cardNumber =0;
+		this.expirationM =0;
+		this.expirationy = 0;
+		this.cvv = 0;
 	}
 
 	public visa(int card, int exM, int exY, int cvv) {

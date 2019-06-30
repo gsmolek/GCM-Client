@@ -18,9 +18,9 @@ public class ChatClient extends AbstractClient
   private ArrayList<Object> str=new ArrayList<Object>();
   private ResultSet rs;
   private ArrayList<ArrayList<String>> array;
-  private byte[][] result;
+  private byte[] result;
 
-  public byte[][] returnByteArray() {
+  public byte[] returnByteArray() {
 	  return result;
   }
   public ArrayList<ArrayList<String>> getArray() {
@@ -31,12 +31,12 @@ public void setRs(ResultSet rs) {
 	this.rs = rs;
 }
 
-public ChatClient() 
-    throws IOException 
-  {
-    super("localhost", 5550); //Call the superclass constructor
-    openConnection();
-  }
+public ChatClient(String ip , int port) 
+	    throws IOException 
+	  {
+	    super(ip, port); //Call the superclass constructor
+	    openConnection();
+	  }
 
   public void handleMessageFromServer(Object msg) 
   {
@@ -56,6 +56,11 @@ public ChatClient()
 
 	  break;
 	  case "3": break;
+	  
+	  case "5":
+		  result  = (byte[]) dataFromServer.get(1);
+		   
+		  break;
 	  }
   }
 public ArrayList<Object> getStr()

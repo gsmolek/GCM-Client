@@ -134,18 +134,13 @@
                   <Image url="@../Go-back.png" />
                </image>
             </ImageView>
-            <Button fx:id="_addNewMapButton" layoutX="32.0" layoutY="655.0" mnemonicParsing="false" onAction="#saveOldVertion" prefHeight="46.0" prefWidth="169.0" style="-fx-background-color: Gold;" text="Save Version" textFill="WHITE">
+            <Button fx:id="_addNewMapButton" layoutX="32.0" layoutY="655.0" mnemonicParsing="false" onAction="#saveOldVertion" prefHeight="46.0" prefWidth="331.0" style="-fx-background-color: Gold;" text="Save Version" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
             </Button>
             <Label layoutX="40.0" layoutY="62.0" text="GCM -&gt; Edit Map" textAlignment="CENTER" textFill="RED" wrapText="true" />
             <Canvas fx:id="imageCanvas" height="386.0" layoutX="489.0" layoutY="72.0" width="386.0" />
-            <Button fx:id="_addNewMapButton1" layoutX="206.0" layoutY="655.0" mnemonicParsing="false" onAction="#saveNewVertion" prefHeight="46.0" prefWidth="169.0" style="-fx-background-color: Gold;" text="New Version" textFill="WHITE">
-               <font>
-                  <Font name="FrankRuehl" size="24.0" />
-               </font>
-            </Button>
             <TextField fx:id="nameSiteField" layoutX="489.0" layoutY="487.0" onKeyPressed="#checkSiteFilesIsEmpty" onKeyReleased="#checkSiteFilesIsEmpty" promptText="name" visible="false" />
             <TextField fx:id="typeSiteField" layoutX="674.0" layoutY="487.0" onKeyPressed="#checkSiteFilesIsEmpty" onKeyReleased="#checkSiteFilesIsEmpty" promptText="type" visible="false" />
             <TextField fx:id="timeSiteField" layoutX="674.0" layoutY="536.0" onKeyPressed="#checkTimeText" onKeyReleased="#checkTimeText" promptText="time" visible="false" />

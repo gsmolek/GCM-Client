@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerWindow.ManagerHandler">
+<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerWindow.ManagerCompanyHandler">
    <children>
       <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="831.0" prefWidth="943.0">
          <children>
@@ -47,23 +47,23 @@
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </RadioButton>
-                  <TextArea fx:id="_searchTextFiled" layoutX="33.0" layoutY="197.0" prefHeight="59.0" prefWidth="344.0" promptText="Search Text">
+                  <TextArea fx:id="_searchTextFiled" layoutX="33.0" layoutY="197.0" onKeyReleased="#checkIfEmpty" prefHeight="59.0" prefWidth="344.0" promptText="Search Text">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextArea>
                   <ListView fx:id="_listViewResult" disable="true" layoutX="38.0" layoutY="346.0" onMouseClicked="#checkIfChoose" prefHeight="127.0" prefWidth="344.0" />
-                  <Button fx:id="_searchButton" layoutX="33.0" layoutY="276.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Search" textFill="WHITE">
+                  <Button fx:id="_searchButton" disable="true" layoutX="33.0" layoutY="276.0" mnemonicParsing="false" onAction="#searchForMap" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Search" textFill="WHITE">
                      <font>
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="_buyMapButton" layoutX="38.0" layoutY="491.0" mnemonicParsing="false" onAction="#clickBuyMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Show Map Data" textFill="WHITE">
+                  <Button fx:id="_buyMapButton" disable="true" layoutX="38.0" layoutY="491.0" mnemonicParsing="false" onAction="#clickBuyMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Show Map Data" textFill="WHITE">
                      <font>
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="_downloadMapButton" layoutX="38.0" layoutY="557.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map" textFill="WHITE">
+                  <Button fx:id="_downloadMapButton" disable="true" layoutX="38.0" layoutY="557.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map" textFill="WHITE">
                      <font>
                         <Font name="FrankRuehl" size="24.0" />
                      </font>
@@ -92,20 +92,12 @@
                   <MenuItem mnemonicParsing="false" text="Log Out" />
                </items>
             </MenuButton>
-            <Label fx:id="_userNameLabel" layoutX="76.0" layoutY="24.0" prefHeight="21.0" prefWidth="188.0" text="User Name   [Type Of User]" textFill="#12bcff" underline="true" wrapText="true">
+            <Label fx:id="_userNameLabel" layoutX="76.0" layoutY="24.0" prefHeight="21.0" prefWidth="237.0" text="User Name   [Type Of User]" textFill="#12bcff" underline="true" wrapText="true">
                <font>
                   <Font name="Constantia Italic" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="_downloadMapButton1" layoutX="59.0" layoutY="277.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Manage the information archive" textFill="WHITE">
-               <font>
-                  <Font name="FrankRuehl" size="24.0" />
-               </font>
-               <tooltip>
-                  <Tooltip text="You need to choose map from catalog" />
-               </tooltip>
-            </Button>
-            <Button fx:id="_downloadMapButton11" layoutX="59.0" layoutY="358.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: Gold;" text="Manage client information" textFill="WHITE">
+            <Button fx:id="_manageClientInfo" layoutX="59.0" layoutY="358.0" mnemonicParsing="false" onAction="#clientInformation" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: Gold;" text="Manage client information" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
@@ -118,12 +110,7 @@
                   <Image url="@Clients-icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="30.0" layoutX="382.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Files-icon.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="_downloadMapButton12" layoutX="59.0" layoutY="437.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Approve Rate" textFill="WHITE">
+            <Button fx:id="_approveRate" layoutX="59.0" layoutY="437.0" mnemonicParsing="false" onAction="#openAproveRateWindow" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Approve Rate" textFill="WHITE">
                <font>
                   <Font name="FrankRuehl" size="24.0" />
                </font>
@@ -132,7 +119,7 @@
                </tooltip>
             </Button>
             <Circle fill="#31a821" layoutX="400.0" layoutY="483.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label layoutX="397.0" layoutY="474.0" prefHeight="17.0" prefWidth="30.0" text="0" textFill="WHITE">
+            <Label fx:id="aproveRate" layoutX="397.0" layoutY="474.0" prefHeight="17.0" prefWidth="30.0" text="0" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -143,6 +130,19 @@
             <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="869.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Go-back.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="_activityReport" layoutX="59.0" layoutY="522.0" mnemonicParsing="false" onAction="#getReport" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: Gold;" text="Activity Report" textFill="WHITE">
+               <font>
+                  <Font name="FrankRuehl" size="24.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="You need to choose map from catalog" />
+               </tooltip>
+            </Button>
+            <ImageView fitHeight="43.0" fitWidth="30.0" layoutX="382.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Clipboard-icon.png" />
                </image>
             </ImageView>
          </children>

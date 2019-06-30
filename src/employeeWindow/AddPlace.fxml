@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="663.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.EmployeeHandler">
+<AnchorPane prefHeight="663.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeeWindow.addSiteHandler">
    <children>
       <Label layoutX="78.0" layoutY="14.0" text="Add Place Of Interest" textFill="#000000fc">
          <font>
@@ -20,21 +20,22 @@
       </Label>
       <Label layoutX="59.0" layoutY="97.0" text="Name Of Place  :" />
       <Label layoutX="63.0" layoutY="139.0" prefHeight="21.0" prefWidth="96.0" text="Classification:" wrapText="true" />
-      <TextArea layoutX="65.0" layoutY="406.0" prefHeight="129.0" prefWidth="296.0" promptText="short explanation" />
-      <Separator layoutX="43.0" layoutY="237.0" prefHeight="3.0" prefWidth="339.0" />
+      <Separator layoutX="43.0" layoutY="257.0" prefHeight="3.0" prefWidth="339.0" />
       <Separator layoutX="39.0" layoutY="357.0" prefHeight="3.0" prefWidth="339.0" />
-      <Button defaultButton="true" layoutX="62.0" layoutY="578.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Save" />
-      <Button cancelButton="true" layoutX="271.0" layoutY="578.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="84.0" text="Cancel" />
-      <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="85.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="saveBTN" defaultButton="true" disable="true" layoutX="62.0" layoutY="578.0" mnemonicParsing="false" onAction="#saveBTNclick" prefHeight="51.0" prefWidth="84.0" text="Save" />
+      <Button cancelButton="true" layoutX="271.0" layoutY="578.0" mnemonicParsing="false" onAction="#closeAddSite" prefHeight="51.0" prefWidth="84.0" text="Cancel" />
+      <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="85.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@20171012153839-special-assistance-500x500.png" />
          </image>
       </ImageView>
-      <CheckBox layoutX="149.0" layoutY="296.0" mnemonicParsing="false" text="Accessible special needs" />
-      <TextField layoutX="157.0" layoutY="93.0" />
-      <TextField layoutX="157.0" layoutY="137.0" />
-      <TextField layoutX="157.0" layoutY="183.0" />
+      <CheckBox fx:id="accessibleArea" layoutX="149.0" layoutY="311.0" mnemonicParsing="false" text="Accessible special needs" />
+      <TextField fx:id="nameOfPlaceField" layoutX="157.0" layoutY="93.0" onKeyPressed="#checkIfChanged" onKeyReleased="#checkIfChanged" />
+      <TextField fx:id="classifictionField" layoutX="157.0" layoutY="137.0" onKeyPressed="#checkIfChanged" onKeyReleased="#checkIfChanged" />
+      <TextField fx:id="timeField" layoutX="157.0" layoutY="183.0" onKeyPressed="#checkIfChanged" onKeyReleased="#checkIfChanged" />
+      <TextArea fx:id="ddescriptionField" layoutX="65.0" layoutY="406.0" onKeyPressed="#checkIfChanged" onKeyReleased="#checkIfChanged" prefHeight="129.0" prefWidth="296.0" promptText="short explanation" />
       <Label layoutX="63.0" layoutY="185.0" prefHeight="21.0" prefWidth="96.0" text="Time" wrapText="true" />
       <Label layoutX="63.0" layoutY="371.0" prefHeight="21.0" prefWidth="96.0" text="Description" wrapText="true" />
+      <Label fx:id="errorTimeField" layoutX="159.0" layoutY="218.0" prefHeight="25.0" prefWidth="150.0" text="Time must be a number" textFill="RED" visible="false" />
    </children>
 </AnchorPane>

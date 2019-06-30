@@ -6,17 +6,14 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
-import Login.IpConfigurationController;
 import Login.LoginHandler;
 import ServerConnection.ChatClient;
-import clientWindow.typeOfpurchaseHandller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -29,46 +26,42 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class ManagerHandler implements Initializable {
+public class ManagerCompanyHandler implements Initializable {
 
+	private int searchType = 1;
 	private ArrayList<String> mapID;
+	protected LoginHandler log;
 	protected static ChatClient chat = null;
+	private ArrayList<ArrayList<String>> m;
 	private String sql;
 	private ArrayList<Object> sendSQL;
-	private ArrayList<Integer> idResultsFromQuery;
-	private ArrayList<ArrayList<String>> m;
-	private Stage stage2;
-	private int searchType = 1;
-	protected static int mapIdForShow;
 	private static final ObservableList<String> searchResult = FXCollections.observableArrayList();
+	private ArrayList<Integer> idResultsFromQuery;
+	private ArrayList<String> versionList;
+	protected static String versionNumber;
 	private Pane root;
 	private FXMLLoader loader;
 	private Scene scene;
-	private Stage stage;
-	private LoginHandler log;
+	private Stage stage, stage2;
 	private ArrayList<String> collections_id;
+	protected static int mapIdForShow;
 	protected static String idOfSelectedCollection;
-	protected static String versionOfTheCollection;
+	protected static ArrayList<String> paths;
 	protected static int idOfMap;
-	protected static  ArrayList<String> paths;
+	private String aproveRateNumber;
 	protected String welcome;
-	
-	
-	private ArrayList<String> versionList;
-	protected static String versionNumber;
-
-	public void setLoginHandler(LoginHandler log) {
-		this.log = log;
-	}
 
 	@FXML
-	private Label numOfRequested;
+	private Label aproveRate;
 
 	@FXML
-	private RadioButton _radioManageClient;
+	private RadioButton _radioDescription;
 
 	@FXML
-	private Pane _paneArchive;
+	private RadioButton _radioPlaceOfInterestName;
+
+	@FXML
+	private Label _userNameLabel;
 
 	@FXML
 	private Button _searchButton;
@@ -77,46 +70,76 @@ public class ManagerHandler implements Initializable {
 	private Button _buyMapButton;
 
 	@FXML
-	private Button _addTourButton;
-
-	@FXML
 	private RadioButton _radioCityName;
-
-	@FXML
-	private Button _editTourButton;
-
-	@FXML
-	private RadioButton _radioDescription;
-
-	@FXML
-	private ListView<String> _listViewResult;
-
-	@FXML
-	private Label _userNameLabel;
-
-	@FXML
-	private RadioButton _radioArchiveView;
-
-	@FXML
-	private Button _addPlaceButton;
-
-	@FXML
-	private Button _addNewMapButton;
-
-	@FXML
-	private Button _downloadMapButton;
-
-	@FXML
-	private Button _forQuestionButton;
-
-	@FXML
-	private Button _editPlaceButton;
 
 	@FXML
 	private TextArea _searchTextFiled;
 
 	@FXML
-	private RadioButton _radioPlaceOfInterestName;
+	private ListView<String> _listViewResult;
+
+	@FXML
+	private Button _downloadMapButton;
+
+	@FXML
+	private Label numOfRequested;
+
+	public void setLoginHandler(LoginHandler log) {
+		this.log = log;
+		getCountOfAprroveRate();
+		aproveRate.setText(aproveRateNumber);
+	}
+
+	@FXML
+    void getReport(ActionEvent event) {
+		try {
+			loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/managerWindow/Manager_ActivityReport.fxml"));
+			root = loader.load();
+
+			scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+			ActivityReportHandler control = loader.getController();
+
+			control.setManagerCompanyHandler(this);
+			// control.setClientWindowHandler(this);
+			// control.getMapID(mapIDForBuy);
+
+			stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+
+			stage2 = (Stage) _buyMapButton.getScene().getWindow();
+			stage2.hide();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+	
+	private void getCountOfAprroveRate() {
+		sql = "SELECT COUNT(*) FROM price_for_approve;";
+		sendSQL.clear();
+		sendSQL.add("2");
+
+		// get the number of place of interest of the city
+		sendSQL.add(sql);
+		chat.handleMessageFromClient(sendSQL);
+		try {
+			TimeUnit.MILLISECONDS.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		m = chat.getArray();
+		System.out.println(m);
+		if (m == null || m.isEmpty()) {
+			System.out.println("no result");
+		} else {
+			aproveRateNumber = m.get(0).get(0);
+		}
+	}
 
 	@FXML
 	void radioCitySelect(ActionEvent event) {
@@ -133,8 +156,115 @@ public class ManagerHandler implements Initializable {
 		searchType = 3;
 	}
 
-	public int returnMapId() {
-		return mapIdForShow;
+	@FXML
+	void checkIfChoose(MouseEvent event) {
+		if (_listViewResult.getSelectionModel().getSelectedIndex() != -1) {
+			_buyMapButton.setDisable(false);
+			_downloadMapButton.setDisable(false);
+			idOfMap = _listViewResult.getSelectionModel().getSelectedIndex();
+		}
+
+	}
+
+	@FXML
+	void clientInformation(ActionEvent event) {
+
+		try {
+			loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/managerWindow/ManagerCompany_ClientDataShow.fxml"));
+			root = loader.load();
+
+			scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+			ClientInfoHandler control = loader.getController();
+
+			control.setCompanyManagerHandler(this);
+			// control.setClientWindowHandler(this);
+			// control.getMapID(mapIDForBuy);
+
+			stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+
+			stage2 = (Stage) _buyMapButton.getScene().getWindow();
+			stage2.hide();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+    void openAproveRateWindow(ActionEvent event) {
+
+		try {
+			loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/managerWindow/ManagerCompany_ApproveRate.fxml"));
+			root = loader.load();
+
+			scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+			aprroveHandler control = loader.getController();
+
+			control.setManagerCompanyHandler(this);
+			// control.setClientWindowHandler(this);
+			// control.getMapID(mapIDForBuy);
+
+			stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+
+			stage2 = (Stage) _buyMapButton.getScene().getWindow();
+			stage2.hide();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+	private void setNumOfrequest() {
+		// numOfRequested
+		String sum = "0";
+		sql = "SELECT COUNT(*) FROM price_for_approve;";
+		sendSQL.clear();
+		sendSQL.add("2");
+		sendSQL.add(sql);
+		chat.handleMessageFromClient(sendSQL);
+		try {
+			TimeUnit.MILLISECONDS.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		m = chat.getArray();
+		if (m == null || m.isEmpty()) {
+			System.out.println("no result");
+		} else {
+			sum = m.get(0).get(0);
+		}
+		aproveRate.setText(sum);
+	}
+
+	public void openThisWindow() {
+		stage2.show();
+		setNumOfrequest();
+	}
+
+	private static String removeWord(String string) {
+		String[] words = { "a", "for", "while", "to", "and", "then", "than", "with", "like", "as", "it", "by", "the",
+				"of" };
+		for (String remove : words) {
+			if (string.contains(remove)) {
+				String tempWord = remove + " ";
+				string = string.replaceAll(tempWord, "");
+				tempWord = " " + remove;
+				string = string.replaceAll(tempWord, "");
+			}
+		}
+		return string;
 	}
 
 	@FXML
@@ -142,7 +272,7 @@ public class ManagerHandler implements Initializable {
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		System.out.println(mapIdForShow);
 		mapIdForShow = idResultsFromQuery.get(_listViewResult.getSelectionModel().getSelectedIndex());
-		idOfSelectedCollection = collections_id.get (_listViewResult.getSelectionModel().getSelectedIndex() );
+		idOfSelectedCollection = collections_id.get(_listViewResult.getSelectionModel().getSelectedIndex());
 		try {
 			loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/managerWindow/Manager_EditMapWindow.fxml"));
@@ -152,75 +282,14 @@ public class ManagerHandler implements Initializable {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			mapDataHandler control = loader.getController();
-			control.setManagerHandler(this);
+
+			control.setManagerCompanyHandler(this);
 			// control.setClientWindowHandler(this);
 			// control.getMapID(mapIDForBuy);
 
 			stage = new Stage();
 			stage.setScene(scene);
 			stage.show();
-			stage2 = (Stage) _buyMapButton.getScene().getWindow();
-			stage2.hide();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	public void openThisWindow() {
-		stage2.show();
-		setNumOfrequest();
-	}
-	
-	
-
-	@FXML
-	void openManagerContent_SetAMapCollectionRateWindow(ActionEvent event) {
-		try {
-			loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/managerWindow/ManagerContent_SetAMapCollectionRate.fxml"));
-			root = loader.load();
-
-			scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-			setRateHandler control = loader.getController();
-			
-			control.setManagerHandler(this);
-			// control.setClientWindowHandler(this);
-			// control.getMapID(mapIDForBuy);
-
-			stage = new Stage();
-			stage.setScene(scene);
-			stage.show();
-
-			stage2 = (Stage) _buyMapButton.getScene().getWindow();
-			stage2.hide();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@FXML
-	void gotoApproveWindow(ActionEvent event) {
-		try {
-			loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/managerWindow/ManagerContent_ApproveVersion.fxml"));
-			root = loader.load();
-
-			scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-			ApproveVertionHandler control = loader.getController();
-			control.setManagerHandler(this);
-			// control.setClientWindowHandler(this);
-			// control.getMapID(mapIDForBuy);
-
-			stage = new Stage();
-			stage.setScene(scene);
-			stage.show();
-
 			stage2 = (Stage) _buyMapButton.getScene().getWindow();
 			stage2.hide();
 		} catch (IOException e) {
@@ -320,7 +389,7 @@ public class ManagerHandler implements Initializable {
 						sendSQL.clear();
 						sendSQL.add("2");
 
-						//save the version of each collection
+						// save the version of each collection
 						versionList = new ArrayList<String>();
 						// fill the list view with the maps list
 						sql = "SELECT map.id_collaction, map.description, map.id,map_collection.vertion,map.path FROM ((city INNER JOIN map ON city.id = map.city_id) INNER JOIN map_collection ON map.id_collaction = map_collection.id) WHERE city.name='"
@@ -352,6 +421,7 @@ public class ManagerHandler implements Initializable {
 
 						}
 
+						System.out.println("searchResult " + searchResult);
 						// resultOfMapList
 					}
 					_listViewResult.setItems(searchResult);
@@ -584,59 +654,12 @@ public class ManagerHandler implements Initializable {
 
 	}
 
-	@FXML
-	void checkIfChoose(MouseEvent event) {
-		if (_listViewResult.getSelectionModel().getSelectedIndex() != -1) {
-			_buyMapButton.setDisable(false);
-			_downloadMapButton.setDisable(false);
-			idOfMap = _listViewResult.getSelectionModel().getSelectedIndex();
-			versionNumber = versionList.get(_listViewResult.getSelectionModel().getSelectedIndex());
-		}
-
-	}
-
-	private static String removeWord(String string) {
-		String[] words = { "a", "for", "while", "to", "and", "then", "than", "with", "like", "as", "it", "by", "the",
-				"of" };
-		for (String remove : words) {
-			if (string.contains(remove)) {
-				String tempWord = remove + " ";
-				string = string.replaceAll(tempWord, "");
-				tempWord = " " + remove;
-				string = string.replaceAll(tempWord, "");
-			}
-		}
-		return string;
-	}
-
-	private void setNumOfrequest() {
-		// numOfRequested
-		String sum = "0";
-		sql = "SELECT COUNT(*) FROM map_collection WHERE approved ='0';";
-		sendSQL.clear();
-		sendSQL.add("2");
-		sendSQL.add(sql);
-		chat.handleMessageFromClient(sendSQL);
-		try {
-			TimeUnit.MILLISECONDS.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-		m = chat.getArray();
-		if (m == null || m.isEmpty()) {
-			System.out.println("no result");
-		} else {
-			sum = m.get(0).get(0);
-		}
-		numOfRequested.setText(sum);
-	}
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		welcome = "Hello: " + log.fisrtName + " [Content Manager] ";
-		_userNameLabel.setText("Hello: " + log.fisrtName + " [Content Manager] ");
+		// TODO Auto-generated method stub
+
+		_userNameLabel.setText("Hello: " + log.fisrtName + " [Company Manager "+ "]");
+		welcome = "Hello: " + log.fisrtName + " [Company Manager] ";
 		// TODO Auto-generated method stub
 		sendSQL = new ArrayList<Object>();
 		final ToggleGroup searchGroup = new ToggleGroup();
@@ -644,36 +667,9 @@ public class ManagerHandler implements Initializable {
 		_radioPlaceOfInterestName.setToggleGroup(searchGroup);
 		_radioDescription.setToggleGroup(searchGroup);
 
-		
-		chat = log.chat;
 		paths = new ArrayList<String>();
-		/*try {
-			chat = new ChatClient(IpConfigurationController.getIp(),Integer.valueOf(IpConfigurationController.getPort()));
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			// return false;
-		}*/
-		setNumOfrequest();
-	}
-
-	@FXML
-	void clickAddPlace(ActionEvent event) {
+		chat = log.chat;
 
 	}
 
-	@FXML
-	void clickAddTour(ActionEvent event) {
-
-	}
-
-	@FXML
-	void selectArchiveView(ActionEvent event) {
-
-	}
-
-	@FXML
-	void selectManageClientView(ActionEvent event) {
-
-	}
 }
