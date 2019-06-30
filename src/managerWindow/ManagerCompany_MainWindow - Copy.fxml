@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="151.0" prefWidth="166.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerWindow.ManagerHandler">
+   <children>
+      <Pane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="831.0" prefWidth="943.0">
+         <children>
+            <Pane layoutX="494.0" layoutY="74.0" prefHeight="594.0" prefWidth="430.0">
+               <children>
+                  <ImageView fitHeight="81.0" fitWidth="246.0" layoutX="121.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../clientWindow/searchIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="87.0" layoutY="-14.0" text="Catalog Map">
+                     <font>
+                        <Font name="Century" size="25.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="_radioCityName" layoutX="33.0" layoutY="73.0" mnemonicParsing="false" onAction="#radioCitySelect" selected="true" text="Search By City Name">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="_radioPlaceOfInterestName" layoutX="33.0" layoutY="113.0" mnemonicParsing="false" onAction="#radioPlaceOfInterestName" text="Search By Place Of Interest Name">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="_radioDescription" layoutX="33.0" layoutY="156.0" mnemonicParsing="false" onAction="#radioDescription" text="Search By Description">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <TextArea fx:id="_searchTextFiled" layoutX="33.0" layoutY="197.0" prefHeight="59.0" prefWidth="344.0" promptText="Search Text">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextArea>
+                  <ListView fx:id="_listViewResult" disable="true" layoutX="38.0" layoutY="346.0" onMouseClicked="#checkIfChoose" prefHeight="127.0" prefWidth="344.0" />
+                  <Button fx:id="_searchButton" layoutX="33.0" layoutY="276.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Search" textFill="WHITE">
+                     <font>
+                        <Font name="FrankRuehl" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="_buyMapButton" layoutX="38.0" layoutY="491.0" mnemonicParsing="false" onAction="#clickBuyMapButton" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: Gold;" text="Show Map Data" textFill="WHITE">
+                     <font>
+                        <Font name="FrankRuehl" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="_downloadMapButton" layoutX="38.0" layoutY="557.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="344.0" style="-fx-background-color: LightSkyBlue;" text="Download Map" textFill="WHITE">
+                     <font>
+                        <Font name="FrankRuehl" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Separator layoutX="456.0" layoutY="67.0" orientation="VERTICAL" prefHeight="583.0" prefWidth="22.0" />
+            <ImageView fitHeight="109.0" fitWidth="122.0" layoutX="415.0" layoutY="643.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../clientWindow/anyQustion.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="_forQuestionButton" layoutX="411.0" layoutY="753.0" mnemonicParsing="false" style="-fx-background-color: MediumAquamarine;" text="For Any Question">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="43.0" fitWidth="81.0" layoutX="26.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@iconManager.png" />
+               </image>
+            </ImageView>
+            <MenuButton layoutX="59.0" layoutY="34.0" minWidth="0.0" mnemonicParsing="false" prefHeight="3.0" prefWidth="0.0">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Save Version" />
+                  <MenuItem mnemonicParsing="false" text="Log Out" />
+               </items>
+            </MenuButton>
+            <Label fx:id="_userNameLabel" layoutX="76.0" layoutY="24.0" prefHeight="21.0" prefWidth="188.0" text="User Name   [Type Of User]" textFill="#12bcff" underline="true" wrapText="true">
+               <font>
+                  <Font name="Constantia Italic" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="_downloadMapButton1" layoutX="59.0" layoutY="277.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Manage the information archive" textFill="WHITE">
+               <font>
+                  <Font name="FrankRuehl" size="24.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="You need to choose map from catalog" />
+               </tooltip>
+            </Button>
+            <Button fx:id="d" layoutX="59.0" layoutY="358.0" mnemonicParsing="false" onAction="#doSomthing" onMouseClicked="#doSomthing" onMousePressed="#doSomthing" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: Gold;" text="Manage client information" textFill="WHITE">
+               <font>
+                  <Font name="FrankRuehl" size="24.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="You need to choose map from catalog" />
+               </tooltip>
+            </Button>
+            <ImageView fitHeight="43.0" fitWidth="30.0" layoutX="382.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Clients-icon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="30.0" layoutX="382.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Files-icon.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="fddf" layoutX="59.0" layoutY="437.0" mnemonicParsing="false" onAction="#openSometing" onMouseClicked="#doSomthing" prefHeight="46.0" prefWidth="338.0" style="-fx-background-color: LightSkyBlue;" text="Approve Rate" textFill="WHITE">
+               <font>
+                  <Font name="FrankRuehl" size="24.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="You need to choose map from catalog" />
+               </tooltip>
+            </Button>
+            <Circle fill="#31a821" layoutX="400.0" layoutY="483.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label layoutX="397.0" layoutY="474.0" prefHeight="17.0" prefWidth="30.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Numbers of versions to approve" />
+               </tooltip>
+            </Label>
+            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="869.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Go-back.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="76.0" layoutY="560.0" mnemonicParsing="false" onAction="#doSomthing" text="Button" />
+         </children>
+      </Pane>
+      <Label layoutX="50.0" layoutY="72.0" text="GCM " textAlignment="CENTER" textFill="RED" wrapText="true" />
+   </children>
+</AnchorPane>
